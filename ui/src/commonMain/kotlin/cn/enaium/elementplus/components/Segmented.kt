@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
@@ -20,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -36,7 +38,11 @@ data class ElSegmentedOption<T>(
     val disabled: Boolean = false,
 )
 
-/** `<el-segmented>` with animated selected pill, icons, block and vertical modes. */
+/**
+ * `<el-segmented>` with animated selected pill, icons, block and vertical modes.
+ * [optionContent] renders arbitrary per-option content, and the selected colors
+ * and corner radius mirror the upstream CSS variables.
+ */
 @Composable
 fun <T> ElSegmented(
     options: List<ElSegmentedOption<T>>,
@@ -47,12 +53,16 @@ fun <T> ElSegmented(
     block: Boolean = false,
     vertical: Boolean = false,
     disabled: Boolean = false,
+    optionContent: (@Composable (ElSegmentedOption<T>) -> Unit)? = null,
+    selectedColor: Color? = null,
+    selectedBackgroundColor: Color? = null,
+    cornerRadius: Dp? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
     val resolvedSize = resolveElSize(size)
     val height = resolvedSize.height
-    val shape = RoundedCornerShape(theme.radius.base)
+    val shape = RoundedCornerShape(cornerRadius ?: theme.radius.base)
     val containerModifier = modifier
         .then(
             when {
@@ -65,11 +75,17 @@ fun <T> ElSegmented(
         .padding(2.dp)
     if (vertical) {
         Column(containerModifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            ColumnSegmentItems(options, value, onValueChange, height, resolvedSize, block, disabled)
+            ColumnSegmentItems(
+                options, value, onValueChange, height, resolvedSize, block, disabled,
+                optionContent, selectedColor, selectedBackgroundColor, cornerRadius,
+            )
         }
     } else {
         Row(containerModifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-            RowSegmentItems(options, value, onValueChange, height, resolvedSize, block, disabled)
+            RowSegmentItems(
+                options, value, onValueChange, height, resolvedSize, block, disabled,
+                optionContent, selectedColor, selectedBackgroundColor, cornerRadius,
+            )
         }
     }
 }
@@ -83,6 +99,10 @@ private fun <T> RowScope.RowSegmentItems(
     resolvedSize: ElSize,
     block: Boolean,
     disabled: Boolean,
+    optionContent: (@Composable (ElSegmentedOption<T>) -> Unit)?,
+    selectedColor: Color?,
+    selectedBackgroundColor: Color?,
+    cornerRadius: Dp?,
 ) {
     options.forEach { option ->
         SegmentItem(
@@ -92,6 +112,10 @@ private fun <T> RowScope.RowSegmentItems(
             height = height,
             resolvedSize = resolvedSize,
             onValueChange = onValueChange,
+            optionContent = optionContent,
+            selectedColor = selectedColor,
+            selectedBackgroundColor = selectedBackgroundColor,
+            cornerRadius = cornerRadius,
             modifier = if (block) Modifier.weight(1f) else Modifier,
         )
     }
@@ -106,6 +130,10 @@ private fun <T> ColumnScope.ColumnSegmentItems(
     resolvedSize: ElSize,
     block: Boolean,
     disabled: Boolean,
+    optionContent: (@Composable (ElSegmentedOption<T>) -> Unit)?,
+    selectedColor: Color?,
+    selectedBackgroundColor: Color?,
+    cornerRadius: Dp?,
 ) {
     options.forEach { option ->
         SegmentItem(
@@ -115,6 +143,10 @@ private fun <T> ColumnScope.ColumnSegmentItems(
             height = height,
             resolvedSize = resolvedSize,
             onValueChange = onValueChange,
+            optionContent = optionContent,
+            selectedColor = selectedColor,
+            selectedBackgroundColor = selectedBackgroundColor,
+            cornerRadius = cornerRadius,
             modifier = if (block) Modifier.weight(1f) else Modifier,
         )
     }
@@ -128,40 +160,56 @@ private fun <T> SegmentItem(
     height: Dp,
     resolvedSize: ElSize,
     onValueChange: (T) -> Unit,
+    optionContent: (@Composable (ElSegmentedOption<T>) -> Unit)?,
+    selectedColor: Color?,
+    selectedBackgroundColor: Color?,
+    cornerRadius: Dp?,
     modifier: Modifier = Modifier,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
     val bg by animateColorAsState(
-        if (selected) colors.background else colors.fillLight.copy(alpha = 0f),
+        if (selected) selectedBackgroundColor ?: colors.background else colors.fillLight.copy(alpha = 0f),
         label = "segmented-bg",
     )
     val fg by animateColorAsState(
-        if (!enabled) colors.textDisabled else if (selected) colors.textPrimary else colors.textRegular,
+        when {
+            !enabled -> colors.textDisabled
+            selected -> selectedColor ?: colors.textPrimary
+            else -> colors.textRegular
+        },
         label = "segmented-fg",
     )
-    val optionShape = RoundedCornerShape(theme.radius.base - 1.dp)
+    val baseRadius = cornerRadius ?: theme.radius.base
+    val optionShape = RoundedCornerShape((baseRadius - 1.dp).coerceAtLeast(0.dp))
     Row(
         modifier = modifier
             .clip(optionShape)
             .background(bg, optionShape)
             .clickable(enabled = enabled) { onValueChange(option.value) }
-            .height(height - 4.dp)
+            .then(
+                if (optionContent != null) Modifier.heightIn(min = height - 4.dp)
+                else Modifier.height(height - 4.dp)
+            )
             .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
-        if (option.icon != null) {
-            ElIcon(option.icon, size = 14.dp, tint = fg)
-            Spacer(Modifier.padding(end = 6.dp))
+        if (optionContent != null) {
+            optionContent(option)
+        } else {
+            if (option.icon != null) {
+                ElIcon(option.icon, size = 14.dp, tint = fg)
+                Spacer(Modifier.padding(end = 6.dp))
+            }
+            BasicText(
+                text = option.label,
+                style = theme.typography.base.copy(
+                    fontSize = resolvedSize.fontSize,
+                    color = fg,
+                    fontWeight = if (selected) FontWeight.Medium else FontWeight.Normal,
+                ),
+            )
         }
-        BasicText(
-            text = option.label,
-            style = theme.typography.base.copy(
-                fontSize = resolvedSize.fontSize,
-                color = fg,
-                fontWeight = if (selected) FontWeight.Medium else FontWeight.Normal,
-            ),
-        )
     }
 }

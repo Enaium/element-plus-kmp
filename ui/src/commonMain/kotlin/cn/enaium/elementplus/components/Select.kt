@@ -21,7 +21,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -34,6 +33,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -47,6 +47,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
@@ -63,11 +64,28 @@ data class ElSelectOption<T>(
     val label: String,
     val disabled: Boolean = false,
     val group: String? = null,
+    /** Optional source object for aliases/custom option rendering. */
+    val data: Any? = null,
 )
 
+/** Map domain items to select options when using the `options` attribute. */
+fun <T, K> elSelectOptions(
+    items: List<T>,
+    value: (T) -> K,
+    label: (T) -> String,
+    disabled: (T) -> Boolean = { false },
+    group: (T) -> String? = { null },
+): List<ElSelectOption<K>> = items.map { item ->
+    ElSelectOption(value(item), label(item), disabled(item), group(item), data = item)
+}
+
+private fun <T> sameSelectValue(a: T, b: T, valueKey: ((T) -> Any?)?): Boolean =
+    if (valueKey != null) valueKey(a) == valueKey(b) else a == b
+
 /**
- * `<el-select>` single-value select. Use [ElSelectMultiple] for multiple
- * selection. Options are grouped when [ElSelectOption.group] is set.
+ * `<el-select>` single-value select with local/remote filtering, grouping,
+ * header/footer slots, option/tag/label renderers, create-item and value-key
+ * support.
  */
 @Composable
 fun <T> ElSelect(
@@ -85,7 +103,37 @@ fun <T> ElSelect(
     noDataText: String? = null,
     noMatchText: String? = null,
     onVisibleChange: ((Boolean) -> Unit)? = null,
+    valueKey: ((T) -> Any?)? = null,
+    emptyValues: List<T?> = listOf(null),
+    valueOnClear: T? = null,
+    onClear: (() -> Unit)? = null,
+    remote: Boolean = false,
+    remoteMethod: ((String) -> Unit)? = null,
+    onQueryChange: ((String) -> Unit)? = null,
+    reserveKeyword: Boolean = true,
+    allowCreate: Boolean = false,
+    defaultFirstOption: Boolean = false,
+    onCreateOption: ((String) -> ElSelectOption<T>?)? = null,
+    header: (@Composable () -> Unit)? = null,
+    footer: (@Composable () -> Unit)? = null,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)? = null,
+    tagContent: (@Composable (ElSelectOption<T>) -> Unit)? = null,
+    labelContent: (@Composable (String, T, ElSelectOption<T>) -> Unit)? = null,
+    loadingContent: (@Composable () -> Unit)? = null,
+    fitInputWidth: Boolean = true,
+    dropdownWidth: Dp? = null,
 ) {
+    val globalConfig = LocalElConfig.current
+    @Suppress("UNCHECKED_CAST")
+    val effectiveEmptyValues: List<T?> = if (emptyValues.size == 1 && emptyValues[0] == null && globalConfig.emptyValues.isNotEmpty()) {
+        globalConfig.emptyValues.map { it as? T }
+    } else {
+        emptyValues
+    }
+    @Suppress("UNCHECKED_CAST")
+    val effectiveValueOnClear: T? = valueOnClear ?: globalConfig.valueOnClear as? T
+    val isEmpty = value == null || effectiveEmptyValues.any { it == value }
+    val selectedValues = if (isEmpty) emptyList() else listOf(value as T)
     SelectShell(
         modifier = modifier,
         placeholder = placeholder,
@@ -95,24 +143,38 @@ fun <T> ElSelect(
         filterable = filterable,
         loading = loading,
         multiple = false,
-        selectedLabels = listOfNotNull(options.firstOrNull { it.value == value }?.label),
-        selectedOptions = emptyList(),
-        onClear = { onValueChange(null) },
-        onRemoveOption = { },
+        values = selectedValues,
+        sameValue = { a, b -> sameSelectValue(a, b, valueKey) },
+        onClear = {
+            onValueChange(effectiveValueOnClear)
+            onClear?.invoke()
+        },
+        onRemoveOption = { option -> onValueChange(effectiveValueOnClear) },
+        onToggle = { option -> onValueChange(option.value) },
+        options = options,
         noDataText = noDataText,
         noMatchText = noMatchText,
         virtualized = virtualized,
-        options = options,
-        isSelected = { it.value == value },
-        onToggle = { option ->
-            onValueChange(option.value)
-        },
         onVisibleChange = onVisibleChange,
-        singleValueSelected = value != null,
+        remote = remote,
+        remoteMethod = remoteMethod,
+        onQueryChange = onQueryChange,
+        reserveKeyword = reserveKeyword,
+        allowCreate = allowCreate,
+        defaultFirstOption = defaultFirstOption,
+        onCreateOption = onCreateOption,
+        header = header,
+        footer = footer,
+        optionContent = optionContent,
+        tagContent = tagContent,
+        labelContent = labelContent,
+        loadingContent = loadingContent,
+        fitInputWidth = fitInputWidth,
+        dropdownWidth = dropdownWidth,
     )
 }
 
-/** Multiple `<el-select multiple>` with tag display. */
+/** Multiple `<el-select multiple>` with tags, collapse and create support. */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun <T> ElSelectMultiple(
@@ -133,10 +195,24 @@ fun <T> ElSelectMultiple(
     noDataText: String? = null,
     noMatchText: String? = null,
     onVisibleChange: ((Boolean) -> Unit)? = null,
+    valueKey: ((T) -> Any?)? = null,
+    onClear: (() -> Unit)? = null,
+    remote: Boolean = false,
+    remoteMethod: ((String) -> Unit)? = null,
+    onQueryChange: ((String) -> Unit)? = null,
+    reserveKeyword: Boolean = true,
+    allowCreate: Boolean = false,
+    defaultFirstOption: Boolean = false,
+    onCreateOption: ((String) -> ElSelectOption<T>?)? = null,
+    header: (@Composable () -> Unit)? = null,
+    footer: (@Composable () -> Unit)? = null,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)? = null,
+    tagContent: (@Composable (ElSelectOption<T>) -> Unit)? = null,
+    labelContent: (@Composable (String, T, ElSelectOption<T>) -> Unit)? = null,
+    loadingContent: (@Composable () -> Unit)? = null,
+    fitInputWidth: Boolean = true,
+    dropdownWidth: Dp? = null,
 ) {
-    val selected = options.filter { option -> values.contains(option.value) }
-    val visibleTags = if (collapseTags) selected.take(maxCollapseTags) else selected
-    val hiddenCount = selected.size - visibleTags.size
     SelectShell(
         modifier = modifier,
         placeholder = placeholder,
@@ -146,29 +222,50 @@ fun <T> ElSelectMultiple(
         filterable = filterable,
         loading = loading,
         multiple = true,
-        selectedLabels = visibleTags.map { it.label },
-        selectedOptions = visibleTags,
-        onClear = { onValueChange(emptyList()) },
-        onRemoveOption = { option -> onValueChange(values - option.value) },
-        noDataText = noDataText,
-        noMatchText = noMatchText,
-        virtualized = virtualized,
-        options = options,
-        isSelected = { values.contains(it.value) },
+        values = values,
+        sameValue = { a, b -> sameSelectValue(a, b, valueKey) },
+        onClear = {
+            onValueChange(emptyList())
+            onClear?.invoke()
+        },
+        onRemoveOption = { option -> onValueChange(values.filterNot { sameSelectValue(it, option.value, valueKey) }) },
         onToggle = { option ->
-            val next = if (values.contains(option.value)) values - option.value else {
-                if (multipleLimit > 0 && values.size >= multipleLimit) values else values + option.value
+            val exists = values.any { sameSelectValue(it, option.value, valueKey) }
+            val next = if (exists) {
+                values.filterNot { sameSelectValue(it, option.value, valueKey) }
+            } else if (multipleLimit > 0 && values.size >= multipleLimit) {
+                values
+            } else {
+                values + option.value
             }
             onValueChange(next)
         },
+        options = options,
+        noDataText = noDataText,
+        noMatchText = noMatchText,
+        virtualized = virtualized,
         onVisibleChange = onVisibleChange,
-        singleValueSelected = values.isNotEmpty(),
-        multipleTags = true,
-        hiddenCount = hiddenCount,
+        collapseTags = collapseTags,
+        maxCollapseTags = maxCollapseTags,
+        remote = remote,
+        remoteMethod = remoteMethod,
+        onQueryChange = onQueryChange,
+        reserveKeyword = reserveKeyword,
+        allowCreate = allowCreate,
+        defaultFirstOption = defaultFirstOption,
+        onCreateOption = onCreateOption,
+        header = header,
+        footer = footer,
+        optionContent = optionContent,
+        tagContent = tagContent,
+        labelContent = labelContent,
+        loadingContent = loadingContent,
+        fitInputWidth = fitInputWidth,
+        dropdownWidth = dropdownWidth,
     )
 }
 
-/** `<el-select-v2 virtualized>`: same API, always uses a lazy dropdown. */
+/** `<el-select-v2>` single-value select backed by a lazy dropdown. */
 @Composable
 fun <T> ElVirtualizedSelect(
     value: T?,
@@ -179,10 +276,28 @@ fun <T> ElVirtualizedSelect(
     size: ElSize? = null,
     disabled: Boolean = false,
     clearable: Boolean = true,
-    filterable: Boolean = true,
+    filterable: Boolean = false,
     loading: Boolean = false,
     noDataText: String? = null,
     noMatchText: String? = null,
+    valueKey: ((T) -> Any?)? = null,
+    emptyValues: List<T?> = listOf(null),
+    valueOnClear: T? = null,
+    onClear: (() -> Unit)? = null,
+    remote: Boolean = false,
+    remoteMethod: ((String) -> Unit)? = null,
+    onQueryChange: ((String) -> Unit)? = null,
+    reserveKeyword: Boolean = true,
+    allowCreate: Boolean = false,
+    defaultFirstOption: Boolean = false,
+    onCreateOption: ((String) -> ElSelectOption<T>?)? = null,
+    header: (@Composable () -> Unit)? = null,
+    footer: (@Composable () -> Unit)? = null,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)? = null,
+    labelContent: (@Composable (String, T, ElSelectOption<T>) -> Unit)? = null,
+    loadingContent: (@Composable () -> Unit)? = null,
+    fitInputWidth: Boolean = true,
+    dropdownWidth: Dp? = null,
 ) = ElSelect(
     value = value,
     onValueChange = onValueChange,
@@ -197,6 +312,102 @@ fun <T> ElVirtualizedSelect(
     virtualized = true,
     noDataText = noDataText,
     noMatchText = noMatchText,
+    valueKey = valueKey,
+    emptyValues = emptyValues,
+    valueOnClear = valueOnClear,
+    onClear = onClear,
+    remote = remote,
+    remoteMethod = remoteMethod,
+    onQueryChange = onQueryChange,
+    reserveKeyword = reserveKeyword,
+    allowCreate = allowCreate,
+    defaultFirstOption = defaultFirstOption,
+    onCreateOption = onCreateOption,
+    header = header,
+    footer = footer,
+    optionContent = optionContent,
+    labelContent = labelContent,
+    loadingContent = loadingContent,
+    fitInputWidth = fitInputWidth,
+    dropdownWidth = dropdownWidth,
+)
+
+/** `<el-select-v2 multiple>` backed by a lazy option list. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun <T> ElVirtualizedSelectMultiple(
+    values: List<T>,
+    onValueChange: (List<T>) -> Unit,
+    options: List<ElSelectOption<T>>,
+    modifier: Modifier = Modifier,
+    placeholder: String? = null,
+    size: ElSize? = null,
+    disabled: Boolean = false,
+    clearable: Boolean = true,
+    filterable: Boolean = false,
+    loading: Boolean = false,
+    multipleLimit: Int = 0,
+    collapseTags: Boolean = false,
+    maxCollapseTags: Int = 1,
+    noDataText: String? = null,
+    noMatchText: String? = null,
+    valueKey: ((T) -> Any?)? = null,
+    onClear: (() -> Unit)? = null,
+    remote: Boolean = false,
+    remoteMethod: ((String) -> Unit)? = null,
+    onQueryChange: ((String) -> Unit)? = null,
+    reserveKeyword: Boolean = true,
+    allowCreate: Boolean = false,
+    defaultFirstOption: Boolean = false,
+    onCreateOption: ((String) -> ElSelectOption<T>?)? = null,
+    header: (@Composable () -> Unit)? = null,
+    footer: (@Composable () -> Unit)? = null,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)? = null,
+    tagContent: (@Composable (ElSelectOption<T>) -> Unit)? = null,
+    labelContent: (@Composable (String, T, ElSelectOption<T>) -> Unit)? = null,
+    loadingContent: (@Composable () -> Unit)? = null,
+    fitInputWidth: Boolean = true,
+    dropdownWidth: Dp? = null,
+) = ElSelectMultiple(
+    values = values,
+    onValueChange = onValueChange,
+    options = options,
+    modifier = modifier,
+    placeholder = placeholder,
+    size = size,
+    disabled = disabled,
+    clearable = clearable,
+    filterable = filterable,
+    loading = loading,
+    virtualized = true,
+    multipleLimit = multipleLimit,
+    collapseTags = collapseTags,
+    maxCollapseTags = maxCollapseTags,
+    noDataText = noDataText,
+    noMatchText = noMatchText,
+    valueKey = valueKey,
+    onClear = onClear,
+    remote = remote,
+    remoteMethod = remoteMethod,
+    onQueryChange = onQueryChange,
+    reserveKeyword = reserveKeyword,
+    allowCreate = allowCreate,
+    defaultFirstOption = defaultFirstOption,
+    onCreateOption = onCreateOption,
+    header = header,
+    footer = footer,
+    optionContent = optionContent,
+    tagContent = tagContent,
+    labelContent = labelContent,
+    loadingContent = loadingContent,
+    fitInputWidth = fitInputWidth,
+    dropdownWidth = dropdownWidth,
+)
+
+private data class SelectDropdownEntry<T>(
+    val group: String? = null,
+    val option: ElSelectOption<T>? = null,
+    val createText: String? = null,
 )
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -210,20 +421,33 @@ private fun <T> SelectShell(
     filterable: Boolean,
     loading: Boolean,
     multiple: Boolean,
-    selectedLabels: List<String>,
-    selectedOptions: List<ElSelectOption<T>>,
+    values: List<T>,
+    sameValue: (T, T) -> Boolean,
     onClear: () -> Unit,
     onRemoveOption: (ElSelectOption<T>) -> Unit,
+    onToggle: (ElSelectOption<T>) -> Unit,
+    options: List<ElSelectOption<T>>,
     noDataText: String?,
     noMatchText: String?,
     virtualized: Boolean,
-    options: List<ElSelectOption<T>>,
-    isSelected: (ElSelectOption<T>) -> Boolean,
-    onToggle: (ElSelectOption<T>) -> Unit,
     onVisibleChange: ((Boolean) -> Unit)?,
-    singleValueSelected: Boolean,
-    multipleTags: Boolean = false,
-    hiddenCount: Int = 0,
+    collapseTags: Boolean = false,
+    maxCollapseTags: Int = 1,
+    remote: Boolean = false,
+    remoteMethod: ((String) -> Unit)? = null,
+    onQueryChange: ((String) -> Unit)? = null,
+    reserveKeyword: Boolean = true,
+    allowCreate: Boolean = false,
+    defaultFirstOption: Boolean = false,
+    onCreateOption: ((String) -> ElSelectOption<T>?)? = null,
+    header: (@Composable () -> Unit)? = null,
+    footer: (@Composable () -> Unit)? = null,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)? = null,
+    tagContent: (@Composable (ElSelectOption<T>) -> Unit)? = null,
+    labelContent: (@Composable (String, T, ElSelectOption<T>) -> Unit)? = null,
+    loadingContent: (@Composable () -> Unit)? = null,
+    fitInputWidth: Boolean = true,
+    dropdownWidth: Dp? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
@@ -236,6 +460,7 @@ private fun <T> SelectShell(
     val density = LocalDensity.current
     val interaction = remember { MutableInteractionSource() }
     val hoverInteraction by interaction.collectIsHoveredAsState()
+    val createdOptions = remember { mutableStateListOf<ElSelectOption<T>>() }
 
     fun setExpanded(value: Boolean) {
         expanded = value
@@ -245,9 +470,47 @@ private fun <T> SelectShell(
     LaunchedEffect(expanded) {
         if (!expanded) query = ""
     }
-    val filtered = if (query.isBlank()) options else options.filter {
-        it.label.contains(query, ignoreCase = true)
+
+    val allOptions = remember(options, createdOptions.toList()) {
+        val result = options.toMutableList()
+        createdOptions.forEach { created ->
+            if (result.none { sameValue(it.value, created.value) }) result += created
+        }
+        result
     }
+    val selectedOptions = allOptions.filter { option -> values.any { sameValue(it, option.value) } }
+    val visibleOptions = if (multiple && collapseTags) selectedOptions.take(maxCollapseTags) else selectedOptions
+    val hiddenCount = (selectedOptions.size - visibleOptions.size).coerceAtLeast(0)
+
+    val filtered = if (query.isBlank()) allOptions else if (remote) {
+        allOptions
+    } else {
+        allOptions.filter { it.label.contains(query, ignoreCase = true) }
+    }
+    val entries = buildList {
+        var lastGroup: String? = null
+        filtered.forEach { option ->
+            if (option.group != null && option.group != lastGroup) {
+                lastGroup = option.group
+                add(SelectDropdownEntry<T>(group = option.group))
+            }
+            add(SelectDropdownEntry(option = option))
+        }
+        val createText = query.trim()
+        val canCreate = allowCreate &&
+            onCreateOption != null &&
+            createText.isNotEmpty() &&
+            filtered.none { it.label.equals(createText, ignoreCase = true) }
+        if (canCreate) add(SelectDropdownEntry(createText = createText))
+    }
+    val popupWidth = dropdownWidth ?: if (fitInputWidth) fieldWidth.coerceAtLeast(160.dp) else 220.dp
+    val height = resolvedSize.height
+    val effectivePlaceholder = placeholder ?: locale.select.placeholder
+    val filterPlaceholder = locale.select.filterPlaceholder.ifBlank { locale.select.placeholder }
+    val textStyle = theme.typography.base.copy(
+        fontSize = resolvedSize.fontSize,
+        color = if (disabled) colors.disabledText else colors.textRegular,
+    )
     val showFilter = filterable
     val arrowRotation by animateFloatAsState(if (expanded) 180f else 0f, label = "select-arrow")
     val borderColor = when {
@@ -256,10 +519,37 @@ private fun <T> SelectShell(
         hoverInteraction -> colors.textDisabled
         else -> colors.border
     }
-    val height = resolvedSize.height
-    val effectivePlaceholder = placeholder ?: locale.select.placeholder
-    val filterPlaceholder = locale.select.filterPlaceholder.ifBlank { locale.select.placeholder }
-    val textStyle = theme.typography.base.copy(fontSize = resolvedSize.fontSize, color = if (disabled) colors.disabledText else colors.textRegular)
+
+    fun finishSelection() {
+        if (!multiple) setExpanded(false) else if (!reserveKeyword) query = ""
+    }
+
+    fun createFromQuery() {
+        val text = query.trim()
+        if (text.isEmpty()) return
+        val exact = allOptions.firstOrNull { it.label.equals(text, ignoreCase = true) && !it.disabled }
+        if (exact != null) {
+            onToggle(exact)
+            finishSelection()
+            return
+        }
+        val created = onCreateOption?.invoke(text) ?: return
+        if (createdOptions.none { sameValue(it.value, created.value) }) createdOptions += created
+        onToggle(created)
+        finishSelection()
+    }
+
+    fun commitQuery() {
+        if (allowCreate && onCreateOption != null && query.isNotBlank()) {
+            createFromQuery()
+            return
+        }
+        val first = filtered.firstOrNull { !it.disabled }
+        if (first != null && (defaultFirstOption || query.isNotBlank())) {
+            onToggle(first)
+            finishSelection()
+        }
+    }
 
     Box(modifier) {
         Box(
@@ -271,23 +561,33 @@ private fun <T> SelectShell(
                 .border(1.dp, borderColor, shape)
                 .hoverable(interaction)
                 .clickable(enabled = !disabled) { setExpanded(!expanded) }
-                .padding(start = 11.dp, end = 30.dp, top = if (multipleTags) 3.dp else 0.dp, bottom = if (multipleTags) 3.dp else 0.dp)
+                .padding(start = 11.dp, end = 30.dp, top = if (multiple) 3.dp else 0.dp, bottom = if (multiple) 3.dp else 0.dp)
                 .defaultMinSize(minHeight = height),
         ) {
-            if (multipleTags && selectedLabels.isNotEmpty()) {
+            if (multiple && selectedOptions.isNotEmpty()) {
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
                 ) {
-                    selectedOptions.forEachIndexed { index, option ->
-                        ElTag(
-                            text = selectedLabels.getOrElse(index) { "" },
-                            type = cn.enaium.elementplus.theme.ElType.Info,
-                            size = ElSize.Small,
-                            closable = !disabled,
-                            onClose = { onRemoveOption(option) },
-                        )
+                    visibleOptions.forEach { option ->
+                        when {
+                            tagContent != null -> tagContent.invoke(option)
+                            labelContent != null -> SelectLabelTag(
+                                option = option,
+                                disabled = disabled,
+                                onClose = { onRemoveOption(option) },
+                            ) {
+                                labelContent.invoke(option.label, option.value, option)
+                            }
+                            else -> ElTag(
+                                text = option.label,
+                                type = cn.enaium.elementplus.theme.ElType.Info,
+                                size = ElSize.Small,
+                                closable = !disabled,
+                                onClose = { onRemoveOption(option) },
+                            )
+                        }
                     }
                     if (hiddenCount > 0) {
                         ElTag(
@@ -299,9 +599,12 @@ private fun <T> SelectShell(
                 }
             } else {
                 Row(Modifier.height(height - 2.dp), verticalAlignment = Alignment.CenterVertically) {
-                    if (selectedLabels.isNotEmpty()) {
+                    val selected = selectedOptions.firstOrNull()
+                    if (selected != null && labelContent != null) {
+                        labelContent.invoke(selected.label, selected.value, selected)
+                    } else if (selected != null) {
                         BasicText(
-                            text = selectedLabels.first(),
+                            text = selected.label,
                             style = textStyle,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -317,8 +620,7 @@ private fun <T> SelectShell(
                 }
             }
         }
-        // Clear / arrow indicators.
-        if (clearable && singleValueSelected && hoverInteraction && !disabled) {
+        if (clearable && values.isNotEmpty() && hoverInteraction && !disabled) {
             ElIcon(
                 ElIcons.CircleClose,
                 size = 14.dp,
@@ -344,25 +646,26 @@ private fun <T> SelectShell(
             offset = androidx.compose.ui.unit.DpOffset(0.dp, 4.dp),
             focusable = true,
         ) {
-            ElPopperSurface(modifier = Modifier.width(fieldWidth.coerceAtLeast(160.dp))) {
-                Column(Modifier.heightIn(max = 274.dp)) {
+            ElPopperSurface(modifier = Modifier.width(popupWidth)) {
+                Column(Modifier.heightIn(max = 360.dp)) {
+                    if (header != null) {
+                        Box(Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 6.dp)) { header() }
+                    }
                     if (showFilter) {
                         Box(Modifier.fillMaxWidth().padding(horizontal = 10.dp, vertical = 8.dp)) {
                             BasicTextField(
                                 value = query,
-                                onValueChange = { query = it },
+                                onValueChange = { value ->
+                                    query = value
+                                    onQueryChange?.invoke(value)
+                                    if (remote) remoteMethod?.invoke(value)
+                                },
                                 modifier = Modifier.fillMaxWidth(),
                                 singleLine = true,
                                 textStyle = theme.typography.base.copy(color = colors.textRegular),
                                 cursorBrush = SolidColor(colors.primary),
                                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                                keyboardActions = KeyboardActions(onDone = {
-                                    val first = filtered.firstOrNull { !it.disabled }
-                                    if (first != null) {
-                                        onToggle(first)
-                                        if (!multiple) setExpanded(false)
-                                    }
-                                }),
+                                keyboardActions = KeyboardActions(onDone = { commitQuery() }),
                                 decorationBox = { inner ->
                                     Box {
                                         if (query.isEmpty()) {
@@ -377,62 +680,156 @@ private fun <T> SelectShell(
                             )
                         }
                     }
-                    if (loading) {
-                        Row(
-                            Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            ElIcon(ElIcons.Loading, size = 14.dp, tint = colors.primary, spin = true)
-                            Spacer(Modifier.width(8.dp))
-                            BasicText(text = locale.loading, style = theme.typography.small.copy(color = colors.textSecondary))
+                    when {
+                        loading -> {
+                            if (loadingContent != null) {
+                                Box(
+                                    Modifier.fillMaxWidth().heightIn(min = 60.dp),
+                                    contentAlignment = Alignment.Center,
+                                ) { loadingContent() }
+                            } else {
+                                Row(
+                                    Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    ElIcon(ElIcons.Loading, size = 14.dp, tint = colors.primary, spin = true)
+                                    Spacer(Modifier.width(8.dp))
+                                    BasicText(
+                                        text = locale.loading,
+                                        style = theme.typography.small.copy(color = colors.textSecondary),
+                                    )
+                                }
+                            }
                         }
-                    } else if (filtered.isEmpty()) {
-                        Box(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp)) {
-                            BasicText(
-                                text = if (query.isBlank()) (noDataText ?: locale.select.noData) else (noMatchText ?: locale.select.noMatch),
-                                style = theme.typography.small.copy(color = colors.textSecondary),
-                            )
-                        }
-                    } else if (virtualized) {
-                        LazyColumn(Modifier.heightIn(max = 240.dp)) {
-                            items(filtered) { option ->
-                                SelectOptionRow(
-                                    option = option,
-                                    selected = isSelected(option),
-                                    multiple = multiple,
-                                    onToggle = {
-                                        onToggle(option)
-                                        if (!multiple) setExpanded(false)
-                                    },
+                        entries.isEmpty() -> {
+                            Box(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp)) {
+                                BasicText(
+                                    text = if (query.isBlank()) (noDataText ?: locale.select.noData) else (noMatchText ?: locale.select.noMatch),
+                                    style = theme.typography.small.copy(color = colors.textSecondary),
                                 )
                             }
                         }
-                    } else {
-                        Column(Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState())) {
-                            var lastGroup: String? = null
-                            filtered.forEach { option ->
-                                if (option.group != null && option.group != lastGroup) {
-                                    lastGroup = option.group
-                                    BasicText(
-                                        text = option.group,
-                                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                                        style = theme.typography.extraSmall.copy(color = colors.textSecondary),
+                        virtualized -> {
+                            LazyColumn(Modifier.heightIn(max = 240.dp)) {
+                                items(entries) { entry ->
+                                    SelectDropdownEntryContent(
+                                        entry = entry,
+                                        selected = entry.option?.let { option ->
+                                            values.any { sameValue(it, option.value) }
+                                        } == true,
+                                        multiple = multiple,
+                                        optionContent = optionContent,
+                                        onToggle = { option ->
+                                            if (!option.disabled) {
+                                                onToggle(option)
+                                                finishSelection()
+                                            }
+                                        },
+                                        onCreate = ::createFromQuery,
                                     )
                                 }
-                                SelectOptionRow(
-                                    option = option,
-                                    selected = isSelected(option),
-                                    multiple = multiple,
-                                    onToggle = {
-                                        onToggle(option)
-                                        if (!multiple) setExpanded(false)
-                                    },
-                                )
+                            }
+                        }
+                        else -> {
+                            Column(Modifier.heightIn(max = 240.dp).verticalScroll(rememberScrollState())) {
+                                entries.forEach { entry ->
+                                    SelectDropdownEntryContent(
+                                        entry = entry,
+                                        selected = entry.option?.let { option ->
+                                            values.any { sameValue(it, option.value) }
+                                        } == true,
+                                        multiple = multiple,
+                                        optionContent = optionContent,
+                                        onToggle = { option ->
+                                            if (!option.disabled) {
+                                                onToggle(option)
+                                                finishSelection()
+                                            }
+                                        },
+                                        onCreate = ::createFromQuery,
+                                    )
+                                }
                             }
                         }
                     }
+                    if (footer != null) {
+                        Box(Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 6.dp)) { footer() }
+                    }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun <T> SelectDropdownEntryContent(
+    entry: SelectDropdownEntry<T>,
+    selected: Boolean,
+    multiple: Boolean,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)?,
+    onToggle: (ElSelectOption<T>) -> Unit,
+    onCreate: () -> Unit,
+) {
+    val theme = LocalElTheme.current
+    val colors = theme.colors
+    when {
+        entry.group != null -> {
+            BasicText(
+                text = entry.group,
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                style = theme.typography.extraSmall.copy(color = colors.textSecondary),
+            )
+        }
+        entry.createText != null -> {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onCreate)
+                    .padding(horizontal = 12.dp, vertical = 9.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                ElIcon(ElIcons.Plus, size = 14.dp, tint = colors.textSecondary)
+                Spacer(Modifier.width(6.dp))
+                BasicText(
+                    text = "Create \"${entry.createText}\"",
+                    style = theme.typography.base.copy(color = colors.textRegular),
+                )
+            }
+        }
+        entry.option != null -> SelectOptionRow(
+            option = entry.option,
+            selected = selected,
+            multiple = multiple,
+            optionContent = optionContent,
+            onToggle = { onToggle(entry.option) },
+        )
+    }
+}
+
+@Composable
+private fun <T> SelectLabelTag(
+    option: ElSelectOption<T>,
+    disabled: Boolean,
+    onClose: () -> Unit,
+    content: @Composable () -> Unit,
+) {
+    val theme = LocalElTheme.current
+    val colors = theme.colors
+    Row(
+        Modifier
+            .background(colors.fillLight, RoundedCornerShape(theme.radius.small))
+            .padding(start = 8.dp, end = 4.dp, top = 3.dp, bottom = 3.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        content()
+        if (!disabled) {
+            Spacer(Modifier.width(4.dp))
+            ElIcon(
+                ElIcons.CircleClose,
+                size = 12.dp,
+                tint = colors.textPlaceholder,
+                modifier = Modifier.clickable { onClose() },
+            )
         }
     }
 }
@@ -442,6 +839,7 @@ private fun <T> SelectOptionRow(
     option: ElSelectOption<T>,
     selected: Boolean,
     multiple: Boolean,
+    optionContent: (@Composable (ElSelectOption<T>, Boolean) -> Unit)?,
     onToggle: () -> Unit,
 ) {
     val theme = LocalElTheme.current
@@ -474,20 +872,24 @@ private fun <T> SelectOptionRow(
             }
             Spacer(Modifier.width(8.dp))
         }
-        BasicText(
-            text = option.label,
-            modifier = Modifier.weight(1f),
-            style = theme.typography.base.copy(
-                color = when {
-                    option.disabled -> colors.textDisabled
-                    selected -> colors.primary
-                    else -> colors.textRegular
-                },
-                fontWeight = if (selected) FontWeight.Medium else FontWeight.Normal,
-            ),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-        )
+        if (optionContent != null) {
+            Box(Modifier.weight(1f)) { optionContent(option, selected) }
+        } else {
+            BasicText(
+                text = option.label,
+                modifier = Modifier.weight(1f),
+                style = theme.typography.base.copy(
+                    color = when {
+                        option.disabled -> colors.textDisabled
+                        selected -> colors.primary
+                        else -> colors.textRegular
+                    },
+                    fontWeight = if (selected) FontWeight.Medium else FontWeight.Normal,
+                ),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
         if (!multiple && selected) {
             ElIcon(ElIcons.Check, size = 14.dp, tint = colors.primary)
         }

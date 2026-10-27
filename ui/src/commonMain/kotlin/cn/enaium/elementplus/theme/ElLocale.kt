@@ -262,6 +262,13 @@ data class ElFormLocale(
     val length: String = "Length should be {len}",
     val min: String = "Value must be at least {min}",
     val max: String = "Value must be at most {max}",
+    val float: String = "Please enter a float",
+    val objectType: String = "Please enter an object",
+    val date: String = "Please enter a valid date",
+    val enum: String = "Value must be one of the allowed values",
+    val method: String = "Please enter a method",
+    val regexp: String = "Please enter a regular expression",
+    val hex: String = "Please enter a valid hex color",
 )
 
 @Immutable

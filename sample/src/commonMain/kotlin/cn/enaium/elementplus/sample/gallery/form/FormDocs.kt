@@ -114,7 +114,7 @@ fun FormDocs() {
                         text = "Create",
                         type = ElType.Primary,
                     )
-                    ElButton(onClick = {}) { BasicText("Cancel") }
+                    ElButton(onClick = {}, content = { _ -> BasicText("Cancel") })
                 }
             }
         }
@@ -409,6 +409,112 @@ fun FormDocs() {
                 ElButton(onClick = { items = items + "" }, text = "+ Add item", type = ElType.Primary)
                 BasicText("Current rows: ${items.size}", style = LocalElTheme.current.typography.small.copy(color = LocalElTheme.current.colors.textSecondary))
             }
+        }
+    }
+
+    DemoExample("Accessibility", "Labels describe each field; grouped fields need an aria-label per input.") {
+        var fullName by remember { mutableStateOf("") }
+        var firstName by remember { mutableStateOf("") }
+        var lastName by remember { mutableStateOf("") }
+        ElForm(labelPosition = ElFormLabelPosition.Left, labelWidth = 120.dp) {
+            ElFormItem(label = "Full Name") {
+                ElInput(
+                    value = fullName,
+                    onValueChange = { fullName = it },
+                    ariaLabel = "Full Name",
+                    modifier = Modifier.width(400.dp),
+                )
+            }
+            ElFormItem(label = "Your Information") {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    BasicText(
+                        "\"Your Information\" labels the group; every input still declares its own aria-label.",
+                        style = LocalElTheme.current.typography.extraSmall.copy(color = LocalElTheme.current.colors.textSecondary),
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        ElInput(
+                            value = firstName,
+                            onValueChange = { firstName = it },
+                            placeholder = "First Name",
+                            ariaLabel = "First Name",
+                            modifier = Modifier.weight(1f),
+                        )
+                        ElInput(
+                            value = lastName,
+                            onValueChange = { lastName = it },
+                            placeholder = "Last Name",
+                            ariaLabel = "Last Name",
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    DemoExample("Validation triggers", "Blur-triggered rules, inline messages and a status icon.") {
+        val state = rememberElFormState()
+        var name by remember { mutableStateOf("") }
+        var checks by remember { mutableStateOf(0) }
+        ElForm(state = state, labelWidth = 120.dp, inlineMessage = true, statusIcon = true) {
+            ElFormItem(
+                label = "Activity name",
+                value = name,
+                prop = "name",
+                rules = listOf(
+                    ElFormRule(
+                        required = true,
+                        message = "Please input Activity name",
+                        trigger = listOf(ElFormTrigger.Blur),
+                    ),
+                    ElFormRule(
+                        min = 3.0,
+                        message = "Length should be at least 3",
+                        trigger = listOf(ElFormTrigger.Blur),
+                    ),
+                ),
+            ) {
+                ElInput(
+                    value = name,
+                    onValueChange = { name = it },
+                    placeholder = "Triggered on blur",
+                    onFocusChanged = { focused -> if (!focused) blur() },
+                    modifier = Modifier.width(320.dp),
+                )
+            }
+            ElFormItem {
+                ElButton(
+                    onClick = { checks += 1; state.validate() },
+                    text = "Validate ($checks)",
+                    type = ElType.Primary,
+                )
+            }
+        }
+    }
+
+    DemoExample("Required asterisk", "Hide the asterisk or place it after the label.") {
+        var hide by remember { mutableStateOf(false) }
+        var position by remember { mutableStateOf(ElFormRequireAsteriskPosition.Left) }
+        var name by remember { mutableStateOf("") }
+        ElForm(
+            labelWidth = 120.dp,
+            hideRequiredAsterisk = hide,
+            requireAsteriskPosition = position,
+        ) {
+            ElFormItem(label = "Name", required = true) {
+                ElInput(value = name, onValueChange = { name = it }, modifier = Modifier.width(320.dp))
+            }
+        }
+        DemoRowSpaced {
+            ElCheckbox(checked = hide, onCheckedChange = { hide = it }, label = "Hide asterisk")
+            ElSegmented(
+                options = listOf(
+                    ElSegmentedOption(ElFormRequireAsteriskPosition.Left, "Left"),
+                    ElSegmentedOption(ElFormRequireAsteriskPosition.Right, "Right"),
+                ),
+                value = position,
+                onValueChange = { position = it },
+            )
         }
     }
 }

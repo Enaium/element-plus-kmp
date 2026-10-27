@@ -76,4 +76,26 @@ fun EmptyDocs() {
             ElButton(onClick = {}, text = "Create", type = ElType.Primary)
         }
     }
+    DemoExample("Custom description content", "Replace the description text with rich content.") {
+        val theme = LocalElTheme.current
+        ElEmpty(
+            descriptionContent = {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    BasicText(
+                        "No matching orders",
+                        style = theme.typography.medium.copy(color = theme.colors.textPrimary),
+                    )
+                    BasicText(
+                        "Try adjusting the filters or clearing the search.",
+                        style = theme.typography.small.copy(color = theme.colors.textSecondary),
+                    )
+                }
+            },
+        ) {
+            ElButton(onClick = {}, text = "Clear filters", size = ElSize.Small)
+        }
+    }
 }

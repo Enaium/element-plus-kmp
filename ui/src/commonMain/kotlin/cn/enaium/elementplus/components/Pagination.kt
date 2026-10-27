@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.BasicTextField
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
@@ -49,24 +51,30 @@ fun ElPagination(
     onPageSizeChange: ((Int) -> Unit)? = null,
     pagerCount: Int = 7,
     background: Boolean = false,
-    layout: String = "total, sizes, prev, pager, next, jumper",
+    layout: String = "prev, pager, next, jumper, ->, total",
     pageSizes: List<Int> = listOf(10, 20, 30, 40, 50, 100),
     small: Boolean = false,
     disabled: Boolean = false,
     hideOnSinglePage: Boolean = false,
+    pageCount: Int? = null,
+    prevText: String? = null,
+    nextText: String? = null,
+    prevIcon: ImageVector = ElIcons.ArrowLeft,
+    nextIcon: ImageVector = ElIcons.ArrowRight,
+    slot: (@Composable () -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
     val locale = LocalElConfig.current.locale
-    val pageCount = ceil(total.toDouble() / pageSize.coerceAtLeast(1)).toInt().coerceAtLeast(1)
-    if (hideOnSinglePage && pageCount <= 1) return
-    val current = currentPage.coerceIn(1, pageCount)
+    val resolvedPageCount = (pageCount ?: ceil(total.toDouble() / pageSize.coerceAtLeast(1)).toInt()).coerceAtLeast(1)
+    if (hideOnSinglePage && resolvedPageCount <= 1) return
+    val current = currentPage.coerceIn(1, resolvedPageCount)
     val parts = layout.split(',').map { it.trim() }.filter { it.isNotEmpty() }
     val itemSize = if (small) 24.dp else 32.dp
     val shape = RoundedCornerShape(theme.radius.base)
     fun goTo(page: Int) {
         if (disabled) return
-        val next = page.coerceIn(1, pageCount)
+        val next = page.coerceIn(1, resolvedPageCount)
         if (next != current) onCurrentPageChange(next)
     }
     Row(
@@ -76,6 +84,8 @@ fun ElPagination(
     ) {
         parts.forEach { part ->
             when (part) {
+                "->" -> Spacer(Modifier.weight(1f))
+                "slot" -> slot?.invoke()
                 "total" -> BasicText(
                     text = locale.pagination.total.replace("{total}", total.toString()),
                     style = theme.typography.small.copy(color = colors.textRegular),
@@ -95,15 +105,16 @@ fun ElPagination(
                     )
                 }
                 "prev" -> PagerNavButton(
-                    icon = ElIcons.ArrowLeft,
-                    contentDescription = locale.pagination.prev,
+                    icon = prevIcon,
+                    text = prevText,
+                    contentDescription = prevText ?: locale.pagination.prev,
                     enabled = !disabled && current > 1,
                     background = background,
                     size = itemSize,
                     onClick = { goTo(current - 1) },
                 )
                 "pager" -> PagerNumbers(
-                    pageCount = pageCount,
+                    pageCount = resolvedPageCount,
                     current = current,
                     pagerCount = pagerCount,
                     disabled = disabled,
@@ -112,9 +123,10 @@ fun ElPagination(
                     onSelect = ::goTo,
                 )
                 "next" -> PagerNavButton(
-                    icon = ElIcons.ArrowRight,
-                    contentDescription = locale.pagination.next,
-                    enabled = !disabled && current < pageCount,
+                    icon = nextIcon,
+                    text = nextText,
+                    contentDescription = nextText ?: locale.pagination.next,
+                    enabled = !disabled && current < resolvedPageCount,
                     background = background,
                     size = itemSize,
                     onClick = { goTo(current + 1) },
@@ -132,30 +144,42 @@ fun ElPagination(
 
 @Composable
 private fun PagerNavButton(
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: ImageVector,
     contentDescription: String,
     enabled: Boolean,
     background: Boolean,
     size: Dp,
     onClick: () -> Unit,
+    text: String? = null,
 ) {
     val colors = LocalElTheme.current.colors
     Box(
         Modifier
             .height(size)
-            .width(size)
+            .then(if (text != null) Modifier.widthIn(min = size) else Modifier.width(size))
             .clip(RoundedCornerShape(4.dp))
             .then(if (background) Modifier.background(colors.fillLight) else Modifier)
             .then(if (!background) Modifier.border(1.dp, colors.borderLight, RoundedCornerShape(4.dp)) else Modifier)
-            .clickable(enabled = enabled, onClick = onClick),
+            .clickable(enabled = enabled, onClick = onClick)
+            .then(if (text != null) Modifier.padding(horizontal = 8.dp) else Modifier),
         contentAlignment = Alignment.Center,
     ) {
-        ElIcon(
-            icon,
-            size = 12.dp,
-            tint = if (enabled) colors.textRegular else colors.textDisabled,
-            contentDescription = contentDescription,
-        )
+        if (text != null) {
+            BasicText(
+                text = text,
+                style = LocalElTheme.current.typography.small.copy(
+                    color = if (enabled) colors.textRegular else colors.textDisabled,
+                ),
+                maxLines = 1,
+            )
+        } else {
+            ElIcon(
+                icon,
+                size = 12.dp,
+                tint = if (enabled) colors.textRegular else colors.textDisabled,
+                contentDescription = contentDescription,
+            )
+        }
     }
 }
 

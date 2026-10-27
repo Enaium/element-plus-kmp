@@ -104,4 +104,20 @@ fun InputOtpDocs() {
             ElInputOtp(value = readOnly, onValueChange = {}, length = 4, readonly = true)
         }
     }
+
+    DemoExample("Focus and change events", "Observe focus, blur and every value change.") {
+        var value by remember { mutableStateOf("") }
+        var focusState by remember { mutableStateOf("blurred") }
+        var changes by remember { mutableStateOf(0) }
+        ElInputOtp(
+            value = value,
+            onValueChange = { value = it },
+            length = 6,
+            ariaLabel = "Verification code",
+            onFocus = { focusState = "focused" },
+            onBlur = { focusState = "blurred" },
+            onChange = { changes += 1 },
+        )
+        DemoHint("State: $focusState · Changes: $changes · Value: $value")
+    }
 }

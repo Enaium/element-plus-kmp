@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import cn.enaium.elementplus.components.ElButton
 import cn.enaium.elementplus.components.ElText
@@ -33,6 +34,7 @@ import cn.enaium.elementplus.theme.LocalElTheme
 
 @Composable
 fun NotificationDocs() {
+    val colors = LocalElTheme.current.colors
     DemoExample("Basic usage", "Notifications appear at a corner of the screen.") {
         ElButton(
             onClick = {
@@ -92,6 +94,131 @@ fun NotificationDocs() {
                 )
             },
             text = "Show no-close notification",
+        )
+    }
+
+    DemoExample("Persistent notification", "Set duration to 0 so the notification stays until closed.") {
+        ElButton(
+            onClick = {
+                ElNotification.notify(
+                    title = "Prompt",
+                    message = "This is a message that does not automatically close.",
+                    duration = 0,
+                )
+            },
+            text = "Show persistent notification",
+        )
+    }
+
+    DemoExample("Offset", "Offset notifications from the viewport edge.") {
+        ElButton(
+            onClick = {
+                ElNotification.notify(
+                    title = "Success",
+                    message = "This notification sits 100dp from the top.",
+                    type = ElNotificationType.Success,
+                    offset = 100.dp,
+                )
+            },
+            text = "Notification with offset",
+            type = ElType.Success,
+        )
+    }
+
+    DemoExample("Progress bar", "Show a countdown bar; hover pauses it by default.") {
+        DemoRow {
+            ElButton(
+                onClick = {
+                    ElNotification.notify(
+                        title = "Progress",
+                        message = "Hover to pause the timer and progress bar.",
+                        type = ElNotificationType.Info,
+                        duration = 6000,
+                        progress = true,
+                    )
+                },
+                text = "Default progress",
+            )
+            ElButton(
+                onClick = {
+                    ElNotification.notify(
+                        title = "Custom color",
+                        message = "A gradient progress bar in the notification type color.",
+                        type = ElNotificationType.Success,
+                        duration = 6000,
+                        progress = true,
+                        progressBrush = Brush.horizontalGradient(
+                            listOf(colors.success, colors.primary)
+                        ),
+                    )
+                },
+                text = "Custom color",
+                type = ElType.Success,
+            )
+            ElButton(
+                onClick = {
+                    ElNotification.notify(
+                        title = "No pause on hover",
+                        message = "The timer keeps running even when hovering.",
+                        duration = 6000,
+                        progress = true,
+                        pauseOnHover = false,
+                    )
+                },
+                text = "No pause on hover",
+            )
+        }
+    }
+
+    DemoExample("Clickable notification", "React when the user clicks the notification.") {
+        ElButton(
+            onClick = {
+                ElNotification.notify(
+                    title = "Clickable",
+                    message = "Click this notification.",
+                    type = ElNotificationType.Success,
+                    onClick = { ElMessage.show("Notification clicked", ElMessageType.Success) },
+                )
+            },
+            text = "Show clickable notification",
+            type = ElType.Success,
+        )
+    }
+
+    DemoExample("Custom icon", "Override the icon for a notification.") {
+        ElButton(
+            onClick = {
+                ElNotification.notify(
+                    title = "Reminder",
+                    message = "This notification uses a bell icon.",
+                    icon = ElIcons.Bell,
+                )
+            },
+            text = "Show custom icon notification",
+        )
+    }
+
+    DemoExample("Rich content", "Pass a composable message body instead of a string.") {
+        ElButton(
+            onClick = {
+                ElNotification.notify(
+                    title = "Use rich content",
+                    message = null,
+                    messageContent = {
+                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            BasicText(
+                                text = "Message can be",
+                                style = LocalElTheme.current.typography.small.copy(color = colors.textSecondary),
+                            )
+                            BasicText(
+                                text = "rich content",
+                                style = LocalElTheme.current.typography.small.copy(color = colors.primary),
+                            )
+                        }
+                    },
+                )
+            },
+            text = "Show rich content notification",
         )
     }
 }

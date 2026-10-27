@@ -65,8 +65,55 @@ fun AvatarDocs() {
             ElAvatar(text = "SQ", size = 40.dp, shape = ElAvatarShape.Square, background = colors.light(ElType.Success, 8))
         }
     }
-    DemoExample("Avatar group", "Group avatars and collapse the overflow.") {
-        ElAvatarGroup(count = 5, max = 3) { index ->
+    DemoExample("Avatar group", "Overlap avatars in a group without collapsing.") {
+        ElAvatarGroup(count = 5) { index ->
+            ElAvatar(
+                text = "U${index + 1}",
+                background = colors.light(listOf(ElType.Primary, ElType.Success, ElType.Warning)[index % 3], 9),
+                color = colors.colorOf(listOf(ElType.Primary, ElType.Success, ElType.Warning)[index % 3]),
+            )
+        }
+    }
+    DemoExample("Avatar group collapse", "Collapse the overflow into a counted avatar.") {
+        ElAvatarGroup(count = 5, collapseAvatars = true, maxCollapseAvatars = 3) { index ->
+            ElAvatar(
+                text = "U${index + 1}",
+                background = colors.light(listOf(ElType.Primary, ElType.Success, ElType.Warning)[index % 3], 9),
+                color = colors.colorOf(listOf(ElType.Primary, ElType.Success, ElType.Warning)[index % 3]),
+            )
+        }
+    }
+    DemoExample("Avatar group custom collapse", "Style the collapse avatar and use square avatars.") {
+        ElAvatarGroup(
+            count = 6,
+            collapseAvatars = true,
+            maxCollapseAvatars = 4,
+            shape = ElAvatarShape.Square,
+            collapseContent = { hidden, _ ->
+                BasicText(
+                    "+$hidden",
+                    style = LocalElTheme.current.typography.small.copy(
+                        color = colors.primary,
+                        fontWeight = FontWeight.Medium,
+                    ),
+                )
+            },
+        ) { index ->
+            ElAvatar(
+                text = "U${index + 1}",
+                shape = ElAvatarShape.Square,
+                background = colors.light(ElType.Primary, 8),
+                color = colors.primary,
+            )
+        }
+    }
+    DemoExample("Avatar group collapse tooltip", "Hover the counted avatar to reveal the hidden members.") {
+        ElAvatarGroup(
+            count = 5,
+            collapseAvatars = true,
+            maxCollapseAvatars = 2,
+            collapseAvatarsTooltip = true,
+        ) { index ->
             ElAvatar(
                 text = "U${index + 1}",
                 background = colors.light(listOf(ElType.Primary, ElType.Success, ElType.Warning)[index % 3], 9),

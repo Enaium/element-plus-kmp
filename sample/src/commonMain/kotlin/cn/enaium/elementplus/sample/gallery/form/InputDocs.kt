@@ -28,6 +28,8 @@ import cn.enaium.elementplus.components.ElTreeNode
 import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.*
+import cn.enaium.elementplus.icons.ElIcon
+import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
 import cn.enaium.elementplus.theme.ElType
@@ -140,4 +142,198 @@ fun InputDocs() {
             modifier = Modifier.width(300.dp),
         )
     }
+    DemoExample("Formatter and parser", "Format the displayed value and parse it back into the model.") {
+        var amount by remember { mutableStateOf("") }
+        ElInput(
+            value = amount,
+            onValueChange = { amount = it },
+            placeholder = "Please input",
+            formatter = { text -> formatCurrency(text) },
+            parser = { text -> text.filter { it.isDigit() } },
+            modifier = Modifier.width(240.dp),
+        )
+        DemoHint("Model value: $amount")
+    }
+    DemoExample("Count graphemes", "Count visual characters with a custom function instead of UTF-16 length.") {
+        var text by remember { mutableStateOf("😀😁") }
+        var textarea by remember { mutableStateOf("😀😁") }
+        Column(Modifier.width(360.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            ElInput(
+                value = text,
+                onValueChange = { text = it },
+                maxLength = 10,
+                showWordLimit = true,
+                countGraphemes = ::countGraphemes,
+                placeholder = "Please input",
+            )
+            ElInput(
+                value = textarea,
+                onValueChange = { textarea = it },
+                type = ElInputType.Textarea,
+                minLines = 2,
+                maxLines = 4,
+                maxLength = 20,
+                showWordLimit = true,
+                countGraphemes = ::countGraphemes,
+                placeholder = "Please input",
+            )
+        }
+    }
+    DemoExample("Custom clear icon", "Replace the clear icon with the clearIcon slot.") {
+        var text by remember { mutableStateOf("Custom clear icon") }
+        var textarea by remember { mutableStateOf("Custom clear icon") }
+        Column(Modifier.width(360.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            ElInput(
+                value = text,
+                onValueChange = { text = it },
+                clearable = true,
+                clearIcon = {
+                    ElIcon(
+                        ElIcons.CloseBold,
+                        size = 14.dp,
+                        tint = LocalElTheme.current.colors.textDisabled,
+                    )
+                },
+                placeholder = "Custom clear icon",
+            )
+            ElInput(
+                value = textarea,
+                onValueChange = { textarea = it },
+                type = ElInputType.Textarea,
+                minLines = 2,
+                maxLines = 4,
+                clearable = true,
+                clearIcon = {
+                    ElIcon(
+                        ElIcons.CloseBold,
+                        size = 14.dp,
+                        tint = LocalElTheme.current.colors.textDisabled,
+                    )
+                },
+                placeholder = "Custom clear icon",
+            )
+        }
+    }
+    DemoExample("Password icon slot", "Override the reveal icon with the passwordIcon slot.") {
+        var value by remember { mutableStateOf("secret") }
+        ElInput(
+            value = value,
+            onValueChange = { value = it },
+            type = ElInputType.Password,
+            showPassword = true,
+            passwordIcon = {
+                ElIcon(
+                    ElIcons.View,
+                    size = 14.dp,
+                    tint = LocalElTheme.current.colors.textPlaceholder,
+                )
+            },
+            modifier = Modifier.width(360.dp),
+        )
+    }
+    DemoExample("Mixed input", "Combine the field with selects and buttons in the prepend/append slots.") {
+        var grouped2 by remember { mutableStateOf("") }
+        var protocol by remember { mutableStateOf<String?>(null) }
+        Column(Modifier.width(520.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            ElInput(
+                value = grouped2,
+                onValueChange = { grouped2 = it },
+                placeholder = "Please input",
+                prepend = { BasicText("Http://", style = LocalElTheme.current.typography.base) },
+            )
+            ElInput(
+                value = grouped2,
+                onValueChange = { grouped2 = it },
+                placeholder = "Please input",
+                append = { BasicText(".com", style = LocalElTheme.current.typography.base) },
+            )
+            ElInput(
+                value = grouped2,
+                onValueChange = { grouped2 = it },
+                placeholder = "Please input",
+                prepend = {
+                    ElSelect(
+                        value = protocol,
+                        onValueChange = { protocol = it },
+                        options = listOf(
+                            ElSelectOption("1", "Restaurant"),
+                            ElSelectOption("2", "Order No."),
+                            ElSelectOption("3", "Tel"),
+                        ),
+                        placeholder = "Select",
+                        size = ElSize.Small,
+                        modifier = Modifier.width(115.dp),
+                    )
+                },
+                append = { ElButton(onClick = {}, icon = ElIcons.Search) },
+            )
+            ElInput(
+                value = grouped2,
+                onValueChange = { grouped2 = it },
+                placeholder = "Please input",
+                prepend = { ElButton(onClick = {}, icon = ElIcons.Search) },
+                append = {
+                    ElSelect(
+                        value = protocol,
+                        onValueChange = { protocol = it },
+                        options = listOf(
+                            ElSelectOption("1", "Restaurant"),
+                            ElSelectOption("2", "Order No."),
+                            ElSelectOption("3", "Tel"),
+                        ),
+                        placeholder = "Select",
+                        size = ElSize.Small,
+                        modifier = Modifier.width(115.dp),
+                    )
+                },
+            )
+        }
+    }
+    DemoExample("Word limit outside", "Render the word count below the field with wordLimitPosition.") {
+        var value by remember { mutableStateOf("") }
+        ElInput(
+            value = value,
+            onValueChange = { value = it },
+            maxLength = 20,
+            showWordLimit = true,
+            wordLimitPosition = ElInputWordLimitPosition.Outside,
+            placeholder = "Please input",
+            modifier = Modifier.width(320.dp),
+        )
+    }
+    DemoExample("Change and clear events", "onChange fires on blur, and onClear when the clear icon is used.") {
+        var value by remember { mutableStateOf("Edit me") }
+        var changed by remember { mutableStateOf("-") }
+        var cleared by remember { mutableStateOf("-") }
+        ElInput(
+            value = value,
+            onValueChange = { value = it },
+            clearable = true,
+            onChange = { changed = if (it.isEmpty()) "(empty)" else it },
+            onClear = { cleared = "cleared" },
+            placeholder = "Please input",
+            modifier = Modifier.width(320.dp),
+        )
+        DemoHint("Last change: $changed · Last clear: $cleared")
+    }
+}
+
+/** Groups digits in threes and prefixes the given text with a currency sign. */
+private fun formatCurrency(text: String): String {
+    val digits = text.filter { it.isDigit() }
+    if (digits.isEmpty()) return ""
+    val grouped = digits.reversed().chunked(3).joinToString(",").reversed()
+    val sign = if (text.contains('-')) "-" else ""
+    return "$sign$ $grouped"
+}
+
+/** Counts Unicode code points, treating surrogate pairs as one character. */
+private fun countGraphemes(value: String): Int {
+    var count = 0
+    var index = 0
+    while (index < value.length) {
+        index += if (value[index].code in 0xD800..0xDBFF && index + 1 < value.length) 2 else 1
+        count++
+    }
+    return count
 }

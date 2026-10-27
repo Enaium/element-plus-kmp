@@ -2,136 +2,180 @@ package cn.enaium.elementplus.sample.gallery.data
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import cn.enaium.elementplus.components.ElButton
-import cn.enaium.elementplus.components.ElText
-import cn.enaium.elementplus.components.*
-import cn.enaium.elementplus.components.ElMessage
-import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.ElInput
-import cn.enaium.elementplus.components.ElSwitch
+import cn.enaium.elementplus.components.ElVirtualizedTree
+import cn.enaium.elementplus.components.ElTreeNode
+import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
-import cn.enaium.elementplus.sample.gallery.*
-import cn.enaium.elementplus.theme.ElSize
-import cn.enaium.elementplus.theme.ElTextAlign
-import cn.enaium.elementplus.theme.ElType
+import cn.enaium.elementplus.sample.gallery.DemoExample
+import cn.enaium.elementplus.sample.gallery.DemoHint
 import cn.enaium.elementplus.theme.LocalElTheme
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.number
 
 @Composable
 fun VirtualizedTreeDocs() {
-    val data = remember {
-        (1..20).map { group ->
-            ElTreeNode(
-                "group-$group",
-                "Group $group",
-                (1..20).map { item -> ElTreeNode("group-$group-item-$item", "Item $group-$item") },
-            )
-        }
-    }
-    var selected by remember { mutableStateOf<String?>(null) }
-    DemoExample("Basic usage", "A large tree is rendered lazily.") {
+    val data = remember { virtualTreeData() }
+    val colors = LocalElTheme.current.colors
+    val theme = LocalElTheme.current
+
+    DemoExample("Basic usage", "A large tree rendered with LazyColumn.") {
         ElVirtualizedTree(
             data = data,
-            selectedKey = selected,
-            onSelectedChange = { selected = it },
-            defaultExpandAll = true,
-            height = 280.dp,
-            modifier = Modifier.width(320.dp),
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
         )
-        DemoHint("Selected: ${selected ?: "-"}")
-    }
-    DemoExample("Checkbox and filter", "Virtualized trees support checkboxes and filtering.") {
-        var checked by remember { mutableStateOf(emptySet<String>()) }
-        var filter by remember { mutableStateOf("") }
-        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            ElInput(value = filter, onValueChange = { filter = it }, placeholder = "Filter", modifier = Modifier.width(260.dp))
-            ElVirtualizedTree(
-                data = data,
-                checkedKeys = checked,
-                onCheckedChange = { checked = it },
-                showCheckbox = true,
-                filterText = filter,
-                defaultExpandAll = true,
-                height = 280.dp,
-                modifier = Modifier.width(320.dp),
-            )
-        }
     }
 
-    DemoExample("Custom node content", "Render custom labels in the virtualized tree.") {
-        var selected by remember { mutableStateOf<String?>("1-1") }
+    DemoExample("Selectable", "Highlight and select a node.") {
+        var selected by remember { mutableStateOf<String?>("g-1-1") }
         ElVirtualizedTree(
             data = data,
             selectedKey = selected,
             onSelectedChange = { selected = it },
-            defaultExpandAll = true,
-            nodeContent = { node, isSelected ->
-                BasicText(
-                    text = "• ${node.label}",
-                    style = LocalElTheme.current.typography.base.copy(
-                        color = if (isSelected) LocalElTheme.current.colors.primary else LocalElTheme.current.colors.textRegular,
-                    ),
-                )
-            },
-            modifier = Modifier.width(300.dp),
+            highlightCurrent = true,
+            expandOnClickNode = false,
+            defaultExpandedKeys = setOf("g-1"),
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
         )
+        DemoHint("Selected: ${selected ?: "-"}")
     }
 
     DemoExample("Disabled checkbox", "Disabled nodes cannot be checked.") {
         var checked by remember { mutableStateOf(emptySet<String>()) }
-        ElVirtualizedTree(
-            data = data.map { group ->
-                group.copy(children = group.children.mapIndexed { index, node ->
-                    if (index == 0) node.copy(disabled = true) else node
+        val disabledData = remember(data) {
+            data.map { group ->
+                group.copy(children = group.children.map { item ->
+                    if (item.key.endsWith("-2")) item.copy(disabled = true) else item
                 })
-            },
+            }
+        }
+        ElVirtualizedTree(
+            data = disabledData,
             checkedKeys = checked,
             onCheckedChange = { checked = it },
             showCheckbox = true,
-            defaultExpandAll = true,
-            height = 280.dp,
-            modifier = Modifier.width(320.dp),
+            defaultExpandedKeys = setOf("g-1"),
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
         )
     }
-    DemoExample("Default expanded and checked", "Initialize expanded and checked keys.") {
-        var checked by remember { mutableStateOf(setOf("group-1-item-1", "group-1-item-2")) }
+
+    DemoExample("Default expanded and default checked", "Initialize checked and expanded keys.") {
         ElVirtualizedTree(
             data = data,
-            checkedKeys = checked,
-            onCheckedChange = { checked = it },
             showCheckbox = true,
-            defaultExpandedKeys = setOf("group-1"),
-            height = 280.dp,
-            modifier = Modifier.width(320.dp),
+            defaultExpandedKeys = setOf("g-1"),
+            defaultCheckedKeys = setOf("g-1-1"),
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
         )
     }
+
+    DemoExample("Custom node content", "Render a custom prefix and leaf styling.") {
+        ElVirtualizedTree(
+            data = data,
+            defaultExpandedKeys = setOf("g-1"),
+            nodeContent = { node, isSelected ->
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    BasicText(
+                        text = "[ElementPlus] ",
+                        style = theme.typography.base.copy(
+                            color = if (node.isLeaf) colors.success else colors.primary,
+                        ),
+                    )
+                    BasicText(
+                        text = node.label,
+                        style = theme.typography.base.copy(
+                            color = if (isSelected) colors.primary else colors.textRegular,
+                        ),
+                    )
+                }
+            },
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
+        )
+    }
+
+    DemoExample("Custom node class", "Apply a custom modifier to penultimate-level nodes.") {
+        ElVirtualizedTree(
+            data = data,
+            showCheckbox = true,
+            defaultExpandedKeys = setOf("g-1"),
+            expandOnClickNode = false,
+            nodeModifier = { node ->
+                if (node.key.endsWith("-3")) {
+                    Modifier.background(colors.primary.copy(alpha = 0.10f), RoundedCornerShape(4.dp))
+                } else {
+                    Modifier
+                }
+            },
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
+        )
+    }
+
+    DemoExample("Custom node icon", "Choose folder/document icons based on node type and expansion.") {
+        ElVirtualizedTree(
+            data = data,
+            defaultExpandedKeys = setOf("g-1"),
+            nodeIcon = { node, expanded -> customIcon(node.isLeaf, expanded) },
+            height = 300.dp,
+            modifier = Modifier.width(380.dp),
+        )
+    }
+
+    DemoExample("Tree node filtering", "Filter nodes with a caller-provided predicate.") {
+        var filter by remember { mutableStateOf("") }
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            ElInput(
+                value = filter,
+                onValueChange = { filter = it },
+                placeholder = "Filter keyword",
+                clearable = true,
+                modifier = Modifier.width(260.dp),
+            )
+            ElVirtualizedTree(
+                data = data,
+                filterText = filter,
+                filterNodeMethod = { query, node -> node.label.contains(query, ignoreCase = true) },
+                height = 300.dp,
+                modifier = Modifier.width(380.dp),
+            )
+        }
+    }
+}
+
+private fun customIcon(isLeaf: Boolean, expanded: Boolean): ImageVector =
+    if (isLeaf) ElIcons.Document else ElIcons.Folder
+
+private fun virtualTreeData(): List<ElTreeNode> = (1..30).map { group ->
+    ElTreeNode(
+        "g-$group",
+        "Group $group",
+        children = (1..8).map { item ->
+            ElTreeNode(
+                "g-$group-$item",
+                "Item $group-$item",
+                children = (1..2).map { leaf ->
+                    ElTreeNode("g-$group-$item-$leaf", "Leaf $group-$item-$leaf")
+                },
+            )
+        },
+    )
 }

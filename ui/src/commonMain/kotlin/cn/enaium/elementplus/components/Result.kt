@@ -22,7 +22,7 @@ import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.theme.LocalElTheme
 
-enum class ElResultStatus { Success, Warning, Info, Error }
+enum class ElResultStatus { Primary, Success, Warning, Info, Error }
 
 /** `<el-result>` with a status illustration, title, subtitle and extra actions. */
 @Composable
@@ -32,11 +32,15 @@ fun ElResult(
     subTitle: String? = null,
     status: ElResultStatus = ElResultStatus.Info,
     iconSize: Dp = 64.dp,
+    icon: (@Composable () -> Unit)? = null,
+    titleContent: (@Composable () -> Unit)? = null,
+    subTitleContent: (@Composable () -> Unit)? = null,
     extra: (@Composable () -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
-    val (icon, color) = when (status) {
+    val (statusIcon, color) = when (status) {
+        ElResultStatus.Primary -> ElIcons.InfoFilled to colors.primary
         ElResultStatus.Success -> ElIcons.CircleCheckFilled to colors.success
         ElResultStatus.Warning -> ElIcons.WarningFilled to colors.warning
         ElResultStatus.Info -> ElIcons.InfoFilled to colors.info
@@ -46,23 +50,32 @@ fun ElResult(
         modifier = modifier.fillMaxWidth().padding(vertical = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Box(
-            Modifier
-                .size(iconSize)
-                .background(color.copy(alpha = 0.12f), CircleShape),
-            contentAlignment = Alignment.Center,
-        ) {
-            ElIcon(icon, size = iconSize * 0.56f, tint = color)
+        if (icon != null) {
+            icon()
+        } else {
+            Box(
+                Modifier
+                    .size(iconSize)
+                    .background(color.copy(alpha = 0.12f), CircleShape),
+                contentAlignment = Alignment.Center,
+            ) {
+                ElIcon(statusIcon, size = iconSize * 0.56f, tint = color)
+            }
         }
         Spacer(Modifier.height(16.dp))
-        if (title != null) {
+        if (titleContent != null) {
+            titleContent()
+            Spacer(Modifier.height(8.dp))
+        } else if (title != null) {
             BasicText(
                 text = title,
                 style = theme.typography.extraLarge.copy(color = colors.textPrimary, fontWeight = FontWeight.Medium),
             )
             Spacer(Modifier.height(8.dp))
         }
-        if (subTitle != null) {
+        if (subTitleContent != null) {
+            subTitleContent()
+        } else if (subTitle != null) {
             BasicText(
                 text = subTitle,
                 style = theme.typography.base.copy(color = colors.textSecondary),

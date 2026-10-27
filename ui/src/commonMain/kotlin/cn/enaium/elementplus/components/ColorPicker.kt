@@ -78,6 +78,8 @@ fun ElColorPickerPanel(
     format: ElColorFormat = ElColorFormat.Hex,
     predefine: List<Color> = emptyList(),
     disabled: Boolean = false,
+    border: Boolean = false,
+    footer: (@Composable () -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
@@ -95,7 +97,19 @@ fun ElColorPickerPanel(
     LaunchedEffect(color) {
         if (!editing) valueText = formatElColor(color, format, showAlpha)
     }
-    Column(modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {
+    Column(
+        modifier = modifier
+            .then(
+                if (border) {
+                    Modifier
+                        .border(1.dp, colors.border, RoundedCornerShape(4.dp))
+                        .padding(8.dp)
+                } else {
+                    Modifier
+                },
+            ),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
         // HSV area
         BoxWithConstraints(
             Modifier
@@ -238,6 +252,7 @@ fun ElColorPickerPanel(
                 }
             }
         }
+        footer?.invoke()
     }
 }
 
@@ -321,6 +336,9 @@ fun ElColorPicker(
     format: ElColorFormat = ElColorFormat.Hex,
     predefine: List<Color> = emptyList(),
     onVisibleChange: ((Boolean) -> Unit)? = null,
+    onChange: ((Color?) -> Unit)? = null,
+    onActiveChange: ((Color) -> Unit)? = null,
+    onClear: (() -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
@@ -336,9 +354,31 @@ fun ElColorPicker(
         hoverState -> colors.textDisabled
         else -> colors.border
     }
+    // Value captured when the panel opens, so `onChange` only fires on commits.
+    var valueAtOpen by remember { mutableStateOf(value) }
+    fun commit() {
+        if (valueAtOpen != value) {
+            valueAtOpen = value
+            onChange?.invoke(value)
+        }
+    }
     fun setExpanded(next: Boolean) {
+        if (next) {
+            valueAtOpen = value
+        } else {
+            commit()
+        }
         expanded = next
         onVisibleChange?.invoke(next)
+    }
+    fun clear() {
+        val hadValue = value != null
+        valueAtOpen = null
+        onValueChange(null)
+        if (hadValue) onChange?.invoke(null)
+        onClear?.invoke()
+        expanded = false
+        onVisibleChange?.invoke(false)
     }
     Box(modifier) {
         Row(
@@ -374,7 +414,7 @@ fun ElColorPicker(
                     size = 14.dp,
                     tint = colors.textPlaceholder,
                     contentDescription = locale.colorPicker.clear,
-                    modifier = Modifier.clickable { onValueChange(null) },
+                    modifier = Modifier.clickable { clear() },
                 )
             }
         }
@@ -389,7 +429,10 @@ fun ElColorPicker(
                 Column(Modifier.padding(12.dp)) {
                     ElColorPickerPanel(
                         color = value ?: Color.White,
-                        onColorChange = { onValueChange(it) },
+                        onColorChange = { next ->
+                            onValueChange(next)
+                            onActiveChange?.invoke(next)
+                        },
                         showAlpha = showAlpha,
                         format = format,
                         predefine = predefine,
@@ -399,7 +442,7 @@ fun ElColorPicker(
                         BasicText(
                             text = locale.colorPicker.clear,
                             modifier = Modifier
-                                .clickable { onValueChange(null); setExpanded(false) }
+                                .clickable { clear() }
                                 .padding(horizontal = 10.dp, vertical = 5.dp),
                             style = theme.typography.small.copy(color = colors.primary),
                         )

@@ -22,6 +22,8 @@ import cn.enaium.elementplus.components.ElDividerContentPosition
 import cn.enaium.elementplus.components.ElDividerDirection
 import cn.enaium.elementplus.components.ElText
 import cn.enaium.elementplus.components.ElWatermark
+import cn.enaium.elementplus.icons.ElIcon
+import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
 import cn.enaium.elementplus.theme.ElType
@@ -55,6 +57,15 @@ fun DividerDocs() {
         ElDivider(
             content = { ElText("Right", size = ElSize.Small) },
             contentPosition = ElDividerContentPosition.Right,
+        )
+        ElDivider(
+            content = {
+                ElIcon(
+                    ElIcons.StarFilled,
+                    size = 16.dp,
+                    tint = LocalElTheme.current.colors.warning,
+                )
+            },
         )
     }
     DemoExample("Vertical divider", "Separate inline items with a vertical line.") {

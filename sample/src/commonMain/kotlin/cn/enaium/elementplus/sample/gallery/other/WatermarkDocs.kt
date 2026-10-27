@@ -15,13 +15,18 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import cn.enaium.elementplus.components.ElDivider
 import cn.enaium.elementplus.components.ElDividerBorderStyle
 import cn.enaium.elementplus.components.ElDividerContentPosition
 import cn.enaium.elementplus.components.ElDividerDirection
 import cn.enaium.elementplus.components.ElText
 import cn.enaium.elementplus.components.ElWatermark
+import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
 import cn.enaium.elementplus.theme.ElType
@@ -31,6 +36,7 @@ import cn.enaium.elementplus.theme.LocalElTheme
 fun WatermarkDocs() {
     val theme = LocalElTheme.current
     val colors = theme.colors
+    val picturePainter = rememberVectorPainter(ElIcons.Picture)
     DemoExample("Basic usage", "A tiled watermark is drawn over the content.") {
         ElWatermark(
             text = "Element Plus KMP",
@@ -89,6 +95,84 @@ fun WatermarkDocs() {
         ) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 BasicText("Multi-line watermark", style = LocalElTheme.current.typography.medium)
+            }
+        }
+    }
+
+    DemoExample("Image watermark", "Tile an image instead of text.") {
+        ElWatermark(
+            image = picturePainter,
+            imageWidth = 48.dp,
+            imageHeight = 48.dp,
+            modifier = Modifier.fillMaxWidth().height(200.dp).background(colors.fillLight, RoundedCornerShape(6.dp)),
+            gapX = 90.dp,
+            gapY = 70.dp,
+            rotate = 0f,
+            color = colors.primary.copy(alpha = 0.35f),
+        ) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                BasicText("Image watermark", style = theme.typography.base.copy(color = colors.textPrimary))
+            }
+        }
+    }
+
+    DemoExample("Font styling", "Adjust the watermark font weight and style.") {
+        ElWatermark(
+            text = "Element Plus",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            color = colors.primary.copy(alpha = 0.2f),
+            rotate = -12f,
+            gapX = 120.dp,
+            gapY = 80.dp,
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+        ) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                BasicText("Bold watermark", style = theme.typography.medium)
+            }
+        }
+    }
+
+    DemoExample("Custom mark", "Draw a custom tile for every watermark repetition.") {
+        ElWatermark(
+            text = "",
+            mark = { scope, size ->
+                val radius = size.minDimension / 4f
+                scope.drawCircle(
+                    color = colors.primary.copy(alpha = 0.16f),
+                    radius = radius,
+                    center = Offset(size.width / 2f, size.height / 2f),
+                )
+                scope.drawCircle(
+                    color = colors.success.copy(alpha = 0.16f),
+                    radius = radius / 2f,
+                    center = Offset(size.width / 2f, size.height / 2f),
+                )
+            },
+            gapX = 90.dp,
+            gapY = 90.dp,
+            rotate = 0f,
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+        ) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                BasicText("Custom mark", style = theme.typography.medium)
+            }
+        }
+    }
+
+    DemoExample("Offset", "Shift the watermark tiling origin.") {
+        ElWatermark(
+            text = "Offset",
+            offsetX = 40.dp,
+            offsetY = 24.dp,
+            color = colors.warning.copy(alpha = 0.2f),
+            rotate = -22f,
+            gapX = 100.dp,
+            gapY = 80.dp,
+            modifier = Modifier.fillMaxWidth().height(200.dp),
+        ) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                BasicText("Offset watermark", style = theme.typography.medium)
             }
         }
     }

@@ -35,6 +35,7 @@ import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.ElInput
 import cn.enaium.elementplus.components.ElSwitch
+import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
@@ -116,6 +117,94 @@ fun SegmentedDocs() {
             vertical = true,
             block = true,
             modifier = Modifier.height(180.dp),
+        )
+    }
+
+    DemoExample("Custom option content", "Render arbitrary layouts inside each option with optionContent.") {
+        var value by remember { mutableStateOf("apple") }
+        val fruits = listOf(
+            ElSegmentedOption("apple", "Apple", ElIcons.Sunny),
+            ElSegmentedOption("cherry", "Cherry", ElIcons.Star),
+            ElSegmentedOption("grape", "Grape", ElIcons.Trophy),
+        )
+        ElSegmented(
+            options = fruits,
+            value = value,
+            onValueChange = { value = it },
+            optionContent = { option ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    option.icon?.let { ElIcon(it, size = 20.dp) }
+                    BasicText(option.label, style = LocalElTheme.current.typography.small)
+                }
+            },
+        )
+    }
+
+    DemoExample("Custom style", "Override the selected color, pill background and corner radius.") {
+        var value by remember { mutableStateOf("Delicacy") }
+        ElSegmented(
+            options = listOf(
+                ElSegmentedOption("Delicacy", "Delicacy"),
+                ElSegmentedOption("Desserts", "Desserts&Drinks"),
+                ElSegmentedOption("Fresh", "Fresh foods"),
+                ElSegmentedOption("Supermarket", "Supermarket"),
+            ),
+            value = value,
+            onValueChange = { value = it },
+            selectedColor = LocalElTheme.current.colors.textPrimary,
+            selectedBackgroundColor = Color(0xFFFFD100),
+            cornerRadius = 16.dp,
+        )
+    }
+
+    DemoExample("Custom direction", "Drive the direction and size of a segmented control from other controls.") {
+        var direction by remember { mutableStateOf("horizontal") }
+        var sizeValue by remember { mutableStateOf("default") }
+        var value by remember { mutableStateOf("Apple") }
+        val fruits = listOf(
+            ElSegmentedOption("Apple", "Apple", ElIcons.Sunny),
+            ElSegmentedOption("Cherry", "Cherry", ElIcons.Star),
+            ElSegmentedOption("Grape", "Grape", ElIcons.Trophy),
+        )
+        ElSegmented(
+            options = listOf(
+                ElSegmentedOption("horizontal", "Horizontal"),
+                ElSegmentedOption("vertical", "Vertical"),
+            ),
+            value = direction,
+            onValueChange = { direction = it },
+        )
+        ElSegmented(
+            options = listOf(
+                ElSegmentedOption("large", "large"),
+                ElSegmentedOption("default", "default"),
+                ElSegmentedOption("small", "small"),
+            ),
+            value = sizeValue,
+            onValueChange = { sizeValue = it },
+        )
+        ElSegmented(
+            options = fruits,
+            value = value,
+            onValueChange = { value = it },
+            vertical = direction == "vertical",
+            size = when (sizeValue) {
+                "large" -> ElSize.Large
+                "small" -> ElSize.Small
+                else -> ElSize.Default
+            },
+            optionContent = { option ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    option.icon?.let { ElIcon(it, size = 20.dp) }
+                    BasicText(option.label, style = LocalElTheme.current.typography.small)
+                }
+            },
         )
     }
 }

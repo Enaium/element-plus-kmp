@@ -69,6 +69,41 @@ fun PopconfirmDocs() {
         )
     }
 
+
+    DemoExample("Trigger event", "Open the confirmation on hover, click or focus.") {
+        DemoRow {
+            ElPopconfirm(
+                title = "Hover confirm?",
+                trigger = ElPopoverTrigger.Hover,
+                onConfirm = {},
+                triggerContent = { ElText("Hover", type = ElType.Primary) },
+            )
+            ElPopconfirm(
+                title = "Click confirm?",
+                trigger = ElPopoverTrigger.Click,
+                onConfirm = {},
+                triggerContent = { ElButton(onClick = {}, text = "Click") },
+            )
+            ElPopconfirm(
+                title = "Focus confirm?",
+                trigger = ElPopoverTrigger.Focus,
+                onConfirm = {},
+                triggerContent = { ElButton(onClick = {}, text = "Focus") },
+            )
+        }
+    }
+    DemoExample("Custom icon and buttons", "Choose the icon and action button styles.") {
+        ElPopconfirm(
+            title = "Delete?",
+            hideIcon = false,
+            icon = ElIcons.Delete,
+            iconColor = LocalElTheme.current.colors.danger,
+            confirmButtonType = ElType.Danger,
+            cancelButtonType = ElType.Default,
+            onConfirm = {},
+            triggerContent = { ElButton(onClick = {}, text = "Delete", type = ElType.Danger) },
+        )
+    }
     DemoExample("Customize", "Customize the title, text and action labels.") {
         ElPopconfirm(
             title = "Delete this item?",

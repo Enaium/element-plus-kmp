@@ -30,13 +30,16 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 /**
  * `<el-infinite-scroll>` as a LazyColumn wrapper. [onLoadMore] is invoked once
  * when the last item becomes visible, until [loading] flips or more rows are
- * appended.
+ * appended. [delay] throttles successive triggers and [immediate] loads while
+ * the list is too short to scroll.
  */
 @Composable
 fun ElInfiniteScroll(
     modifier: Modifier = Modifier,
     state: LazyListState = rememberLazyListState(),
     distance: Int = 50,
+    delay: Int = 200,
+    immediate: Boolean = true,
     disabled: Boolean = false,
     loading: Boolean = false,
     finished: Boolean = false,
@@ -52,19 +55,26 @@ fun ElInfiniteScroll(
     var requestedTotal by remember { mutableStateOf(-1) }
     val density = LocalDensity.current
     val distancePx = with(density) { distance.dp.toPx() }
-    LaunchedEffect(state, loading, finished, disabled, distancePx) {
+    LaunchedEffect(state, loading, finished, disabled, distancePx, delay, immediate) {
         snapshotFlow {
             val info = state.layoutInfo
             val last = info.visibleItemsInfo.lastOrNull()
             val nearEnd = last != null && last.index >= info.totalItemsCount - 2 &&
                 last.offset + last.size + distancePx >= info.viewportEndOffset
-            nearEnd to info.totalItemsCount
+            val notScrollable = last != null &&
+                info.viewportEndOffset > info.viewportStartOffset &&
+                info.visibleItemsInfo.size == info.totalItemsCount &&
+                last.offset + last.size <= info.viewportEndOffset
+            Triple(nearEnd, notScrollable, info.totalItemsCount)
         }
             .distinctUntilChanged()
-            .collect { (nearEnd, total) ->
-                if (!disabled && !loading && !finished && total > 0 && nearEnd && requestedTotal != total) {
+            .collect { (nearEnd, notScrollable, total) ->
+                if (!disabled && !loading && !finished && total > 0 &&
+                    (nearEnd || (immediate && notScrollable)) && requestedTotal != total
+                ) {
                     requestedTotal = total
                     onLoadMore()
+                    if (delay > 0) kotlinx.coroutines.delay(delay.toLong())
                 }
             }
     }

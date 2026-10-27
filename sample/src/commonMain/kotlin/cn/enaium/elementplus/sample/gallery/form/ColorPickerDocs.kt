@@ -75,4 +75,25 @@ fun ColorPickerDocs() {
         var color by remember { mutableStateOf<Color?>(Color(0x80409EFF)) }
         ElColorPicker(value = color, onValueChange = { color = it }, showAlpha = true, modifier = Modifier.width(260.dp))
     }
+
+    DemoExample("Change, active-change and clear", "active-change tracks panel edits; change fires on commit.") {
+        var color by remember { mutableStateOf<Color?>(Color(0xFF409EFF)) }
+        var active by remember { mutableStateOf("-") }
+        var changed by remember { mutableStateOf("-") }
+        var cleared by remember { mutableStateOf("-") }
+        ElColorPicker(
+            value = color,
+            onValueChange = { color = it },
+            onActiveChange = { active = formatColorHint(it) },
+            onChange = { changed = it?.let(::formatColorHint) ?: "(empty)" },
+            onClear = { cleared = "cleared" },
+            modifier = Modifier.width(260.dp),
+        )
+        DemoHint("Active: $active · Change: $changed · Clear: $cleared")
+    }
 }
+
+private fun formatColorHint(color: Color): String =
+    "#" + listOf(color.red, color.green, color.blue).joinToString("") { channel ->
+        ((channel * 255).toInt()).toString(16).padStart(2, '0')
+    }.uppercase()

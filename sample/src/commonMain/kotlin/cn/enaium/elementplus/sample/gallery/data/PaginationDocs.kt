@@ -72,19 +72,78 @@ fun PaginationDocs() {
             layout = "total, sizes, prev, pager, next, jumper",
         )
     }
-    DemoExample("Hide when single page", "Hide the pager when there is only one page.") {
+    DemoExample("Auto hide pagination", "Toggle hide-on-single-page so the pager disappears when only one page remains.") {
+        var hide by remember { mutableStateOf(true) }
+        DemoRow {
+            BasicText("Hide when single page", style = LocalElTheme.current.typography.small)
+            ElSwitch(checked = hide, onCheckedChange = { hide = it })
+        }
         ElPagination(
-            total = 8,
+            total = 5,
             currentPage = 1,
             onCurrentPageChange = {},
-            pageSize = 10,
-            hideOnSinglePage = true,
+            pageSize = 5,
+            layout = "prev, pager, next",
+            hideOnSinglePage = hide,
         )
-        DemoHint("No pagination is rendered above because there is only one page.")
+        DemoHint(if (hide) "No pagination is rendered because there is only one page." else "The pager is shown even though there is only one page.")
     }
 
     DemoExample("Number of pagers", "Control how many page buttons are shown.") {
         var smallPage by remember { mutableStateOf(1) }
         ElPagination(total = 100, currentPage = smallPage, onCurrentPageChange = { smallPage = it }, pagerCount = 5)
+    }
+
+    DemoExample("Page count", "Set the number of pages directly instead of deriving it from total.") {
+        var page by remember { mutableStateOf(1) }
+        ElPagination(total = 0, currentPage = page, onCurrentPageChange = { page = it }, pageCount = 24)
+        DemoHint("Current page: $page of 24")
+    }
+
+    DemoExample("Previous and next text", "Replace the arrow icons with text labels.") {
+        var page by remember { mutableStateOf(1) }
+        ElPagination(
+            total = 200,
+            currentPage = page,
+            onCurrentPageChange = { page = it },
+            layout = "prev, pager, next",
+            prevText = "Previous",
+            nextText = "Next",
+        )
+    }
+
+    DemoExample("Custom prev and next icons", "Provide your own icons for the navigation buttons.") {
+        var page by remember { mutableStateOf(1) }
+        ElPagination(
+            total = 200,
+            currentPage = page,
+            onCurrentPageChange = { page = it },
+            layout = "prev, pager, next",
+            prevIcon = ElIcons.ArrowLeftBold,
+            nextIcon = ElIcons.ArrowRightBold,
+        )
+    }
+
+    DemoExample("Layout spacer and custom slot", "Use `->` to push later parts to the end and `slot` to inject custom content.") {
+        var page by remember { mutableStateOf(1) }
+        ElPagination(
+            total = 200,
+            currentPage = page,
+            onCurrentPageChange = { page = it },
+            layout = "total, ->, prev, pager, next, slot",
+            slot = {
+                DemoHint("Page $page")
+            },
+        )
+    }
+
+    DemoExample("Disabled", "Disable every pagination control.") {
+        ElPagination(
+            total = 100,
+            currentPage = 2,
+            onCurrentPageChange = {},
+            background = true,
+            disabled = true,
+        )
     }
 }

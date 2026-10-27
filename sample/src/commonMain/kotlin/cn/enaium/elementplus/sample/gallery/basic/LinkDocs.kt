@@ -39,35 +39,55 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun LinkDocs() {
-    val theme = LocalElTheme.current
-    DemoExample("Basic link", "Links support the semantic types.") {
+    DemoExample("Basic link", "Links support href, target and the semantic types.") {
         DemoRow {
-            ElLink("Default", onClick = {})
-            ElLink("Primary", onClick = {}, type = ElType.Primary)
-            ElLink("Success", onClick = {}, type = ElType.Success)
-            ElLink("Warning", onClick = {}, type = ElType.Warning)
-            ElLink("Danger", onClick = {}, type = ElType.Danger)
-            ElLink("Info", onClick = {}, type = ElType.Info)
+            ElLink("default", href = "https://element-plus.org", target = "_blank")
+            ElLink("primary", onClick = {}, type = ElType.Primary)
+            ElLink("success", onClick = {}, type = ElType.Success)
+            ElLink("warning", onClick = {}, type = ElType.Warning)
+            ElLink("danger", onClick = {}, type = ElType.Danger)
+            ElLink("info", onClick = {}, type = ElType.Info)
         }
     }
-    DemoExample("Underline", "Control when the underline appears.") {
+    DemoExample("Href and target", "href opens through the platform URI handler; _self keeps navigation in the click handler.") {
         DemoRow {
-            ElLink("Always", onClick = {}, underline = ElLinkUnderline.Always)
-            ElLink("Hover", onClick = {}, underline = ElLinkUnderline.Hover)
-            ElLink("Never", onClick = {}, underline = ElLinkUnderline.Never)
+            ElLink("External link", href = "https://element-plus.org", target = "_blank")
+            ElLink("In-app link", href = "/components/link", target = "_self", onClick = {})
+            ElLink("No handler or href", underline = ElLinkUnderline.Never)
+        }
+    }
+    DemoExample("Underline", "Control when the underline appears, with the enum or the boolean shorthand.") {
+        DemoRow {
+            ElLink("default", onClick = {})
+            ElLink("always", underline = ElLinkUnderline.Always, onClick = {})
+            ElLink("hover", underline = ElLinkUnderline.Hover, onClick = {})
+            ElLink("never", underline = ElLinkUnderline.Never, onClick = {})
+            ElLink("boolean true", underline = true, onClick = {})
+            ElLink("boolean false", underline = false, onClick = {})
         }
     }
     DemoExample("Disabled", "Disable a link to prevent interaction.") {
         DemoRow {
             ElLink("Disabled", onClick = {}, disabled = true)
             ElLink("Disabled primary", onClick = {}, type = ElType.Primary, disabled = true)
+            ElLink("Disabled href", href = "https://element-plus.org", disabled = true)
         }
     }
-    DemoExample("With icon", "A link can include a leading icon.") {
+    DemoExample("With icon", "A link can include an icon prop or custom icon content.") {
         DemoRow {
             ElLink("Edit", onClick = {}, icon = ElIcons.Edit)
             ElLink("Download", onClick = {}, type = ElType.Success, icon = ElIcons.Download)
-            ElLink("Link", onClick = {}, type = ElType.Primary, icon = ElIcons.Link)
+            ElLink("Custom icon", onClick = {}, iconContent = { color ->
+                ElIcon(ElIcons.Star, size = 14.dp, tint = color)
+            })
+            ElLink(onClick = {}) { color, decoration ->
+                BasicText(
+                    "Check",
+                    style = LocalElTheme.current.typography.base.copy(color = color, textDecoration = decoration),
+                )
+                Spacer(Modifier.width(4.dp))
+                ElIcon(ElIcons.View, size = 14.dp, tint = color)
+            }
         }
     }
 }

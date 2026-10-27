@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -20,6 +19,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -27,7 +31,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import cn.enaium.elementplus.icons.ElIcon
@@ -37,21 +43,37 @@ import cn.enaium.elementplus.theme.LocalElTheme
 enum class ElTabsType { Line, Card, BorderCard }
 enum class ElTabPosition { Top, Bottom, Left, Right }
 
+/**
+ * A single tab.
+ *
+ * `labelContent` mirrors the upstream `label` slot, `closeIcon` overrides the
+ * close glyph and `content` is the pane body.
+ */
 class ElTabData(
     val name: String,
     val label: String,
     val icon: ImageVector? = null,
     val disabled: Boolean = false,
     val closable: Boolean = true,
+    val labelContent: (@Composable () -> Unit)? = null,
+    val closeIcon: ImageVector? = null,
     val content: @Composable () -> Unit,
 )
 
-/** `<el-tabs>` with line/card styles, closable/addable tabs and four positions. */
+/**
+ * `<el-tabs>` with line/card styles, closable/addable tabs and four positions.
+ *
+ * When [activeName] is `null` the tabs are uncontrolled and start at
+ * [defaultValue] (or the first enabled tab). [lazy] disposes inactive panes;
+ * by default all panes stay composed so their state survives tab switches.
+ * [beforeLeave] can veto a switch and [onTabClick] fires for every click,
+ * distinct from [onTabChange].
+ */
 @Composable
 fun ElTabs(
     tabs: List<ElTabData>,
-    activeName: String,
-    onTabChange: (String) -> Unit,
+    activeName: String? = null,
+    onTabChange: (String) -> Unit = {},
     modifier: Modifier = Modifier,
     type: ElTabsType = ElTabsType.Line,
     tabPosition: ElTabPosition = ElTabPosition.Top,
@@ -61,11 +83,43 @@ fun ElTabs(
     onTabAdd: (() -> Unit)? = null,
     stretch: Boolean = false,
     contentPadding: Dp = 16.dp,
+    defaultValue: String? = null,
+    editable: Boolean = false,
+    onTabClick: ((String) -> Unit)? = null,
+    beforeLeave: ((newName: String, oldName: String) -> Boolean)? = null,
+    lazy: Boolean = false,
+    addIcon: ImageVector? = null,
+    addIconContent: (@Composable () -> Unit)? = null,
+    closeIcon: ImageVector = ElIcons.Close,
 ) {
-    val theme = LocalElTheme.current
-    val colors = theme.colors
-    val activeTab = tabs.firstOrNull { it.name == activeName } ?: tabs.firstOrNull { !it.disabled } ?: tabs.firstOrNull()
+    val colors = LocalElTheme.current.colors
+    var internalName by remember {
+        mutableStateOf(
+            defaultValue ?: activeName
+                ?: tabs.firstOrNull { !it.disabled }?.name
+                ?: tabs.firstOrNull()?.name
+                ?: "",
+        )
+    }
+    val requestedName = activeName ?: internalName
+    val resolvedName = requestedName.takeIf { name -> tabs.any { it.name == name } }
+        ?: tabs.firstOrNull { !it.disabled }?.name
+        ?: tabs.firstOrNull()?.name
+        ?: ""
+    val effectiveClosable = closable || editable
+    val effectiveAddable = addable || editable
     val horizontal = tabPosition == ElTabPosition.Top || tabPosition == ElTabPosition.Bottom
+
+    val select: (ElTabData) -> Unit = { tab ->
+        if (!tab.disabled) {
+            onTabClick?.invoke(tab.name)
+            val canLeave = resolvedName == tab.name || beforeLeave?.invoke(tab.name, resolvedName) != false
+            if (canLeave && tab.name != resolvedName) {
+                internalName = tab.name
+                onTabChange(tab.name)
+            }
+        }
+    }
 
     val contentBox: @Composable (Modifier) -> Unit = { extra ->
         Box(
@@ -73,7 +127,11 @@ fun ElTabs(
                 .then(if (type == ElTabsType.BorderCard) Modifier.border(1.dp, colors.borderLight) else Modifier)
                 .padding(contentPadding),
         ) {
-            activeTab?.content?.invoke()
+            if (lazy) {
+                tabs.firstOrNull { it.name == resolvedName }?.content?.invoke()
+            } else {
+                TabsPaneHost(tabs, resolvedName)
+            }
         }
     }
 
@@ -82,30 +140,36 @@ fun ElTabs(
             if (tabPosition == ElTabPosition.Top) {
                 HorizontalTabHeader(
                     tabs = tabs,
-                    activeName = activeName,
+                    activeName = resolvedName,
                     type = type,
                     tabPosition = tabPosition,
-                    closable = closable,
-                    addable = addable,
+                    closable = effectiveClosable,
+                    addable = effectiveAddable,
                     stretch = stretch,
-                    onTabChange = onTabChange,
+                    onTabSelect = select,
                     onTabRemove = onTabRemove,
                     onTabAdd = onTabAdd,
+                    addIcon = addIcon,
+                    addIconContent = addIconContent,
+                    closeIcon = closeIcon,
                 )
                 contentBox(Modifier.fillMaxWidth())
             } else {
                 contentBox(Modifier.fillMaxWidth())
                 HorizontalTabHeader(
                     tabs = tabs,
-                    activeName = activeName,
+                    activeName = resolvedName,
                     type = type,
                     tabPosition = tabPosition,
-                    closable = closable,
-                    addable = addable,
+                    closable = effectiveClosable,
+                    addable = effectiveAddable,
                     stretch = stretch,
-                    onTabChange = onTabChange,
+                    onTabSelect = select,
                     onTabRemove = onTabRemove,
                     onTabAdd = onTabAdd,
+                    addIcon = addIcon,
+                    addIconContent = addIconContent,
+                    closeIcon = closeIcon,
                 )
             }
         }
@@ -113,14 +177,46 @@ fun ElTabs(
         Row(modifier) {
             if (tabPosition == ElTabPosition.Left) {
                 VerticalTabHeader(
-                    tabs, activeName, type, closable, addable, onTabChange, onTabRemove, onTabAdd,
+                    tabs, resolvedName, type, tabPosition, effectiveClosable, effectiveAddable,
+                    select, onTabRemove, onTabAdd, addIcon, addIconContent, closeIcon,
                 )
                 contentBox(Modifier.weight(1f))
             } else {
                 contentBox(Modifier.weight(1f))
                 VerticalTabHeader(
-                    tabs, activeName, type, closable, addable, onTabChange, onTabRemove, onTabAdd,
+                    tabs, resolvedName, type, tabPosition, effectiveClosable, effectiveAddable,
+                    select, onTabRemove, onTabAdd, addIcon, addIconContent, closeIcon,
                 )
+            }
+        }
+    }
+}
+
+/**
+ * Keeps every pane composed so inactive panes retain their state, while only
+ * the active pane is measured and placed.
+ */
+@Composable
+private fun TabsPaneHost(tabs: List<ElTabData>, activeName: String) {
+    if (tabs.isEmpty()) return
+    val activeIndex = tabs.indexOfFirst { it.name == activeName }.let { if (it < 0) 0 else it }
+    Layout(
+        content = {
+            tabs.forEach { tab ->
+                key(tab.name) { Box { tab.content() } }
+            }
+        },
+    ) { measurables, constraints ->
+        if (measurables.isEmpty()) {
+            layout(0, 0) {}
+        } else {
+            val effectiveIndex = activeIndex.coerceIn(0, measurables.lastIndex)
+            measurables.forEachIndexed { index, measurable ->
+                if (index != effectiveIndex) measurable.measure(Constraints.fixed(0, 0))
+            }
+            val placeable = measurables[effectiveIndex].measure(constraints)
+            layout(placeable.width, placeable.height) {
+                placeable.place(0, 0)
             }
         }
     }
@@ -135,9 +231,12 @@ private fun HorizontalTabHeader(
     closable: Boolean,
     addable: Boolean,
     stretch: Boolean,
-    onTabChange: (String) -> Unit,
+    onTabSelect: (ElTabData) -> Unit,
     onTabRemove: ((String) -> Unit)?,
     onTabAdd: (() -> Unit)?,
+    addIcon: ImageVector?,
+    addIconContent: (@Composable () -> Unit)?,
+    closeIcon: ImageVector,
 ) {
     val colors = LocalElTheme.current.colors
     Row(
@@ -160,15 +259,16 @@ private fun HorizontalTabHeader(
                     tab = tab,
                     active = tab.name == activeName,
                     type = type,
-                    horizontal = true,
+                    tabPosition = tabPosition,
                     closable = closable && tab.closable,
-                    onSelect = { if (!tab.disabled) onTabChange(tab.name) },
+                    onSelect = { onTabSelect(tab) },
                     onClose = { onTabRemove?.invoke(tab.name) },
+                    closeIcon = closeIcon,
                 )
             }
             if (stretch) Box(Modifier.weight(1f)) { item() } else item()
         }
-        if (addable) AddTabButton(onTabAdd)
+        if (addable) AddTabButton(onTabAdd, addIcon, addIconContent)
     }
 }
 
@@ -177,11 +277,15 @@ private fun VerticalTabHeader(
     tabs: List<ElTabData>,
     activeName: String,
     type: ElTabsType,
+    tabPosition: ElTabPosition,
     closable: Boolean,
     addable: Boolean,
-    onTabChange: (String) -> Unit,
+    onTabSelect: (ElTabData) -> Unit,
     onTabRemove: ((String) -> Unit)?,
     onTabAdd: (() -> Unit)?,
+    addIcon: ImageVector?,
+    addIconContent: (@Composable () -> Unit)?,
+    closeIcon: ImageVector,
 ) {
     val colors = LocalElTheme.current.colors
     Column(
@@ -196,13 +300,14 @@ private fun VerticalTabHeader(
                 tab = tab,
                 active = tab.name == activeName,
                 type = type,
-                horizontal = false,
+                tabPosition = tabPosition,
                 closable = closable && tab.closable,
-                onSelect = { if (!tab.disabled) onTabChange(tab.name) },
+                onSelect = { onTabSelect(tab) },
                 onClose = { onTabRemove?.invoke(tab.name) },
+                closeIcon = closeIcon,
             )
         }
-        if (addable) AddTabButton(onTabAdd)
+        if (addable) AddTabButton(onTabAdd, addIcon, addIconContent)
     }
 }
 
@@ -211,13 +316,15 @@ private fun TabHeaderContent(
     tab: ElTabData,
     active: Boolean,
     type: ElTabsType,
-    horizontal: Boolean,
+    tabPosition: ElTabPosition,
     closable: Boolean,
     onSelect: () -> Unit,
     onClose: () -> Unit,
+    closeIcon: ImageVector,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
+    val horizontal = tabPosition == ElTabPosition.Top || tabPosition == ElTabPosition.Bottom
     val fg = when {
         tab.disabled -> colors.textDisabled
         active -> colors.primary
@@ -230,8 +337,12 @@ private fun TabHeaderContent(
             .height(if (horizontal) 40.dp else 48.dp)
             .then(
                 if (active && type == ElTabsType.Line) {
-                    if (horizontal) Modifier.drawBottomLine(colors.primary, 2.dp)
-                    else Modifier.drawRightLine(colors.primary, 2.dp)
+                    when (tabPosition) {
+                        ElTabPosition.Top -> Modifier.drawBottomLine(colors.primary, 2.dp)
+                        ElTabPosition.Bottom -> Modifier.drawTopLine(colors.primary, 2.dp)
+                        ElTabPosition.Left -> Modifier.drawRightLine(colors.primary, 2.dp)
+                        ElTabPosition.Right -> Modifier.drawLeftLine(colors.primary, 2.dp)
+                    }
                 } else Modifier
             )
             .background(bg, if (type == ElTabsType.Card) RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp) else RoundedCornerShape(0.dp))
@@ -244,17 +355,21 @@ private fun TabHeaderContent(
             ElIcon(tab.icon, size = 14.dp, tint = fg)
             Spacer(Modifier.width(6.dp))
         }
-        BasicText(
-            text = tab.label,
-            style = theme.typography.base.copy(
-                color = fg,
-                fontWeight = if (active) FontWeight.Medium else FontWeight.Normal,
-            ),
-        )
+        if (tab.labelContent != null) {
+            tab.labelContent()
+        } else {
+            BasicText(
+                text = tab.label,
+                style = theme.typography.base.copy(
+                    color = fg,
+                    fontWeight = if (active) FontWeight.Medium else FontWeight.Normal,
+                ),
+            )
+        }
         if (closable) {
             Spacer(Modifier.width(6.dp))
             ElIcon(
-                ElIcons.Close,
+                tab.closeIcon ?: closeIcon,
                 size = 12.dp,
                 tint = fg,
                 modifier = Modifier.clickable(enabled = !tab.disabled) { onClose() },
@@ -264,14 +379,22 @@ private fun TabHeaderContent(
 }
 
 @Composable
-private fun AddTabButton(onAdd: (() -> Unit)?) {
+private fun AddTabButton(
+    onAdd: (() -> Unit)?,
+    icon: ImageVector?,
+    content: (@Composable () -> Unit)?,
+) {
     Box(
         Modifier
             .size(40.dp)
             .clickable(enabled = onAdd != null) { onAdd?.invoke() },
         contentAlignment = Alignment.Center,
     ) {
-        ElIcon(ElIcons.Plus, size = 14.dp, tint = LocalElTheme.current.colors.textSecondary)
+        if (content != null) {
+            content()
+        } else {
+            ElIcon(icon ?: ElIcons.Plus, size = 14.dp, tint = LocalElTheme.current.colors.textSecondary)
+        }
     }
 }
 
@@ -287,4 +410,8 @@ private fun Modifier.drawTopLine(color: Color, width: Dp): Modifier = this.drawB
 private fun Modifier.drawRightLine(color: Color, width: Dp = 1.dp): Modifier = this.drawBehind {
     val stroke = width.toPx()
     drawRect(color, Offset(size.width - stroke, 0f), Size(stroke, size.height))
+}
+
+private fun Modifier.drawLeftLine(color: Color, width: Dp): Modifier = this.drawBehind {
+    drawRect(color, Offset.Zero, Size(width.toPx(), size.height))
 }

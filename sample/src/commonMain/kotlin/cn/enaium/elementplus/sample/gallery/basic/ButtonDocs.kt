@@ -41,6 +41,7 @@ import kotlinx.coroutines.launch
 fun ButtonDocs() {
     val scope = rememberCoroutineScope()
     var loading by remember { mutableStateOf(false) }
+    var verticalGroup by remember { mutableStateOf(false) }
     DemoExample(
         title = "Basic usage",
         description = "Use type, plain, round, dashed and circle to define Button's style.",
@@ -115,12 +116,18 @@ fun ButtonDocs() {
     }
     DemoExample("Link Button", "Use link to render a button as a link.") {
         DemoRow {
-            ElLink("Primary", onClick = {}, icon = ElIcons.Edit)
-            ElLink("Success", onClick = {}, type = ElType.Success)
-            ElLink("Warning", onClick = {}, type = ElType.Warning)
-            ElLink("Danger", onClick = {}, type = ElType.Danger)
-            ElLink("Disabled", onClick = {}, disabled = true)
-            ElLink("Underline", onClick = {}, underline = ElLinkUnderline.Always)
+            ElButton(onClick = {}, text = "plain", link = true)
+            ElButton(onClick = {}, text = "primary", link = true, type = ElType.Primary)
+            ElButton(onClick = {}, text = "success", link = true, type = ElType.Success)
+            ElButton(onClick = {}, text = "info", link = true, type = ElType.Info)
+            ElButton(onClick = {}, text = "warning", link = true, type = ElType.Warning)
+            ElButton(onClick = {}, text = "danger", link = true, type = ElType.Danger)
+        }
+        DemoRow {
+            ElButton(onClick = {}, text = "plain", link = true, disabled = true)
+            ElButton(onClick = {}, text = "primary", link = true, type = ElType.Primary, disabled = true)
+            ElButton(onClick = {}, text = "success", link = true, type = ElType.Success, disabled = true)
+            ElButton(onClick = {}, text = "danger", link = true, type = ElType.Danger, disabled = true)
         }
     }
     DemoExample("Text Button", "Text buttons have no border and background.") {
@@ -140,16 +147,85 @@ fun ButtonDocs() {
             ElButton(onClick = {}, icon = ElIcons.MoreFilled, circle = true, plain = true)
         }
     }
-    DemoExample("Button Group", "Group a series of similar operations together.") {
-        ElButtonGroup {
-            ElButton(onClick = {}, text = "Previous", plain = true)
-            ElButton(onClick = {}, text = "Middle", plain = true)
-            ElButton(onClick = {}, text = "Next", plain = true)
+    DemoExample("Icon on the right", "Use the content slot to place an icon after the label.") {
+        DemoRow {
+            ElButton(
+                onClick = {},
+                content = { color ->
+                    BasicText("Next Page", style = LocalElTheme.current.typography.base.copy(color = color))
+                    Spacer(Modifier.width(6.dp))
+                    ElIcon(ElIcons.ArrowRight, size = 14.dp, tint = color)
+                },
+            )
+            ElButton(
+                onClick = {},
+                type = ElType.Primary,
+                content = { color ->
+                    BasicText("Continue", style = LocalElTheme.current.typography.base.copy(color = color))
+                    Spacer(Modifier.width(6.dp))
+                    ElIcon(ElIcons.ArrowRight, size = 14.dp, tint = color)
+                },
+            )
         }
     }
-    DemoExample("Loading Button", "Set loading to true to display the loading state.") {
+    DemoExample("Button Group", "Group similar operations; the direction toggles horizontal and vertical grouping.") {
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            DemoRow {
+                ElButtonGroup {
+                    ElButtonGroupItem(first = true, last = false) {
+                        ElButton(onClick = {}, text = "Previous Page", icon = ElIcons.ArrowLeft, type = ElType.Primary)
+                    }
+                    ElButtonGroupItem(first = false, last = true) {
+                        ElButton(onClick = {}, text = "Next Page", icon = ElIcons.ArrowRight, type = ElType.Primary)
+                    }
+                }
+            }
+            DemoRow {
+                ElButton(
+                    onClick = { verticalGroup = false },
+                    text = "Horizontal",
+                    size = ElSize.Small,
+                    type = if (verticalGroup) ElType.Default else ElType.Primary,
+                )
+                ElButton(
+                    onClick = { verticalGroup = true },
+                    text = "Vertical",
+                    size = ElSize.Small,
+                    type = if (verticalGroup) ElType.Primary else ElType.Default,
+                )
+            }
+            ElButtonGroup(vertical = verticalGroup, type = ElType.Primary) {
+                ElButton(onClick = {}, icon = ElIcons.House)
+                ElButton(onClick = {}, icon = ElIcons.Operation)
+                ElButton(onClick = {}, icon = ElIcons.Notification)
+            }
+            DemoRow {
+                ElButtonGroup(size = ElSize.Small, type = ElType.Success) {
+                    ElButton(onClick = {}, text = "Inherited size")
+                    ElButton(onClick = {}, text = "Inherited type")
+                }
+            }
+        }
+    }
+    DemoExample("Loading Button", "Set loading to true; loadingIcon and the loading slot replace the spinner.") {
         DemoRow {
             ElButton(onClick = {}, text = "Loading", loading = true, type = ElType.Primary)
+            ElButton(
+                onClick = {},
+                text = "Custom icon",
+                loading = true,
+                loadingIcon = ElIcons.Refresh,
+                type = ElType.Success,
+            )
+            ElButton(
+                onClick = {},
+                text = "Custom slot",
+                loading = true,
+                type = ElType.Warning,
+                loadingContent = { color ->
+                    ElIcon(ElIcons.Refresh, size = 14.dp, tint = color, spin = true)
+                },
+            )
             ElButton(
                 onClick = {
                     loading = true
@@ -161,6 +237,37 @@ fun ButtonDocs() {
                 text = if (loading) "Loading" else "Click to load",
                 loading = loading,
                 type = ElType.Primary,
+            )
+        }
+    }
+    DemoExample("Custom Color", "The color prop sets the base color and derives the hover and active shades.") {
+        val custom = Color(0xFF626AEF)
+        val isDark = LocalElTheme.current.colors.isDark
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            DemoRow {
+                ElButton(onClick = {}, text = "Default", color = custom, dark = isDark)
+                ElButton(onClick = {}, text = "Plain", color = custom, dark = isDark, plain = true)
+                ElButton(onClick = {}, text = "Link", color = custom, dark = isDark, link = true)
+                ElButton(onClick = {}, text = "Text", color = custom, dark = isDark, textButton = true)
+                ElButton(onClick = {}, text = "Text BG", color = custom, dark = isDark, textButton = true, bg = true)
+            }
+            DemoRow {
+                ElButton(onClick = {}, text = "Disabled", color = custom, dark = isDark, disabled = true)
+                ElButton(onClick = {}, text = "Disabled Plain", color = custom, dark = isDark, disabled = true, plain = true)
+                ElButton(onClick = {}, text = "Disabled Link", color = custom, dark = isDark, disabled = true, link = true)
+                ElButton(onClick = {}, text = "Disabled Text", color = custom, dark = isDark, disabled = true, textButton = true)
+            }
+        }
+    }
+    DemoExample("Custom Tag", "The tag prop selects the semantic role; link buttons open href with the platform URI handler.") {
+        DemoRow {
+            ElButton(onClick = {}, text = "div", tag = ElButtonTag.Div)
+            ElButton(
+                onClick = {},
+                text = "a",
+                tag = ElButtonTag.Link,
+                type = ElType.Primary,
+                href = "https://element-plus.org",
             )
         }
     }

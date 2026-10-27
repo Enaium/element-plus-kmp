@@ -57,18 +57,33 @@ fun InfiniteScrollDocs() {
     DemoExample("Disabled", "Disable automatic loading.") {
         InfiniteScrollSample(disabled = true)
     }
+    DemoExample("Immediate loading", "Load the next page automatically while the list is too short to scroll.") {
+        InfiniteScrollSample(initialCount = 3, heightDp = 160, immediate = true)
+    }
+    DemoExample("Load delay", "Throttle load calls with the delay option.") {
+        InfiniteScrollDelaySample()
+    }
 }
 
 @Composable
-private fun InfiniteScrollSample(finished: Boolean = false, disabled: Boolean = false) {
-    val items = remember { mutableStateListOf(*(1..12).map { "Row $it" }.toTypedArray()) }
+private fun InfiniteScrollSample(
+    finished: Boolean = false,
+    disabled: Boolean = false,
+    initialCount: Int = 12,
+    heightDp: Int = 220,
+    delayMs: Int = 200,
+    immediate: Boolean = true,
+) {
+    val items = remember { mutableStateListOf(*(1..initialCount).map { "Row $it" }.toTypedArray()) }
     var loading by remember { mutableStateOf(false) }
     var isFinished by remember { mutableStateOf(finished) }
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
     ElInfiniteScroll(
-        modifier = Modifier.fillMaxWidth().height(220.dp),
+        modifier = Modifier.fillMaxWidth().height(heightDp.dp),
         state = listState,
+        delay = delayMs,
+        immediate = immediate,
         loading = loading,
         finished = isFinished,
         disabled = disabled,
@@ -93,4 +108,32 @@ private fun InfiniteScrollSample(finished: Boolean = false, disabled: Boolean = 
             )
         }
     }
+}
+
+@Composable
+private fun InfiniteScrollDelaySample() {
+    val items = remember { mutableStateListOf(*(1..10).map { "Row $it" }.toTypedArray()) }
+    var loads by remember { mutableIntStateOf(0) }
+    ElInfiniteScroll(
+        modifier = Modifier.fillMaxWidth().height(180.dp),
+        delay = 1200,
+        immediate = false,
+        onLoadMore = {
+            loads += 1
+            val next = items.size
+            items.addAll((next + 1..next + 4).map { "Row $it" })
+        },
+    ) {
+        items(items.size) { index ->
+            BasicText(
+                items[index],
+                Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp),
+                style = LocalElTheme.current.typography.small,
+            )
+        }
+    }
+    BasicText(
+        "Load batches: $loads (at most one every 1200 ms)",
+        style = LocalElTheme.current.typography.small.copy(color = LocalElTheme.current.colors.textSecondary),
+    )
 }

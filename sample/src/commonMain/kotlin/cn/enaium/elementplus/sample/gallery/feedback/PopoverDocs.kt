@@ -69,6 +69,44 @@ fun PopoverDocs() {
         }
     }
 
+
+    DemoExample("Nested information", "Compose a popover with nested actions and content.") {
+        ElPopover(
+            title = "Outer",
+            width = 260.dp,
+            triggerContent = { ElButton(onClick = {}, text = "Open nested info") },
+        ) {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                BasicText("Nested information", style = LocalElTheme.current.typography.small)
+                ElPopover(
+                    title = "Inner",
+                    width = 200.dp,
+                    triggerContent = { ElButton(onClick = {}, text = "Inner popover", size = ElSize.Small) },
+                ) { BasicText("Inner content", style = LocalElTheme.current.typography.small) }
+            }
+        }
+    }
+    DemoExample("Focus trigger", "Open when the trigger receives focus.") {
+        ElPopover(
+            title = "Focus",
+            trigger = ElPopoverTrigger.Focus,
+            triggerContent = { ElButton(onClick = {}, text = "Focus me") },
+        ) { BasicText("Focus popover content", style = LocalElTheme.current.typography.small) }
+    }
+    DemoExample("Theme and arrow", "Use a dark surface or hide the arrow.") {
+        DemoRow {
+            ElPopover(
+                title = "Dark",
+                effect = ElTooltipEffect.Dark,
+                triggerContent = { ElButton(onClick = {}, text = "Dark popover") },
+            ) { BasicText("Dark content", style = LocalElTheme.current.typography.small.copy(color = LocalElTheme.current.colors.white)) }
+            ElPopover(
+                title = "No arrow",
+                showArrow = false,
+                triggerContent = { ElButton(onClick = {}, text = "No arrow") },
+            ) { BasicText("Content", style = LocalElTheme.current.typography.small) }
+        }
+    }
     DemoExample("Rich content", "Popovers can contain arbitrary composables.") {
         ElPopover(
             title = "Details",

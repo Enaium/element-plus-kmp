@@ -79,6 +79,35 @@ fun TooltipDocs() {
         }
     }
 
+
+    DemoExample("Trigger modes", "Open on click, hover, focus or a secondary click.") {
+        DemoRow {
+            ElTooltip(text = "Click tooltip", trigger = ElTooltipTrigger.Click) {
+                ElText("Click me", type = ElType.Primary)
+            }
+            ElTooltip(text = "Focus tooltip", trigger = ElTooltipTrigger.Focus) {
+                ElButton(onClick = {}, text = "Focus me")
+            }
+            ElTooltip(text = "Context menu tooltip", trigger = ElTooltipTrigger.ContextMenu) {
+                ElText("Right-click me", type = ElType.Primary)
+            }
+        }
+    }
+    DemoExample("Without arrow", "Disable the arrow pointer.") {
+        ElTooltip(text = "No arrow", showArrow = false) {
+            ElButton(onClick = {}, text = "Hover me")
+        }
+    }
+    DemoExample("Content slot", "Tooltip content can be an arbitrary composable.") {
+        ElTooltip(tooltip = {
+            BasicText(
+                "HTML-like rich content",
+                style = LocalElTheme.current.typography.extraSmall.copy(color = LocalElTheme.current.colors.white),
+            )
+        }) {
+            ElButton(onClick = {}, text = "Hover for content")
+        }
+    }
     DemoExample("Controlled", "Control tooltip visibility from application state.") {
         var visible by remember { mutableStateOf(false) }
         ElTooltip(

@@ -80,6 +80,58 @@ fun TextDocs() {
         )
     }
 
+    DemoExample("Mixed content", "The default slot mixes text with icons and other components.") {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            ElText { color ->
+                ElIcon(ElIcons.ElementPlus, size = 16.dp, tint = color)
+                Spacer(Modifier.width(4.dp))
+                BasicText("Element Plus", style = LocalElTheme.current.typography.base.copy(color = color))
+            }
+            DemoRow {
+                ElText("Rate")
+                ElText("★★★★★", type = ElType.Warning, modifier = Modifier.padding(start = 6.dp))
+            }
+            ElText { color ->
+                BasicText(
+                    "This is text mixed icon ",
+                    style = LocalElTheme.current.typography.base.copy(color = color),
+                )
+                ElIcon(ElIcons.Bell, size = 16.dp, tint = color)
+                BasicText(
+                    " and component ",
+                    style = LocalElTheme.current.typography.base.copy(color = color),
+                )
+                ElButton(onClick = {}, text = "Button", size = ElSize.Small)
+            }
+        }
+    }
+    DemoExample("Tag", "The tag prop applies the presentation of the matching HTML element.") {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            ElText("span")
+            ElText("This is a paragraph.", tag = ElTextTag.Paragraph)
+            ElText("Bold", tag = ElTextTag.Bold)
+            ElText("Italic", tag = ElTextTag.Italic)
+            ElText("Inserted", tag = ElTextTag.Insert)
+            ElText("Deleted", tag = ElTextTag.Delete)
+            ElText("Marked", tag = ElTextTag.Mark)
+            DemoRow {
+                ElText("This is")
+                ElText("subscript", tag = ElTextTag.Sub, size = ElSize.Small)
+            }
+            DemoRow {
+                ElText("This is")
+                ElText("superscript", tag = ElTextTag.Sup, size = ElSize.Small)
+            }
+        }
+    }
+    DemoExample("Line clamp", "maxLines clamps the text without enabling truncation.") {
+        ElText(
+            "Line clamp works on its own. ".repeat(8),
+            maxLines = 2,
+            modifier = Modifier.width(260.dp),
+        )
+    }
+
     DemoExample("Sizes", "Use the small, default and large text sizes.") {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             ElText("Large text", size = ElSize.Large)

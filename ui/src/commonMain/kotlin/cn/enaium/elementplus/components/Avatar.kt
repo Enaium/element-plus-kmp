@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
+import cn.enaium.elementplus.internal.ElPlacement
 import cn.enaium.elementplus.theme.ElType
 import cn.enaium.elementplus.theme.LocalElTheme
 
@@ -88,31 +89,66 @@ fun ElAvatarGroup(
     max: Int = count,
     size: Dp = 40.dp,
     extra: String? = null,
+    shape: ElAvatarShape = ElAvatarShape.Circle,
+    collapseAvatars: Boolean = false,
+    maxCollapseAvatars: Int = 1,
+    collapseAvatarsTooltip: Boolean = false,
+    collapseAvatarsTooltipPlacement: ElPlacement = ElPlacement.Top,
+    collapseModifier: Modifier = Modifier,
+    collapseContent: (@Composable (hiddenCount: Int, hiddenIndices: List<Int>) -> Unit)? = null,
     content: @Composable (index: Int) -> Unit,
 ) {
     val theme = LocalElTheme.current
-    val visible = count.coerceAtMost(max)
+    val visible = if (collapseAvatars && count > maxCollapseAvatars) {
+        maxCollapseAvatars.coerceAtLeast(0)
+    } else {
+        count.coerceAtMost(max).coerceAtLeast(0)
+    }
+    val hiddenIndices = if (visible < count) (visible until count).toList() else emptyList()
+    val shapeModifier = if (shape == ElAvatarShape.Circle) CircleShape else RoundedCornerShape(4.dp)
     Row(modifier, verticalAlignment = Alignment.CenterVertically) {
         repeat(visible) { index ->
             Box(
                 Modifier
                     .offset(x = if (index == 0) 0.dp else (-8).dp)
-                    .border(2.dp, theme.colors.background, CircleShape),
+                    .border(2.dp, theme.colors.background, shapeModifier),
             ) { content(index) }
         }
-        if (visible < count || extra != null) {
+        if (hiddenIndices.isNotEmpty() || extra != null) {
             Spacer(Modifier.width(6.dp))
-            Box(
-                Modifier
-                    .size(size)
-                    .clip(CircleShape)
-                    .background(theme.colors.fillLight),
-                contentAlignment = Alignment.Center,
-            ) {
-                BasicText(
-                    text = extra ?: "+${count - visible}",
-                    style = theme.typography.small.copy(color = theme.colors.textRegular),
-                )
+            val collapseAvatar: @Composable () -> Unit = {
+                Box(
+                    Modifier
+                        .size(size)
+                        .clip(shapeModifier)
+                        .background(theme.colors.fillLight)
+                        .then(collapseModifier),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    if (collapseContent != null) {
+                        collapseContent(hiddenIndices.size, hiddenIndices)
+                    } else {
+                        BasicText(
+                            text = extra ?: "+${hiddenIndices.size}",
+                            style = theme.typography.small.copy(color = theme.colors.textRegular),
+                        )
+                    }
+                }
+            }
+            if (collapseAvatarsTooltip && hiddenIndices.isNotEmpty()) {
+                ElTooltip(
+                    placement = collapseAvatarsTooltipPlacement,
+                    effect = ElTooltipEffect.Light,
+                    tooltip = {
+                        Row(horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(4.dp)) {
+                            hiddenIndices.forEach { index -> content(index) }
+                        }
+                    },
+                ) {
+                    collapseAvatar()
+                }
+            } else {
+                collapseAvatar()
             }
         }
     }

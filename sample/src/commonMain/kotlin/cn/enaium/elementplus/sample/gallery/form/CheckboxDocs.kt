@@ -106,4 +106,32 @@ fun CheckboxDocs() {
         )
         DemoHint("Select one or two options: $selected")
     }
+
+    DemoExample("Grouping", "Compose the group from ElCheckbox children bound to their own value.") {
+        var checkList by remember { mutableStateOf(listOf("Value selected and disabled", "Value A")) }
+        ElCheckboxGroup(selected = checkList, onSelectedChange = { checkList = it }) {
+            ElCheckbox(value = "Value A", label = "Option A")
+            ElCheckbox(value = "Value B", label = "Option B")
+            ElCheckbox(value = "Value C", label = "Option C")
+            ElCheckbox(value = "Value disabled", label = "disabled", disabled = true)
+            ElCheckbox(value = "Value selected and disabled", label = "selected and disabled", disabled = true)
+        }
+        DemoHint("Selected: ${checkList.joinToString()}")
+    }
+
+    DemoExample("Button style colors", "Customize the button fill and text colors of a button group.") {
+        var selected by remember { mutableStateOf(listOf("a")) }
+        ElCheckboxGroup(
+            options = listOf(
+                ElCheckboxOption("a", "Option A"),
+                ElCheckboxOption("b", "Option B"),
+                ElCheckboxOption("c", "Option C"),
+            ),
+            selected = selected,
+            onSelectedChange = { selected = it },
+            button = true,
+            fill = Color(0xFF626AEF),
+            textColor = Color.White,
+        )
+    }
 }

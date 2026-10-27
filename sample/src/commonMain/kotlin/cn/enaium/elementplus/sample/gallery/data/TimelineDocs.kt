@@ -106,4 +106,120 @@ fun TimelineDocs() {
             ),
         )
     }
+
+    DemoExample("Center", "Center the node vertically against its content with the center prop.") {
+        ElTimeline(
+            items = listOf(
+                ElTimelineItem(
+                    timestamp = "2018/4/12",
+                    placement = ElTimelinePlacement.Top,
+                    center = true,
+                    content = {
+                        ElCard {
+                            BasicText("Update Github template", style = theme.typography.medium)
+                            BasicText("Tom committed 2018/4/12 20:46", style = theme.typography.small.copy(color = theme.colors.textSecondary))
+                        }
+                    },
+                ),
+                ElTimelineItem(
+                    timestamp = "2018/4/3",
+                    placement = ElTimelinePlacement.Top,
+                    content = {
+                        ElCard {
+                            BasicText("Update Github template", style = theme.typography.medium)
+                            BasicText("Tom committed 2018/4/3 20:46", style = theme.typography.small.copy(color = theme.colors.textSecondary))
+                        }
+                    },
+                ),
+                ElTimelineItem(
+                    timestamp = "2018/4/2",
+                    placement = ElTimelinePlacement.Top,
+                    center = true,
+                    content = { BasicText("Event start", style = theme.typography.base) },
+                ),
+                ElTimelineItem(
+                    timestamp = "2018/4/2",
+                    placement = ElTimelinePlacement.Top,
+                    content = { BasicText("Event end", style = theme.typography.base) },
+                ),
+            ),
+        )
+    }
+
+    DemoExample("Mode", "Choose between start, alternate, alternate-reverse and end layouts.") {
+        var mode by remember { mutableStateOf("start") }
+        ElRadioGroup(
+            options = listOf(
+                ElRadioOption("start", "start"),
+                ElRadioOption("alternate", "alternate"),
+                ElRadioOption("alternate-reverse", "alternate-reverse"),
+                ElRadioOption("end", "end"),
+            ),
+            selected = mode,
+            onSelectedChange = { mode = it },
+            button = true,
+        )
+        ElTimeline(
+            items = listOf(
+                ElTimelineItem({ BasicText("Event start", style = theme.typography.base) }, timestamp = "2018-04-15"),
+                ElTimelineItem({ BasicText("Approved", style = theme.typography.base) }, timestamp = "2018-04-13"),
+                ElTimelineItem({ BasicText("Success", style = theme.typography.base) }, timestamp = "2018-04-11"),
+            ),
+            mode = when (mode) {
+                "alternate" -> ElTimelineMode.Alternate
+                "alternate-reverse" -> ElTimelineMode.AlternateReverse
+                "end" -> ElTimelineMode.End
+                else -> ElTimelineMode.Start
+            },
+        )
+    }
+
+    DemoExample("Custom node icon and size", "Nodes support icons, large sizes, custom colors, hollow style and hidden timestamps.") {
+        ElTimeline(
+            items = listOf(
+                ElTimelineItem(
+                    content = { BasicText("Custom icon", style = theme.typography.base) },
+                    timestamp = "2018-04-12 20:46",
+                    size = ElTimelineNodeSize.Large,
+                    icon = ElIcons.MoreFilled,
+                ),
+                ElTimelineItem(
+                    content = { BasicText("Custom color", style = theme.typography.base) },
+                    timestamp = "2018-04-03 20:46",
+                    color = Color(0xFF0BBD87),
+                ),
+                ElTimelineItem(
+                    content = { BasicText("Custom size", style = theme.typography.base) },
+                    timestamp = "2018-04-03 20:46",
+                    size = ElTimelineNodeSize.Large,
+                ),
+                ElTimelineItem(
+                    content = { BasicText("Custom hollow", style = theme.typography.base) },
+                    timestamp = "2018-04-03 20:46",
+                    hollow = true,
+                ),
+                ElTimelineItem(
+                    content = { BasicText("Hidden timestamp", style = theme.typography.base) },
+                    hideTimestamp = true,
+                ),
+            ),
+        )
+    }
+
+    DemoExample("Custom timestamp content", "Use timestampContent to render any composable in place of the plain timestamp.") {
+        ElTimeline(
+            items = listOf(
+                ElTimelineItem(
+                    content = { BasicText("Draft created", style = theme.typography.base) },
+                    placement = ElTimelinePlacement.Top,
+                    timestampContent = { ElTag("Draft", type = ElType.Info, size = ElSize.Small) },
+                ),
+                ElTimelineItem(
+                    content = { BasicText("Reviewed", style = theme.typography.base) },
+                    placement = ElTimelinePlacement.Top,
+                    timestampContent = { ElTag("Review", type = ElType.Warning, size = ElSize.Small) },
+                ),
+            ),
+        )
+    }
 }

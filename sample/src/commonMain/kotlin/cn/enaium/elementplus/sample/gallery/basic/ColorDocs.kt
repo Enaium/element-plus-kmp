@@ -74,4 +74,28 @@ fun ColorDocs() {
             ElColorRow("Success shades", listOf(colors.light(ElType.Success, 3), colors.success, colors.dark(ElType.Success)))
         }
     }
+
+    DemoExample(
+        "Colors in components",
+        "The semantic types are shared by buttons, tags and alerts, so the same type reads the same everywhere.",
+    ) {
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            listOf(ElType.Primary, ElType.Success, ElType.Warning, ElType.Danger, ElType.Info).forEach { type ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    ElButton(onClick = {}, text = type.name, type = type)
+                    ElTag(text = type.name, type = type)
+                    ElAlert(
+                        title = "${type.name} alert",
+                        description = "The ${type.name.lowercase()} palette drives the whole component.",
+                        type = type,
+                        closable = false,
+                        modifier = Modifier.width(280.dp),
+                    )
+                }
+            }
+        }
+    }
 }

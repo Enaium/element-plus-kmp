@@ -63,10 +63,39 @@ fun ColorPickerPanelDocs() {
         ElColorPickerPanel(color = Color(0xFF409EFF), onColorChange = {}, disabled = true, modifier = Modifier.width(300.dp))
     }
 
-    DemoExample("Border", "Wrap the panel in a bordered surface.") {
+    DemoExample("Border", "Draw a border and padding around the panel.") {
         var color by remember { mutableStateOf<Color>(Color(0xFF409EFF)) }
-        ElBorder(Modifier.width(300.dp)) {
-            ElColorPickerPanel(color = color, onColorChange = { color = it }, modifier = Modifier.padding(8.dp))
-        }
+        ElColorPickerPanel(
+            color = color,
+            onColorChange = { color = it },
+            border = true,
+            modifier = Modifier.width(300.dp),
+        )
+    }
+
+    DemoExample("Footer", "Use the footer slot for custom panel actions.") {
+        var color by remember { mutableStateOf<Color>(Color(0xFF67C23A)) }
+        ElColorPickerPanel(
+            color = color,
+            onColorChange = { color = it },
+            border = true,
+            footer = {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                    ElButton(
+                        onClick = { color = Color(0xFF409EFF) },
+                        text = "Reset",
+                        size = ElSize.Small,
+                        textButton = true,
+                    )
+                    ElButton(
+                        onClick = { ElMessage.show("Color confirmed", ElMessageType.Success) },
+                        text = "Confirm",
+                        size = ElSize.Small,
+                        type = ElType.Primary,
+                    )
+                }
+            },
+            modifier = Modifier.width(300.dp),
+        )
     }
 }

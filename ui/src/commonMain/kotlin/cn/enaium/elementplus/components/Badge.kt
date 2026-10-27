@@ -36,6 +36,8 @@ fun ElBadge(
     color: Color? = null,
     offsetX: Dp = 0.dp,
     offsetY: Dp = 0.dp,
+    badgeContent: (@Composable (value: String) -> Unit)? = null,
+    badgeModifier: Modifier = Modifier,
     content: (@Composable () -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
@@ -44,17 +46,15 @@ fun ElBadge(
         val number = raw.toIntOrNull()
         if (number != null && number > max) "$max+" else raw
     }
-    val visible = !hidden && !isDot && (showZero || display != "0") && !display.isNullOrEmpty()
+    val valueVisible = !hidden && !isDot && (showZero || display != "0") && !display.isNullOrEmpty()
+    val visible = valueVisible || (!hidden && badgeContent != null)
     Box(modifier) {
         content?.invoke()
         val singleCharacter = !isDot && (display?.length ?: 0) <= 1
         val badgeShape = if (isDot || singleCharacter) CircleShape else RoundedCornerShape(percent = 50)
-        if (content != null && (visible || isDot)) {
+        val badgeBubble: @Composable () -> Unit = {
             Box(
                 Modifier
-                    .align(Alignment.TopEnd)
-                    .offset(x = offsetX, y = offsetY)
-                    .badgeCorner()
                     .then(
                         if (isDot) {
                             Modifier.size(8.dp).background(colorValue, badgeShape)
@@ -62,35 +62,35 @@ fun ElBadge(
                             Modifier
                                 .defaultMinSize(minWidth = 18.dp, minHeight = 18.dp)
                                 .background(colorValue, badgeShape)
-                                .border(1.dp, theme.colors.background, badgeShape)
+                                .then(if (content != null) Modifier.border(1.dp, theme.colors.background, badgeShape) else Modifier)
                                 .padding(horizontal = if (singleCharacter) 0.dp else 6.dp)
                         }
-                    ),
+                    )
+                    .then(badgeModifier),
                 contentAlignment = Alignment.Center,
             ) {
-                if (!isDot) {
+                if (badgeContent != null) {
+                    badgeContent(display ?: "")
+                } else if (!isDot) {
                     BasicText(
                         text = display ?: "",
                         style = theme.typography.extraSmall.copy(color = theme.colors.white, fontSize = 12.sp),
                     )
                 }
             }
+        }
+        if (content != null && (visible || isDot)) {
+            Box(
+                Modifier
+                    .align(Alignment.TopEnd)
+                    .offset(x = offsetX, y = offsetY)
+                    .badgeCorner(),
+            ) { badgeBubble() }
         } else if (content == null && (visible || isDot)) {
-            if (isDot) {
-                Box(Modifier.size(8.dp).background(colorValue, CircleShape))
+            if (isDot && badgeContent == null) {
+                Box(Modifier.size(8.dp).background(colorValue, CircleShape).then(badgeModifier))
             } else {
-                Box(
-                    Modifier
-                        .defaultMinSize(minWidth = 18.dp, minHeight = 18.dp)
-                        .background(colorValue, badgeShape)
-                        .padding(horizontal = if (singleCharacter) 0.dp else 6.dp),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    BasicText(
-                        text = display ?: "",
-                        style = theme.typography.extraSmall.copy(color = theme.colors.white, fontSize = 12.sp),
-                    )
-                }
+                badgeBubble()
             }
         }
     }

@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import cn.enaium.elementplus.icons.ElIcon
@@ -39,6 +40,7 @@ fun ElAlert(
     center: Boolean = false,
     closeText: String? = null,
     onClose: (() -> Unit)? = null,
+    closeIcon: ImageVector? = null,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
@@ -96,7 +98,7 @@ fun ElAlert(
                 )
             } else {
                 ElIcon(
-                    ElIcons.Close,
+                    closeIcon ?: ElIcons.Close,
                     size = 14.dp,
                     tint = fg,
                     contentDescription = locale.close,

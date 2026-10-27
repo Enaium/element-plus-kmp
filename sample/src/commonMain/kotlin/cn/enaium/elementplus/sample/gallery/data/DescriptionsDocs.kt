@@ -48,6 +48,8 @@ import kotlinx.datetime.number
 
 @Composable
 fun DescriptionsDocs() {
+    val theme = LocalElTheme.current
+    val colors = theme.colors
     val items = listOf(
         ElDescriptionItem("Name") { BasicText("Alice") },
         ElDescriptionItem("Age") { BasicText("28") },
@@ -73,18 +75,28 @@ fun DescriptionsDocs() {
             ),
         )
     }
-    DemoExample("Row span", "Items can span multiple columns.") {
-        ElDescriptions(
-            column = 3,
-            border = true,
-            items = listOf(
-                ElDescriptionItem("Project", span = 2) { BasicText("Element Plus KMP") },
-                ElDescriptionItem("Status") { ElTag("Active", type = ElType.Success) },
-                ElDescriptionItem("Description", span = 3) {
-                    BasicText("A Kotlin Multiplatform port of Element Plus components.")
-                },
-            ),
+    DemoExample("Row span", "Cells can span rows and set their own width and alignment.") {
+        val spanItems = listOf(
+            ElDescriptionItem("Photo", rowspan = 2, width = 240.dp, align = ElTextAlign.Center) {
+                ElImage(painter = ColorPainter(colors.primary), modifier = Modifier.size(96.dp))
+            },
+            ElDescriptionItem("Username") { BasicText("kooriookami") },
+            ElDescriptionItem("Telephone") { BasicText("18100000000") },
+            ElDescriptionItem("Place") { BasicText("Suzhou") },
+            ElDescriptionItem("Remarks") { ElTag("School", size = ElSize.Small) },
+            ElDescriptionItem("Address") {
+                BasicText("No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province")
+            },
         )
+        Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+            ElDescriptions(title = "Width horizontal list", border = true, items = spanItems)
+            ElDescriptions(
+                title = "Width vertical list",
+                direction = ElDescriptionsDirection.Vertical,
+                border = true,
+                items = spanItems,
+            )
+        }
     }
 
     DemoExample("Sizes", "Descriptions support large, default and small sizes.") {
@@ -105,8 +117,44 @@ fun DescriptionsDocs() {
             )
         }
     }
-    DemoExample("Customized style", "Customize labels, borders and extra content.") {
+    DemoExample("Customized style", "Align labels and content and style individual cells.") {
         ElDescriptions(
+            items = listOf(
+                ElDescriptionItem(
+                    "Username",
+                    width = 300.dp,
+                    align = ElTextAlign.Center,
+                    labelAlign = ElTextAlign.End,
+                    labelModifier = Modifier.background(colors.light(ElType.Success, 9)),
+                    contentModifier = Modifier.background(colors.light(ElType.Danger, 9)),
+                ) { BasicText("kooriookami") },
+                ElDescriptionItem("Telephone", align = ElTextAlign.Center, labelAlign = ElTextAlign.End) {
+                    BasicText("18100000000")
+                },
+                ElDescriptionItem("Place", align = ElTextAlign.Center, labelAlign = ElTextAlign.End) {
+                    BasicText("Suzhou")
+                },
+                ElDescriptionItem("Remarks", align = ElTextAlign.Center, labelAlign = ElTextAlign.End) {
+                    ElTag("School", size = ElSize.Small)
+                },
+                ElDescriptionItem("Address", align = ElTextAlign.Center, labelAlign = ElTextAlign.End) {
+                    BasicText("No.1188, Wuzhong Avenue, Wuzhong District, Suzhou, Jiangsu Province")
+                },
+            ),
+            column = 3,
+            border = true,
+            title = "Customized style list",
+        )
+    }
+    DemoExample("Title and extra slots", "The header title and extra area accept arbitrary content.") {
+        ElDescriptions(
+            titleContent = {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    BasicText("Order", style = theme.typography.medium)
+                    ElTag("New", type = ElType.Success, size = ElSize.Small)
+                }
+            },
+            extra = { ElButton(onClick = {}, text = "Export", size = ElSize.Small) },
             items = listOf(
                 ElDescriptionItem("Product", span = 2) { BasicText("Cloud database") },
                 ElDescriptionItem("Billing") { BasicText("Prepaid") },
@@ -115,8 +163,6 @@ fun DescriptionsDocs() {
             ),
             column = 3,
             border = true,
-            title = "Order",
-            extra = { ElTag("Paid", type = ElType.Success) },
             labelWidth = 100.dp,
         )
     }

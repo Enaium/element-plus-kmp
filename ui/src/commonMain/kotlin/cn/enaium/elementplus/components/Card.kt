@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import cn.enaium.elementplus.internal.elSoftShadow
+import cn.enaium.elementplus.theme.LocalElConfig
 import cn.enaium.elementplus.theme.LocalElTheme
 
 enum class ElCardShadow { Always, Hover, Never }
@@ -32,10 +33,15 @@ fun ElCard(
     footer: (@Composable () -> Unit)? = null,
     shadow: ElCardShadow = ElCardShadow.Always,
     contentPadding: Dp = 20.dp,
+    headerModifier: Modifier = Modifier,
+    bodyModifier: Modifier = Modifier,
+    footerModifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
+    val config = LocalElConfig.current
+    val resolvedShadow = if (shadow == ElCardShadow.Always) config.card.shadow ?: shadow else shadow
     val shape = RoundedCornerShape(theme.radius.base)
     val interaction = remember { MutableInteractionSource() }
     val hovered by interaction.collectIsHoveredAsState()
@@ -43,7 +49,7 @@ fun ElCard(
         modifier = modifier
             .hoverable(interaction)
             .then(
-                when (shadow) {
+                when (resolvedShadow) {
                     ElCardShadow.Always -> Modifier.elSoftShadow(theme.radius.base)
                     ElCardShadow.Never -> Modifier
                     ElCardShadow.Hover -> if (hovered) Modifier.elSoftShadow(theme.radius.base) else Modifier
@@ -57,15 +63,21 @@ fun ElCard(
                 Row(
                     Modifier
                         .fillMaxWidth()
+                        .then(headerModifier)
                         .padding(horizontal = contentPadding, vertical = 16.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     header()
                 }
             }
-            Box(Modifier.fillMaxWidth().padding(contentPadding)) { content() }
+            Box(Modifier.fillMaxWidth().then(bodyModifier).padding(contentPadding)) { content() }
             if (footer != null) {
-                Box(Modifier.fillMaxWidth().padding(horizontal = contentPadding, vertical = 14.dp)) { footer() }
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .then(footerModifier)
+                        .padding(horizontal = contentPadding, vertical = 14.dp),
+                ) { footer() }
             }
         }
     }

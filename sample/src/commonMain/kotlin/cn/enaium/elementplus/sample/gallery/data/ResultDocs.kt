@@ -48,8 +48,11 @@ import kotlinx.datetime.number
 
 @Composable
 fun ResultDocs() {
-    DemoExample("Basic usage", "Success, warning, info and error results.") {
+    val theme = LocalElTheme.current
+    val colors = theme.colors
+    DemoExample("Basic usage", "Primary, success, warning, error and info results.") {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            ElResult(status = ElResultStatus.Primary, title = "Primary Tip", subTitle = "Please follow the instructions.")
             ElResult(status = ElResultStatus.Success, title = "Success", subTitle = "The operation completed successfully.")
             ElResult(status = ElResultStatus.Warning, title = "Warning", subTitle = "Please check the form fields.")
             ElResult(status = ElResultStatus.Info, title = "Info", subTitle = "This is an informational result.")
@@ -67,6 +70,29 @@ fun ResultDocs() {
                     ElButton(onClick = {}, text = "Back home")
                 }
             },
+        )
+    }
+    DemoExample("Custom icon, title and subtitle slots", "Replace the illustration and typography with composables.") {
+        ElResult(
+            icon = {
+                ElImage(
+                    painter = ColorPainter(colors.warning),
+                    modifier = Modifier.size(96.dp),
+                )
+            },
+            titleContent = {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                    BasicText("404", style = theme.typography.extraLarge)
+                    ElTag("Error", type = ElType.Danger, size = ElSize.Small)
+                }
+            },
+            subTitleContent = {
+                BasicText(
+                    "Sorry, request error",
+                    style = theme.typography.base.copy(color = colors.textSecondary),
+                )
+            },
+            extra = { ElButton(onClick = {}, text = "Back", type = ElType.Primary) },
         )
     }
 }

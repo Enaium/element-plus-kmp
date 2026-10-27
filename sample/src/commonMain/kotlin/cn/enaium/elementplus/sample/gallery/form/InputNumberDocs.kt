@@ -28,6 +28,8 @@ import cn.enaium.elementplus.components.ElTreeNode
 import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.*
+import cn.enaium.elementplus.icons.ElIcon
+import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
 import cn.enaium.elementplus.theme.ElType
@@ -118,5 +120,93 @@ fun InputNumberDocs() {
             suffix = { BasicText("USD", style = LocalElTheme.current.typography.extraSmall.copy(color = LocalElTheme.current.colors.textSecondary)) },
             width = 220.dp,
         )
+    }
+
+    DemoExample("Controlled", "Share one value across sizes and observe committed changes with onChange.") {
+        var num by remember { mutableStateOf<Double?>(1.0) }
+        var lastChange by remember { mutableStateOf("-") }
+        DemoRowSpaced {
+            ElInputNumber(
+                value = num,
+                onValueChange = { num = it },
+                min = 1.0,
+                max = 10.0,
+                controlsPosition = ElInputNumberControlsPosition.Right,
+                size = ElSize.Large,
+                onChange = { lastChange = it?.toString() ?: "(empty)" },
+            )
+            ElInputNumber(
+                value = num,
+                onValueChange = { num = it },
+                min = 1.0,
+                max = 10.0,
+                controlsPosition = ElInputNumberControlsPosition.Right,
+                onChange = { lastChange = it?.toString() ?: "(empty)" },
+            )
+            ElInputNumber(
+                value = num,
+                onValueChange = { num = it },
+                min = 1.0,
+                max = 10.0,
+                size = ElSize.Small,
+                controlsPosition = ElInputNumberControlsPosition.Right,
+                onChange = { lastChange = it?.toString() ?: "(empty)" },
+            )
+        }
+        DemoHint("Value: $num · Last change: $lastChange")
+    }
+
+    DemoExample("Custom icons", "Override the increase and decrease icons.") {
+        var num by remember { mutableStateOf<Double?>(1.0) }
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            DemoRowSpaced {
+                ElInputNumber(value = num, onValueChange = { num = it })
+                ElInputNumber(
+                    value = num,
+                    onValueChange = { num = it },
+                    increaseIcon = { ElIcon(ElIcons.ArrowUp, size = 10.dp) },
+                    decreaseIcon = { ElIcon(ElIcons.ArrowDown, size = 10.dp) },
+                )
+            }
+            DemoRowSpaced {
+                ElInputNumber(
+                    value = num,
+                    onValueChange = { num = it },
+                    controlsPosition = ElInputNumberControlsPosition.Right,
+                )
+                ElInputNumber(
+                    value = num,
+                    onValueChange = { num = it },
+                    controlsPosition = ElInputNumberControlsPosition.Right,
+                    increaseIcon = { ElIcon(ElIcons.Plus, size = 10.dp) },
+                    decreaseIcon = { ElIcon(ElIcons.Minus, size = 10.dp) },
+                )
+            }
+        }
+    }
+
+    DemoExample("Formatter and parser", "Render a currency formatted value and parse typed text back.") {
+        var input by remember { mutableStateOf<Double?>(10000.0) }
+        ElInputNumber(
+            value = input,
+            onValueChange = { input = it },
+            formatter = { value ->
+                value?.let { "$ " + it.toLong().toString().reversed().chunked(3).joinToString(",").reversed() } ?: ""
+            },
+            parser = { text -> text.replace("$", "").replace(",", "").replace(" ", "").toDoubleOrNull() },
+            width = 220.dp,
+        )
+        DemoHint("Value: $input")
+    }
+
+    DemoExample("Step strictly", "Only multiples of the step are accepted.") {
+        var num by remember { mutableStateOf<Double?>(2.0) }
+        ElInputNumber(
+            value = num,
+            onValueChange = { num = it },
+            step = 2.0,
+            stepStrictly = true,
+        )
+        DemoHint("Value: $num")
     }
 }

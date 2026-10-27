@@ -52,10 +52,35 @@ fun CardDocs() {
     DemoExample("Basic usage", "Cards provide header, body and footer slots.") {
         ElCard(
             modifier = Modifier.width(360.dp),
-            header = { BasicText("Card header", style = theme.typography.medium) },
-            footer = { ElButton(onClick = {}, text = "Action", size = ElSize.Small, type = ElType.Primary) },
+            header = { BasicText("Card name", style = theme.typography.medium) },
+            footer = {
+                BasicText(
+                    "Footer content",
+                    style = theme.typography.small.copy(color = theme.colors.textSecondary),
+                )
+            },
         ) {
-            BasicText("A card body with a header and a footer.", style = theme.typography.base)
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                (1..4).forEach { BasicText("List item $it", style = theme.typography.base) }
+            }
+        }
+    }
+    DemoExample("Customized section styles", "Style the header, body and footer areas with modifiers.") {
+        ElCard(
+            modifier = Modifier.width(360.dp),
+            headerModifier = Modifier.background(theme.colors.light(ElType.Primary, 9)),
+            footerModifier = Modifier.background(theme.colors.fillLight),
+            header = { BasicText("Card name", style = theme.typography.medium) },
+            footer = {
+                BasicText(
+                    "Footer content",
+                    style = theme.typography.small.copy(color = theme.colors.textSecondary),
+                )
+            },
+        ) {
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                (1..4).forEach { BasicText("List item $it", style = theme.typography.base) }
+            }
         }
     }
     DemoExample("Simple card", "Omit the header and footer for a simple surface.") {

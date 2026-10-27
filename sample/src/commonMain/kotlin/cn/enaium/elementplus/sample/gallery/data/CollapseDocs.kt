@@ -35,6 +35,7 @@ import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.ElInput
 import cn.enaium.elementplus.components.ElSwitch
+import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
@@ -123,6 +124,83 @@ fun CollapseDocs() {
             ElCollapseItem("2", "Icon at end", icon = ElIcons.CaretBottom, iconPosition = ElCollapseIconPosition.End) {
                 BasicText("Content for the end icon panel")
             }
+        }
+    }
+
+    DemoExample("Expand icon position", "Set the icon position for every panel from the parent collapse.") {
+        var atEnd by remember { mutableStateOf(false) }
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+            DemoLabel("expand icon position")
+            ElSwitch(checked = atEnd, onCheckedChange = { atEnd = it }, activeText = "right", inactiveText = "left")
+        }
+        var names by remember { mutableStateOf(listOf("1")) }
+        ElCollapse(
+            activeNames = names,
+            onActiveChange = { names = it },
+            expandIconPosition = if (atEnd) ElCollapseIconPosition.End else ElCollapseIconPosition.Start,
+        ) {
+            ElCollapseItem("1", "Consistency") { BasicText("Consistent behavior across the interface.") }
+            ElCollapseItem("2", "Feedback") { BasicText("Every action produces visible feedback.") }
+        }
+    }
+
+    DemoExample("Custom icon slot", "Replace the expand icon with custom content that receives the active state.") {
+        var names by remember { mutableStateOf(listOf("1")) }
+        ElCollapse(activeNames = names, onActiveChange = { names = it }) {
+            ElCollapseItem(
+                "1",
+                "Consistency",
+                iconContent = { isActive ->
+                    BasicText(
+                        if (isActive) "Expanded" else "Collapsed",
+                        style = LocalElTheme.current.typography.small.copy(color = LocalElTheme.current.colors.primary),
+                    )
+                },
+            ) { BasicText("Content for the custom icon panel") }
+            ElCollapseItem("2", "Feedback") { BasicText("Content for the second panel") }
+        }
+    }
+
+    DemoExample("Custom title with active state", "The title slot receives the active state to style the header.") {
+        var names by remember { mutableStateOf(listOf("1")) }
+        ElCollapse(activeNames = names, onActiveChange = { names = it }, accordion = true) {
+            ElCollapseItem(
+                "1",
+                "",
+                titleSlot = { isActive ->
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
+                        BasicText(
+                            "Consistency",
+                            style = LocalElTheme.current.typography.base.copy(
+                                color = if (isActive) LocalElTheme.current.colors.primary else LocalElTheme.current.colors.textPrimary,
+                                fontWeight = FontWeight.Medium,
+                            ),
+                        )
+                        ElIcon(ElIcons.InfoFilled, size = 14.dp)
+                    }
+                },
+            ) { BasicText("The title turns primary while this panel is active.") }
+            ElCollapseItem("2", "Feedback") { BasicText("Panel two content") }
+        }
+    }
+
+    DemoExample("Before collapse guard", "Reject a toggle asynchronously before the active list changes.") {
+        var allowed by remember { mutableStateOf(false) }
+        var names by remember { mutableStateOf(listOf("1")) }
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+            DemoLabel("before collapse return")
+            ElSwitch(checked = allowed, onCheckedChange = { allowed = it }, activeText = "true", inactiveText = "false")
+        }
+        ElCollapse(
+            activeNames = names,
+            onActiveChange = { names = it },
+            beforeCollapse = { _, _ ->
+                delay(400)
+                allowed
+            },
+        ) {
+            ElCollapseItem("1", "Consistency") { BasicText("Toggle the switch to allow collapsing.") }
+            ElCollapseItem("2", "Feedback") { BasicText("Panel two content") }
         }
     }
 }

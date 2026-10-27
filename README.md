@@ -6,75 +6,41 @@ A Kotlin Multiplatform / Compose Multiplatform port of [Element Plus](https://el
 
 Supported targets: **Android, iOS (arm64 + simulator), Desktop/JVM, Kotlin/JS and Kotlin/Wasm**.
 
+**Live component gallery:** [https://enaium.github.io/element-plus-kmp/](https://enaium.github.io/element-plus-kmp/)
+
 ## Installation
 
 ```kotlin
-implementation("cn.enaium.elementplus:element-plus-kmp:1.0.0")
+implementation("cn.enaium.elementplus:element-plus-kmp:1.1.0")
 ```
 
 The library is built on Compose Multiplatform Foundation/UI and does not require Material.
 
-## Quick start
+## Getting started
 
-```kotlin
-@Composable
-fun App() {
-    var dark by remember { mutableStateOf(false) }
+Wrap the application in `ElConfigProvider` to install the theme, locale, size and component defaults. Mount `ElMessage.Host`, `ElNotification.Host` and `ElMessageBox.Host` once; after that, their services can be invoked imperatively from event handlers.
 
-    ElConfigProvider(
-        theme = if (dark) ElTheme.Dark else ElTheme.Light,
-        locale = ElLocale.English,
-        size = ElSize.Default,
-    ) {
-        ElMessage.Host {
-            ElNotification.Host {
-                ElMessageBox.Host {
-                    AppContent()
-                }
-            }
-        }
-    }
-}
-```
-
-Mount the message, notification and message-box hosts once. After that they can be invoked imperatively from event handlers.
-
-### Forms and controlled state
-
-```kotlin
-var name by remember { mutableStateOf("") }
-var agree by remember { mutableStateOf(false) }
-
-ElForm {
-    ElFormItem(
-        label = "Name",
-        value = name,
-        rules = listOf(ElFormRule(required = true, message = "Name is required")),
-    ) {
-        ElInput(value = name, onValueChange = { name = it }, status = validateStatus)
-    }
-    ElCheckbox(checked = agree, onCheckedChange = { agree = it }, label = "I agree")
-    ElButton(onClick = { /* ... */ }, text = "Submit", type = ElType.Primary)
-}
-```
+Every component has a runnable, state-hoisted example under `sample`. The coverage table links directly to the corresponding sample source file.
 
 ## Component coverage
 
+Every component name links to its sample source file.
+
 | Category | Components |
 | --- | --- |
-| Basic | Button, Border, Color, Layout Container, Icon, Layout, Link, Text, Scrollbar, Space, Splitter, Typography |
-| Config | Config Provider |
-| Form | Autocomplete, Cascader, Checkbox, Color Picker Panel, Color Picker, Date Picker Panel, Date Picker, DateTime Picker, Form, Input, Input Number, Input Tag, Input OTP, Mention, Radio, Rate, Select, Virtualized Select, Slider, Switch, Time Picker, Time Select, Transfer, TreeSelect, Upload |
-| Data | Avatar, Badge, Calendar, Card, Carousel, Collapse, Descriptions, Empty, Image, Infinite Scroll, Pagination, Progress, Result, Skeleton, Table, Virtualized Table, Tag, Timeline, Tour, Tree, Virtualized Tree, Statistic, Segmented |
-| Navigation | Affix, Anchor, Backtop, Breadcrumb, Dropdown, Menu, Page Header, Steps, Tabs |
-| Feedback | Alert, Dialog, Drawer, Loading, Message, Message Box, Notification, Popconfirm, Popover, Tooltip |
-| Other | Divider, Watermark |
+| Basic | [Button](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/ButtonDocs.kt) · [Border](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/BorderDocs.kt) · [Color](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/ColorDocs.kt) · [Container](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/ContainerDocs.kt) · [Icon](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/IconDocs.kt) · [Layout](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/LayoutDocs.kt) · [Link](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/LinkDocs.kt) · [Text](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/TextDocs.kt) · [Scrollbar](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/ScrollbarDocs.kt) · [Space](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/SpaceDocs.kt) · [Splitter](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/SplitterDocs.kt) · [Typography](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/basic/TypographyDocs.kt) |
+| Config | [Config Provider](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/config/ConfigProviderDocs.kt) |
+| Form | [Autocomplete](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/AutocompleteDocs.kt) · [Cascader](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/CascaderDocs.kt) · [Checkbox](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/CheckboxDocs.kt) · [Color Picker Panel](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/ColorPickerPanelDocs.kt) · [Color Picker](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/ColorPickerDocs.kt) · [Date Picker Panel](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/DatePickerPanelDocs.kt) · [Date Picker](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/DatePickerDocs.kt) · [DateTime Picker](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/DateTimePickerDocs.kt) · [Form](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/FormDocs.kt) · [Input](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/InputDocs.kt) · [Input Number](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/InputNumberDocs.kt) · [Input Tag](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/InputTagDocs.kt) · [Input OTP](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/InputOtpDocs.kt) · [Mention](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/MentionDocs.kt) · [Radio](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/RadioDocs.kt) · [Rate](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/RateDocs.kt) · [Select](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/SelectDocs.kt) · [Virtualized Select](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/VirtualizedSelectDocs.kt) · [Slider](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/SliderDocs.kt) · [Switch](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/SwitchDocs.kt) · [Time Picker](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/TimePickerDocs.kt) · [Time Select](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/TimeSelectDocs.kt) · [Transfer](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/TransferDocs.kt) · [TreeSelect](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/TreeSelectDocs.kt) · [Upload](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/form/UploadDocs.kt) |
+| Data | [Avatar](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/AvatarDocs.kt) · [Badge](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/BadgeDocs.kt) · [Calendar](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/CalendarDocs.kt) · [Card](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/CardDocs.kt) · [Carousel](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/CarouselDocs.kt) · [Collapse](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/CollapseDocs.kt) · [Descriptions](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/DescriptionsDocs.kt) · [Empty](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/EmptyDocs.kt) · [Image](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/ImageDocs.kt) · [Infinite Scroll](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/InfiniteScrollDocs.kt) · [Pagination](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/PaginationDocs.kt) · [Progress](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/ProgressDocs.kt) · [Result](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/ResultDocs.kt) · [Skeleton](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/SkeletonDocs.kt) · [Table](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/TableDocs.kt) · [Virtualized Table](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/VirtualizedTableDocs.kt) · [Tag](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/TagDocs.kt) · [Timeline](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/TimelineDocs.kt) · [Tour](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/TourDocs.kt) · [Tree](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/TreeDocs.kt) · [Virtualized Tree](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/VirtualizedTreeDocs.kt) · [Statistic](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/StatisticDocs.kt) · [Segmented](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/data/SegmentedDocs.kt) |
+| Navigation | [Affix](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/AffixDocs.kt) · [Anchor](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/AnchorDocs.kt) · [Backtop](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/BacktopDocs.kt) · [Breadcrumb](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/BreadcrumbDocs.kt) · [Dropdown](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/DropdownDocs.kt) · [Menu](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/MenuDocs.kt) · [Page Header](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/PageHeaderDocs.kt) · [Steps](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/StepsDocs.kt) · [Tabs](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/navigation/TabsDocs.kt) |
+| Feedback | [Alert](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/AlertDocs.kt) · [Dialog](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/DialogDocs.kt) · [Drawer](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/DrawerDocs.kt) · [Loading](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/LoadingDocs.kt) · [Message](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/MessageDocs.kt) · [Message Box](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/MessageBoxDocs.kt) · [Notification](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/NotificationDocs.kt) · [Popconfirm](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/PopconfirmDocs.kt) · [Popover](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/PopoverDocs.kt) · [Tooltip](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/feedback/TooltipDocs.kt) |
+| Other | [Divider](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/other/DividerDocs.kt) · [Watermark](sample/src/commonMain/kotlin/cn/enaium/elementplus/sample/gallery/other/WatermarkDocs.kt) |
 
 All components live in the flat package `cn.enaium.elementplus.components`.
 
 ## API conventions
 
-Element Plus uses `v-model` and DOM slots. In Compose the same ideas map to explicit state:
+Element Plus uses `v-model` and DOM slots. In Compose, the same ideas map to explicit state:
 
 | Element Plus | Element Plus KMP |
 | --- | --- |
@@ -94,20 +60,13 @@ Controlled components do not create hidden state:
 - `ElDatePicker` uses `kotlinx.datetime.LocalDate`; `ElDateTimePicker` uses `LocalDateTime`.
 - `ElTreeSelect` and `ElCascader` use path/key lists.
 
+`ElSelect` and `ElSelectMultiple` support local/remote filtering, grouping, create-item, value-key comparisons, clear values, header/footer slots and custom option/tag/label/loading renderers. `ElVirtualizedSelect` and `ElVirtualizedSelectMultiple` expose the same behavior with a lazy dropdown. `elSelectOptions(items, value, label)` maps domain objects to the options attribute.
+
 ## Internationalization
 
 All component copy is read from the locale installed by `ElConfigProvider`. The library bundles all 68 Element Plus locales with their official translations, covering date picker month/week names, pagination, transfer counts, upload copy, form validation messages, tour buttons and accessibility labels.
 
-```kotlin
-ElConfigProvider(locale = ElLocales.byName("fr-FR")) {
-    App()
-}
-
-// Region tags fall back to the language: fr-FR -> fr, pt_BR -> pt-br.
-// Unknown tags fall back to English.
-```
-
-`ElLocales.all` exposes every locale, `ElLocales.byName(...)` resolves BCP-47 tags, and `ElLocale.English` / `ElLocale.Chinese` are convenience aliases. RTL locales (`ar`, `ar-eg`, `ckb`, `fa`, `he`, `ug-cn`) also install `LayoutDirection.Rtl` through `ElConfigProvider`.
+`ElLocales.all` exposes every locale, `ElLocales.byName(...)` resolves BCP-47 tags, and `ElLocale.English` / `ElLocale.Chinese` are convenience aliases. Region tags fall back to the language (`fr-FR` → `fr`, `pt_BR` → `pt-br`); unknown tags fall back to English. RTL locales (`ar`, `ar-eg`, `ckb`, `fa`, `he`, `ug-cn`) install `LayoutDirection.Rtl` through `ElConfigProvider`.
 
 ## Theming
 
@@ -117,13 +76,7 @@ Light colors, dark colors, the type palette and component sizes follow `element-
 - Component heights: large 40dp, default 32dp, small 24dp.
 - Text, border, fill, background, overlay and shadow/radius tokens are available through `LocalElTheme.current.colors` and `ElTheme`.
 
-Dark mode is a first-class theme:
-
-```kotlin
-ElConfigProvider(theme = ElTheme.Dark) {
-    AppContent()
-}
-```
+Dark mode is a first-class theme via `ElTheme.Dark`. Theme tokens can be overridden for a subtree with a nested `ElConfigProvider`.
 
 ## Platform integration
 

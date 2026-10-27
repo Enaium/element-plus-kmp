@@ -10,6 +10,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.performMouseInput
+import androidx.compose.ui.test.rightClick
 import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
@@ -34,6 +36,7 @@ import cn.enaium.elementplus.components.ElTree
 import cn.enaium.elementplus.components.ElPagination
 import cn.enaium.elementplus.components.ElTreeNode
 import cn.enaium.elementplus.components.ElTooltip
+import cn.enaium.elementplus.components.ElTooltipTrigger
 import cn.enaium.elementplus.components.ElDatePickerPanel
 import cn.enaium.elementplus.components.ElDatePickerType
 import cn.enaium.elementplus.components.ElSelectMultiple
@@ -53,6 +56,7 @@ import cn.enaium.elementplus.components.ElMessageBoxHost
 import cn.enaium.elementplus.components.rememberElMessageBoxService
 import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.theme.ElConfigProvider
+import cn.enaium.elementplus.theme.ElMessageConfig
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -408,6 +412,42 @@ class ComponentInteractionTest {
         onNodeWithText("Parent 1").performClick()
         onNodeWithText("Child A").assertExists()
         onNodeWithText("Child B").assertDoesNotExist()
+    }
+
+    @Test
+    fun messageConfigAppliesLimitFromProvider() = runComposeUiTest {
+        setContent {
+            ElConfigProvider(message = ElMessageConfig(max = 2)) {
+                ElMessage.Host {
+                    ElButton(
+                        onClick = {
+                            ElMessage.show("Message one")
+                            ElMessage.show("Message two")
+                            ElMessage.show("Message three")
+                        },
+                        text = "Show",
+                    )
+                }
+            }
+        }
+        onNodeWithText("Show").performClick()
+        onNodeWithText("Message one").assertDoesNotExist()
+        onNodeWithText("Message two").assertExists()
+        onNodeWithText("Message three").assertExists()
+        ElMessage.closeAll()
+    }
+
+    @Test
+    fun tooltipContextMenuTriggerOpensOnSecondaryClick() = runComposeUiTest {
+        setContent {
+            ElConfigProvider {
+                ElTooltip(text = "Context menu tooltip", trigger = ElTooltipTrigger.ContextMenu) {
+                    BasicText("Right click target")
+                }
+            }
+        }
+        onNodeWithText("Right click target").performMouseInput { rightClick() }
+        onNodeWithText("Context menu tooltip").assertExists()
     }
 
     @Test

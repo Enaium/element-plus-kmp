@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -24,8 +25,20 @@ import cn.enaium.elementplus.theme.LocalElTheme
 import kotlinx.coroutines.launch
 
 /**
- * `<el-backtop>` floating scroll-to-top button. Attach it to a [ScrollState] or
- * a [LazyListState]; visibility is derived from the current offset.
+ * `<el-backtop>` floating scroll-to-top button. Attach it to the scroll state of
+ * the target container — a [ScrollState] or a [LazyListState] (the Compose
+ * equivalent of the `target` prop); visibility is derived from the current
+ * offset unless [visible] overrides it.
+ *
+ * Element Plus teleports the button to the viewport corner; in Compose the
+ * caller places it in a `Box` aligned to that corner, and [right]/[bottom] apply
+ * the same insets as the `right`/`bottom` props (40dp by default).
+ *
+ * @param right distance from the right edge of the placement box.
+ * @param bottom distance from the bottom edge of the placement box.
+ * @param visible overrides the derived visibility, e.g. for a custom scroll
+ * container that is not a [ScrollState] or a [LazyListState].
+ * @param onClick the `click` event, fired before the container scrolls.
  */
 @Composable
 fun ElBacktop(
@@ -34,6 +47,10 @@ fun ElBacktop(
     scrollState: ScrollState? = null,
     listState: LazyListState? = null,
     size: Dp = 40.dp,
+    right: Dp = 40.dp,
+    bottom: Dp = 40.dp,
+    visible: Boolean? = null,
+    onClick: (() -> Unit)? = null,
     content: (@Composable () -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
@@ -44,15 +61,17 @@ fun ElBacktop(
         scrollState != null -> scrollState.value
         else -> 0
     }
-    val visible = offset > visibilityHeight.value
-    AnimatedVisibility(visible = visible, enter = fadeIn(), exit = fadeOut()) {
+    val show = visible ?: (offset > visibilityHeight.value)
+    AnimatedVisibility(visible = show, enter = fadeIn(), exit = fadeOut()) {
         Box(
             modifier
+                .offset(x = -right, y = -bottom)
                 .size(size)
                 .shadow(4.dp, CircleShape)
                 .background(colors.background, CircleShape)
                 .border(1.dp, colors.borderLight, CircleShape)
                 .clickable {
+                    onClick?.invoke()
                     scope.launch {
                         if (listState != null) listState.animateScrollToItem(0)
                         else scrollState?.animateScrollTo(0)

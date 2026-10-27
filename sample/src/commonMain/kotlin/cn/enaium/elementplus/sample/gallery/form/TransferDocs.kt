@@ -91,4 +91,160 @@ fun TransferDocs() {
             panelHeight = 220.dp,
         )
     }
+
+    DemoExample(
+        "Customizable items, footer slots and check counters",
+        "Render each option with a custom slot, add footer content, and format the check counters.",
+    ) {
+        val options = remember {
+            (1..15).map { ElTransferItem("$it", "Option $it", disabled = it % 4 == 0) }
+        }
+        var customValue by remember { mutableStateOf(listOf("1")) }
+        ElTransfer(
+            data = options,
+            value = customValue,
+            onValueChange = { customValue = it },
+            titles = listOf("Source", "Target"),
+            filterable = true,
+            buttonTexts = listOf("To left", "To right"),
+            leftDefaultChecked = listOf("2", "3"),
+            rightDefaultChecked = listOf("1"),
+            noCheckedFormat = "\${total}",
+            hasCheckedFormat = "\${checked}/\${total}",
+            itemContent = { item ->
+                BasicText(
+                    text = "${item.key} - ${item.label}",
+                    style = LocalElTheme.current.typography.small.copy(
+                        color = LocalElTheme.current.colors.textRegular,
+                    ),
+                )
+            },
+            leftFooter = {
+                ElButton(onClick = {}, size = ElSize.Small, text = "Operation")
+            },
+            rightFooter = {
+                ElButton(onClick = {}, size = ElSize.Small, text = "Operation")
+            },
+            panelWidth = 220.dp,
+            panelHeight = 250.dp,
+        )
+    }
+
+    DemoExample(
+        "Empty content slots",
+        "Replace the built-in empty text with a custom empty state per panel.",
+    ) {
+        val options = remember { (1..5).map { ElTransferItem("$it", "Option $it") } }
+        var emptyValue by remember { mutableStateOf(emptyList<String>()) }
+        ElTransfer(
+            data = options,
+            value = emptyValue,
+            onValueChange = { emptyValue = it },
+            leftEmptyContent = { ElEmpty(imageSize = 60.dp, description = "No data") },
+            rightEmptyContent = { ElEmpty(imageSize = 60.dp, description = "No data") },
+            panelWidth = 210.dp,
+            panelHeight = 240.dp,
+        )
+    }
+
+    DemoExample(
+        "Prop alias (custom key and label fields)",
+        "Map a raw model to transfer items with ElTransferProps instead of using ElTransferItem directly.",
+    ) {
+        var aliasValue by remember { mutableStateOf(emptyList<String>()) }
+        ElTransfer(
+            data = transferAliasOptions.toTransferItems(
+                ElTransferProps(
+                    key = { it.id },
+                    label = { it.desc },
+                    disabled = { it.locked },
+                ),
+            ),
+            value = aliasValue,
+            onValueChange = { aliasValue = it },
+            titles = listOf("Available", "Selected"),
+            panelWidth = 210.dp,
+            panelHeight = 220.dp,
+        )
+    }
+
+    DemoExample(
+        "Virtual scroll",
+        "Render a very large list with virtual scrolling and a fixed item size.",
+    ) {
+        val options = remember {
+            (1..2000).map { ElTransferItem("$it", "Option $it", disabled = it % 4 == 0) }
+        }
+        var virtualValue by remember { mutableStateOf(emptyList<String>()) }
+        ElTransfer(
+            data = options,
+            value = virtualValue,
+            onValueChange = { virtualValue = it },
+            filterable = true,
+            virtualScroll = true,
+            itemSize = 30.dp,
+            panelWidth = 220.dp,
+            panelHeight = 250.dp,
+        )
+    }
+
+    DemoExample(
+        "Change event and check change events",
+        "Receive the moved keys with their direction and the checked keys of each panel.",
+    ) {
+        val options = remember { (1..8).map { ElTransferItem("$it", "Option $it") } }
+        var eventValue by remember { mutableStateOf(emptyList<String>()) }
+        var lastDirection by remember { mutableStateOf("-") }
+        var lastMoved by remember { mutableStateOf("-") }
+        var lastChecked by remember { mutableStateOf("-") }
+        ElTransfer(
+            data = options,
+            value = eventValue,
+            onValueChange = { eventValue = it },
+            titles = listOf("Source", "Target"),
+            panelWidth = 200.dp,
+            panelHeight = 220.dp,
+            onChange = { next, direction, movedKeys ->
+                eventValue = next
+                lastDirection = if (direction == ElTransferDirection.Right) "right" else "left"
+                lastMoved = movedKeys.joinToString(", ")
+            },
+            onLeftCheckChange = { checked -> lastChecked = checked.joinToString(", ").ifEmpty { "-" } },
+            onRightCheckChange = { checked -> lastChecked = checked.joinToString(", ").ifEmpty { "-" } },
+        )
+        DemoHint("Direction: $lastDirection · moved: $lastMoved · checked: $lastChecked")
+    }
+
+    DemoExample(
+        "Custom filter method and clearQuery",
+        "Use a custom filter predicate and reset both panel queries through ElTransferState.",
+    ) {
+        val state = remember { ElTransferState() }
+        val options = remember { (1..8).map { ElTransferItem("$it", "Option $it") } }
+        var queryValue by remember { mutableStateOf(listOf("2")) }
+        ElTransfer(
+            data = options,
+            value = queryValue,
+            onValueChange = { queryValue = it },
+            titles = listOf("Source", "Target"),
+            filterable = true,
+            state = state,
+            filterMethod = { query, item ->
+                item.key.contains(query) || item.label.contains(query, ignoreCase = true)
+            },
+            panelWidth = 200.dp,
+            panelHeight = 220.dp,
+        )
+        ElButton(onClick = { state.clearQuery() }, size = ElSize.Small, text = "Clear query")
+    }
+}
+
+private data class TransferAliasOption(
+    val id: String,
+    val desc: String,
+    val locked: Boolean = false,
+)
+
+private val transferAliasOptions = (1..8).map { index ->
+    TransferAliasOption("city-$index", "City $index", locked = index % 4 == 0)
 }

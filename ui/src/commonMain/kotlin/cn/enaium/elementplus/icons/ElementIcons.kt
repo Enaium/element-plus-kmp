@@ -130,6 +130,180 @@ object ElIcons {
     val Monitor: ImageVector by lazy { buildMonitor() }
     val Iphone: ImageVector by lazy { buildIphone() }
     val Cellphone: ImageVector by lazy { buildCellphone() }
+    val AddLocation: ImageVector by lazy { buildAddLocation() }
+    val AlarmClock: ImageVector by lazy { buildAlarmClock() }
+    val Apple: ImageVector by lazy { buildApple() }
+    val Avatar: ImageVector by lazy { buildAvatar() }
+    val Baseball: ImageVector by lazy { buildBaseball() }
+    val Basketball: ImageVector by lazy { buildBasketball() }
+    val BellFilled: ImageVector by lazy { buildBellFilled() }
+    val BottomLeft: ImageVector by lazy { buildBottomLeft() }
+    val BottomRight: ImageVector by lazy { buildBottomRight() }
+    val Bowl: ImageVector by lazy { buildBowl() }
+    val Box: ImageVector by lazy { buildBox() }
+    val Briefcase: ImageVector by lazy { buildBriefcase() }
+    val BrushFilled: ImageVector by lazy { buildBrushFilled() }
+    val Burger: ImageVector by lazy { buildBurger() }
+    val Camera: ImageVector by lazy { buildCamera() }
+    val CameraFilled: ImageVector by lazy { buildCameraFilled() }
+    val ChatDotSquare: ImageVector by lazy { buildChatDotSquare() }
+    val ChatLineRound: ImageVector by lazy { buildChatLineRound() }
+    val ChatLineSquare: ImageVector by lazy { buildChatLineSquare() }
+    val ChatRound: ImageVector by lazy { buildChatRound() }
+    val ChatSquare: ImageVector by lazy { buildChatSquare() }
+    val Cherry: ImageVector by lazy { buildCherry() }
+    val Chicken: ImageVector by lazy { buildChicken() }
+    val ChromeFilled: ImageVector by lazy { buildChromeFilled() }
+    val CirclePlusFilled: ImageVector by lazy { buildCirclePlusFilled() }
+    val Coffee: ImageVector by lazy { buildCoffee() }
+    val CoffeeCup: ImageVector by lazy { buildCoffeeCup() }
+    val Coin: ImageVector by lazy { buildCoin() }
+    val ColdDrink: ImageVector by lazy { buildColdDrink() }
+    val Collection: ImageVector by lazy { buildCollection() }
+    val CollectionTag: ImageVector by lazy { buildCollectionTag() }
+    val Comment: ImageVector by lazy { buildComment() }
+    val Connection: ImageVector by lazy { buildConnection() }
+    val Coordinate: ImageVector by lazy { buildCoordinate() }
+    val Cpu: ImageVector by lazy { buildCpu() }
+    val CreditCard: ImageVector by lazy { buildCreditCard() }
+    val DCaret: ImageVector by lazy { buildDCaret() }
+    val DataBoard: ImageVector by lazy { buildDataBoard() }
+    val DeleteFilled: ImageVector by lazy { buildDeleteFilled() }
+    val DeleteLocation: ImageVector by lazy { buildDeleteLocation() }
+    val Dessert: ImageVector by lazy { buildDessert() }
+    val Dish: ImageVector by lazy { buildDish() }
+    val DishDot: ImageVector by lazy { buildDishDot() }
+    val DocumentAdd: ImageVector by lazy { buildDocumentAdd() }
+    val DocumentChecked: ImageVector by lazy { buildDocumentChecked() }
+    val DocumentCopy: ImageVector by lazy { buildDocumentCopy() }
+    val DocumentDelete: ImageVector by lazy { buildDocumentDelete() }
+    val DocumentRemove: ImageVector by lazy { buildDocumentRemove() }
+    val Drizzling: ImageVector by lazy { buildDrizzling() }
+    val EditPen: ImageVector by lazy { buildEditPen() }
+    val Eleme: ImageVector by lazy { buildEleme() }
+    val ElemeFilled: ImageVector by lazy { buildElemeFilled() }
+    val ElementPlus: ImageVector by lazy { buildElementPlus() }
+    val Expand: ImageVector by lazy { buildExpand() }
+    val Failed: ImageVector by lazy { buildFailed() }
+    val Female: ImageVector by lazy { buildFemale() }
+    val Files: ImageVector by lazy { buildFiles() }
+    val FirstAidKit: ImageVector by lazy { buildFirstAidKit() }
+    val Fold: ImageVector by lazy { buildFold() }
+    val FolderAdd: ImageVector by lazy { buildFolderAdd() }
+    val FolderChecked: ImageVector by lazy { buildFolderChecked() }
+    val FolderDelete: ImageVector by lazy { buildFolderDelete() }
+    val FolderOpened: ImageVector by lazy { buildFolderOpened() }
+    val FolderRemove: ImageVector by lazy { buildFolderRemove() }
+    val Food: ImageVector by lazy { buildFood() }
+    val Football: ImageVector by lazy { buildFootball() }
+    val ForkSpoon: ImageVector by lazy { buildForkSpoon() }
+    val Fries: ImageVector by lazy { buildFries() }
+    val Goblet: ImageVector by lazy { buildGoblet() }
+    val GobletFull: ImageVector by lazy { buildGobletFull() }
+    val GobletSquare: ImageVector by lazy { buildGobletSquare() }
+    val GobletSquareFull: ImageVector by lazy { buildGobletSquareFull() }
+    val GoldMedal: ImageVector by lazy { buildGoldMedal() }
+    val GoodsFilled: ImageVector by lazy { buildGoodsFilled() }
+    val Grape: ImageVector by lazy { buildGrape() }
+    val Guide: ImageVector by lazy { buildGuide() }
+    val Handbag: ImageVector by lazy { buildHandbag() }
+    val Help: ImageVector by lazy { buildHelp() }
+    val HelpFilled: ImageVector by lazy { buildHelpFilled() }
+    val HotWater: ImageVector by lazy { buildHotWater() }
+    val House: ImageVector by lazy { buildHouse() }
+    val IceCream: ImageVector by lazy { buildIceCream() }
+    val IceCreamRound: ImageVector by lazy { buildIceCreamRound() }
+    val IceCreamSquare: ImageVector by lazy { buildIceCreamSquare() }
+    val IceDrink: ImageVector by lazy { buildIceDrink() }
+    val IceTea: ImageVector by lazy { buildIceTea() }
+    val Key: ImageVector by lazy { buildKey() }
+    val KnifeFork: ImageVector by lazy { buildKnifeFork() }
+    val LocationFilled: ImageVector by lazy { buildLocationFilled() }
+    val LocationInformation: ImageVector by lazy { buildLocationInformation() }
+    val Lollipop: ImageVector by lazy { buildLollipop() }
+    val Magnet: ImageVector by lazy { buildMagnet() }
+    val Male: ImageVector by lazy { buildMale() }
+    val Management: ImageVector by lazy { buildManagement() }
+    val MapLocation: ImageVector by lazy { buildMapLocation() }
+    val Memo: ImageVector by lazy { buildMemo() }
+    val MessageBox: ImageVector by lazy { buildMessageBox() }
+    val Microphone: ImageVector by lazy { buildMicrophone() }
+    val MilkTea: ImageVector by lazy { buildMilkTea() }
+    val MoonNight: ImageVector by lazy { buildMoonNight() }
+    val MostlyCloudy: ImageVector by lazy { buildMostlyCloudy() }
+    val Mouse: ImageVector by lazy { buildMouse() }
+    val Mug: ImageVector by lazy { buildMug() }
+    val MuteNotification: ImageVector by lazy { buildMuteNotification() }
+    val NoSmoking: ImageVector by lazy { buildNoSmoking() }
+    val Notebook: ImageVector by lazy { buildNotebook() }
+    val Notification: ImageVector by lazy { buildNotification() }
+    val Odometer: ImageVector by lazy { buildOdometer() }
+    val OfficeBuilding: ImageVector by lazy { buildOfficeBuilding() }
+    val Open: ImageVector by lazy { buildOpen() }
+    val Opportunity: ImageVector by lazy { buildOpportunity() }
+    val Orange: ImageVector by lazy { buildOrange() }
+    val Paperclip: ImageVector by lazy { buildPaperclip() }
+    val PartlyCloudy: ImageVector by lazy { buildPartlyCloudy() }
+    val Pear: ImageVector by lazy { buildPear() }
+    val PhoneFilled: ImageVector by lazy { buildPhoneFilled() }
+    val PictureFilled: ImageVector by lazy { buildPictureFilled() }
+    val PictureRounded: ImageVector by lazy { buildPictureRounded() }
+    val Place: ImageVector by lazy { buildPlace() }
+    val Platform: ImageVector by lazy { buildPlatform() }
+    val Pointer: ImageVector by lazy { buildPointer() }
+    val Position: ImageVector by lazy { buildPosition() }
+    val Postcard: ImageVector by lazy { buildPostcard() }
+    val Pouring: ImageVector by lazy { buildPouring() }
+    val PriceTag: ImageVector by lazy { buildPriceTag() }
+    val Printer: ImageVector by lazy { buildPrinter() }
+    val QuartzWatch: ImageVector by lazy { buildQuartzWatch() }
+    val QuestionFilled: ImageVector by lazy { buildQuestionFilled() }
+    val Reading: ImageVector by lazy { buildReading() }
+    val ReadingLamp: ImageVector by lazy { buildReadingLamp() }
+    val RefreshLeft: ImageVector by lazy { buildRefreshLeft() }
+    val RefreshRight: ImageVector by lazy { buildRefreshRight() }
+    val Refrigerator: ImageVector by lazy { buildRefrigerator() }
+    val ScaleToOriginal: ImageVector by lazy { buildScaleToOriginal() }
+    val School: ImageVector by lazy { buildSchool() }
+    val Sell: ImageVector by lazy { buildSell() }
+    val Service: ImageVector by lazy { buildService() }
+    val SetUp: ImageVector by lazy { buildSetUp() }
+    val Share: ImageVector by lazy { buildShare() }
+    val Shop: ImageVector by lazy { buildShop() }
+    val ShoppingBag: ImageVector by lazy { buildShoppingBag() }
+    val ShoppingCartFull: ImageVector by lazy { buildShoppingCartFull() }
+    val ShoppingTrolley: ImageVector by lazy { buildShoppingTrolley() }
+    val Smoking: ImageVector by lazy { buildSmoking() }
+    val Soccer: ImageVector by lazy { buildSoccer() }
+    val SoldOut: ImageVector by lazy { buildSoldOut() }
+    val Stamp: ImageVector by lazy { buildStamp() }
+    val Stopwatch: ImageVector by lazy { buildStopwatch() }
+    val Sugar: ImageVector by lazy { buildSugar() }
+    val Suitcase: ImageVector by lazy { buildSuitcase() }
+    val SuitcaseLine: ImageVector by lazy { buildSuitcaseLine() }
+    val Sunrise: ImageVector by lazy { buildSunrise() }
+    val Sunset: ImageVector by lazy { buildSunset() }
+    val Switch: ImageVector by lazy { buildSwitch() }
+    val SwitchFilled: ImageVector by lazy { buildSwitchFilled() }
+    val TakeawayBox: ImageVector by lazy { buildTakeawayBox() }
+    val Tickets: ImageVector by lazy { buildTickets() }
+    val ToiletPaper: ImageVector by lazy { buildToiletPaper() }
+    val Tools: ImageVector by lazy { buildTools() }
+    val TopLeft: ImageVector by lazy { buildTopLeft() }
+    val TopRight: ImageVector by lazy { buildTopRight() }
+    val TrophyBase: ImageVector by lazy { buildTrophyBase() }
+    val TurnOff: ImageVector by lazy { buildTurnOff() }
+    val Umbrella: ImageVector by lazy { buildUmbrella() }
+    val Unlock: ImageVector by lazy { buildUnlock() }
+    val UploadFilled: ImageVector by lazy { buildUploadFilled() }
+    val UserFilled: ImageVector by lazy { buildUserFilled() }
+    val VideoCamera: ImageVector by lazy { buildVideoCamera() }
+    val VideoCameraFilled: ImageVector by lazy { buildVideoCameraFilled() }
+    val WalletFilled: ImageVector by lazy { buildWalletFilled() }
+    val WarnTriangleFilled: ImageVector by lazy { buildWarnTriangleFilled() }
+    val Watch: ImageVector by lazy { buildWatch() }
+    val Watermelon: ImageVector by lazy { buildWatermelon() }
+    val WindPower: ImageVector by lazy { buildWindPower() }
 }
 
 private fun buildArrowDown(): ImageVector = ImageVector.Builder(
@@ -1004,4 +1178,1297 @@ private fun buildHeadset(): ImageVector = ImageVector.Builder(
     viewportWidth = 1024f, viewportHeight = 1024f,
 ).apply {
     addPath(pathData = PathParser().parsePathString("M896 529.152V512a384 384 0 1 0-768 0v17.152A128 128 0 0 1 320 640v128a128 128 0 1 1-256 0V512a448 448 0 1 1 896 0v256a128 128 0 1 1-256 0V640a128 128 0 0 1 192-110.848M896 640a64 64 0 0 0-128 0v128a64 64 0 0 0 128 0zm-768 0v128a64 64 0 0 0 128 0V640a64 64 0 1 0-128 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildAddLocation(): ImageVector = ImageVector.Builder(
+    name = "AddLocation", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M288 896h448q32 0 32 32t-32 32H288q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M544 384h96a32 32 0 1 1 0 64h-96v96a32 32 0 0 1-64 0v-96h-96a32 32 0 0 1 0-64h96v-96a32 32 0 0 1 64 0z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildAlarmClock(): ImageVector = ImageVector.Builder(
+    name = "AlarmClock", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 832a320 320 0 1 0 0-640 320 320 0 0 0 0 640m0 64a384 384 0 1 1 0-768 384 384 0 0 1 0 768").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("m292.288 824.576 55.424 32-48 83.136a32 32 0 1 1-55.424-32zm439.424 0-55.424 32 48 83.136a32 32 0 1 0 55.424-32zM512 512h160a32 32 0 1 1 0 64H480a32 32 0 0 1-32-32V320a32 32 0 0 1 64 0zM90.496 312.256A160 160 0 0 1 312.32 90.496l-46.848 46.848a96 96 0 0 0-128 128L90.56 312.256zm835.264 0A160 160 0 0 0 704 90.496l46.848 46.848a96 96 0 0 1 128 128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildApple(): ImageVector = ImageVector.Builder(
+    name = "Apple", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M599.872 203.776a189.4 189.4 0 0 1 64.384-4.672l2.624.128c31.168 1.024 51.2 4.096 79.488 16.32 37.632 16.128 74.496 45.056 111.488 89.344 96.384 115.264 82.752 372.8-34.752 521.728-7.68 9.728-32 41.6-30.72 39.936a427 427 0 0 1-30.08 35.776c-31.232 32.576-65.28 49.216-110.08 50.048-31.36.64-53.568-5.312-84.288-18.752l-6.528-2.88c-20.992-9.216-30.592-11.904-47.296-11.904-18.112 0-28.608 2.88-51.136 12.672l-6.464 2.816c-28.416 12.224-48.32 18.048-76.16 19.2-74.112 2.752-116.928-38.08-180.672-132.16-96.64-142.08-132.608-349.312-55.04-486.4 46.272-81.92 129.92-133.632 220.672-135.04 32.832-.576 60.288 6.848 99.648 22.72 27.136 10.88 34.752 13.76 37.376 14.272 16.256-20.16 27.776-36.992 34.56-50.24 13.568-26.304 27.2-59.968 40.704-100.8a32 32 0 1 1 60.8 20.224c-12.608 37.888-25.408 70.4-38.528 97.664m-51.52 78.08c-14.528 17.792-31.808 37.376-51.904 58.816a32 32 0 1 1-46.72-43.776l12.288-13.248c-28.032-11.2-61.248-26.688-95.68-26.112-70.4 1.088-135.296 41.6-171.648 105.792C121.6 492.608 176 684.16 247.296 788.992c34.816 51.328 76.352 108.992 130.944 106.944 52.48-2.112 72.32-34.688 135.872-34.688s81.28 34.688 136.96 33.536c56.448-1.088 75.776-39.04 126.848-103.872 107.904-136.768 107.904-362.752 35.776-449.088-72.192-86.272-124.672-84.096-151.68-85.12-41.472-4.288-81.6 12.544-113.664 25.152").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildAvatar(): ImageVector = ImageVector.Builder(
+    name = "Avatar", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M628.736 528.896A416 416 0 0 1 928 928H96a415.87 415.87 0 0 1 299.264-399.104L512 704zM720 304a208 208 0 1 1-416 0 208 208 0 0 1 416 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBaseball(): ImageVector = ImageVector.Builder(
+    name = "Baseball", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M195.2 828.8a448 448 0 1 1 633.6-633.6 448 448 0 0 1-633.6 633.6m45.248-45.248a384 384 0 1 0 543.104-543.104 384 384 0 0 0-543.104 543.104").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M497.472 96.896c22.784 4.672 44.416 9.472 64.896 14.528a256.128 256.128 0 0 0 350.208 350.208c5.056 20.48 9.856 42.112 14.528 64.896A320.128 320.128 0 0 1 497.472 96.896M108.48 491.904a320.128 320.128 0 0 1 423.616 423.68c-23.04-3.648-44.992-7.424-65.728-11.52a256.128 256.128 0 0 0-346.496-346.432 1737 1737 0 0 1-11.392-65.728").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBasketball(): ImageVector = ImageVector.Builder(
+    name = "Basketball", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M778.752 788.224a382.46 382.46 0 0 0 116.032-245.632 256.51 256.51 0 0 0-241.728-13.952 762.9 762.9 0 0 1 125.696 259.584m-55.04 44.224a699.65 699.65 0 0 0-125.056-269.632 256.13 256.13 0 0 0-56.064 331.968 382.7 382.7 0 0 0 181.12-62.336m-254.08 61.248A320.13 320.13 0 0 1 557.76 513.6a716 716 0 0 0-48.192-48.128 320.13 320.13 0 0 1-379.264 88.384 382.4 382.4 0 0 0 110.144 229.696 382.4 382.4 0 0 0 229.184 110.08zM129.28 481.088a256.13 256.13 0 0 0 331.072-56.448 699.65 699.65 0 0 0-268.8-124.352 382.66 382.66 0 0 0-62.272 180.8m106.56-235.84a762.9 762.9 0 0 1 258.688 125.056 256.51 256.51 0 0 0-13.44-241.088A382.46 382.46 0 0 0 235.84 245.248m318.08-114.944c40.576 89.536 37.76 193.92-8.448 281.344a780 780 0 0 1 66.176 66.112 320.83 320.83 0 0 1 282.112-8.128 382.4 382.4 0 0 0-110.144-229.12 382.4 382.4 0 0 0-229.632-110.208zM828.8 828.8a448 448 0 1 1-633.6-633.6 448 448 0 0 1 633.6 633.6").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBellFilled(): ImageVector = ImageVector.Builder(
+    name = "BellFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M640 832a128 128 0 0 1-256 0zm192-64H134.4a38.4 38.4 0 0 1 0-76.8H192V448c0-154.88 110.08-284.16 256.32-313.6a64 64 0 1 1 127.36 0A320.13 320.13 0 0 1 832 448v243.2h57.6a38.4 38.4 0 0 1 0 76.8z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBottomLeft(): ImageVector = ImageVector.Builder(
+    name = "BottomLeft", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 768h416a32 32 0 1 1 0 64H224a32 32 0 0 1-32-32V352a32 32 0 0 1 64 0z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M246.656 822.656a32 32 0 0 1-45.312-45.312l544-544a32 32 0 0 1 45.312 45.312z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBottomRight(): ImageVector = ImageVector.Builder(
+    name = "BottomRight", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M352 768a32 32 0 1 0 0 64h448a32 32 0 0 0 32-32V352a32 32 0 0 0-64 0v416z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M777.344 822.656a32 32 0 0 0 45.312-45.312l-544-544a32 32 0 0 0-45.312 45.312z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBowl(): ImageVector = ImageVector.Builder(
+    name = "Bowl", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M714.432 704a351.74 351.74 0 0 0 148.16-256H161.408a351.74 351.74 0 0 0 148.16 256zM288 766.592A415.68 415.68 0 0 1 96 416a32 32 0 0 1 32-32h768a32 32 0 0 1 32 32 415.68 415.68 0 0 1-192 350.592V832a64 64 0 0 1-64 64H352a64 64 0 0 1-64-64zM493.248 320h-90.496l254.4-254.4a32 32 0 1 1 45.248 45.248zm187.328 0h-128l269.696-155.712a32 32 0 0 1 32 55.424zM352 768v64h320v-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBox(): ImageVector = ImageVector.Builder(
+    name = "Box", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M317.056 128 128 344.064V896h768V344.064L706.944 128zm-14.528-64h418.944a32 32 0 0 1 24.064 10.88l206.528 236.096A32 32 0 0 1 960 332.032V928a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V332.032a32 32 0 0 1 7.936-21.12L278.4 75.008A32 32 0 0 1 302.528 64").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M64 320h896v64H64z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M448 327.872V640h128V327.872L526.08 128h-28.16zM448 64h128l64 256v352a32 32 0 0 1-32 32H416a32 32 0 0 1-32-32V320z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBriefcase(): ImageVector = ImageVector.Builder(
+    name = "Briefcase", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M320 320V128h384v192h192v192H128V320zM128 576h768v320H128zm256-256h256.064V192H384z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBrushFilled(): ImageVector = ImageVector.Builder(
+    name = "BrushFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M608 704v160a96 96 0 0 1-192 0V704h-96a128 128 0 0 1-128-128h640a128 128 0 0 1-128 128zM192 512V128.064h640V512z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildBurger(): ImageVector = ImageVector.Builder(
+    name = "Burger", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M160 512a32 32 0 0 0-32 32v64a32 32 0 0 0 30.08 32H864a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32zm736-58.56A96 96 0 0 1 960 544v64a96 96 0 0 1-51.968 85.312L855.36 833.6a96 96 0 0 1-89.856 62.272H258.496A96 96 0 0 1 168.64 833.6l-52.608-140.224A96 96 0 0 1 64 608v-64a96 96 0 0 1 64-90.56V448a384 384 0 1 1 768 5.44M832 448a320 320 0 0 0-640 0zM512 704H188.352l40.192 107.136a32 32 0 0 0 29.952 20.736h507.008a32 32 0 0 0 29.952-20.736L835.648 704z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCamera(): ImageVector = ImageVector.Builder(
+    name = "Camera", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M896 256H128v576h768zm-199.424-64-32.064-64h-304.96l-32 64zM96 192h160l46.336-92.608A64 64 0 0 1 359.552 64h304.96a64 64 0 0 1 57.216 35.328L768.192 192H928a32 32 0 0 1 32 32v640a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V224a32 32 0 0 1 32-32m416 512a160 160 0 1 0 0-320 160 160 0 0 0 0 320m0 64a224 224 0 1 1 0-448 224 224 0 0 1 0 448").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCameraFilled(): ImageVector = ImageVector.Builder(
+    name = "CameraFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M160 224a64 64 0 0 0-64 64v512a64 64 0 0 0 64 64h704a64 64 0 0 0 64-64V288a64 64 0 0 0-64-64H748.416l-46.464-92.672A64 64 0 0 0 644.736 96H379.328a64 64 0 0 0-57.216 35.392L275.776 224zm352 435.2a115.2 115.2 0 1 0 0-230.4 115.2 115.2 0 0 0 0 230.4m0 140.8a256 256 0 1 1 0-512 256 256 0 0 1 0 512").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChatDotSquare(): ImageVector = ImageVector.Builder(
+    name = "ChatDotSquare", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M273.536 736H800a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H224a64 64 0 0 0-64 64v570.88zM296 800 147.968 918.4A32 32 0 0 1 96 893.44V256a128 128 0 0 1 128-128h576a128 128 0 0 1 128 128v416a128 128 0 0 1-128 128z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 499.2a51.2 51.2 0 1 1 0-102.4 51.2 51.2 0 0 1 0 102.4m192 0a51.2 51.2 0 1 1 0-102.4 51.2 51.2 0 0 1 0 102.4m-384 0a51.2 51.2 0 1 1 0-102.4 51.2 51.2 0 0 1 0 102.4").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChatLineRound(): ImageVector = ImageVector.Builder(
+    name = "ChatLineRound", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m174.72 855.68 135.296-45.12 23.68 11.84C388.096 849.536 448.576 864 512 864c211.84 0 384-166.784 384-352S723.84 160 512 160 128 326.784 128 512c0 69.12 24.96 139.264 70.848 199.232l22.08 28.8-46.272 115.584zm-45.248 82.56A32 32 0 0 1 89.6 896l58.368-145.92C94.72 680.32 64 596.864 64 512 64 299.904 256 96 512 96s448 203.904 448 416-192 416-448 416a461.06 461.06 0 0 1-206.912-48.384l-175.616 58.56z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M352 576h320q32 0 32 32t-32 32H352q-32 0-32-32t32-32m32-192h256q32 0 32 32t-32 32H384q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChatLineSquare(): ImageVector = ImageVector.Builder(
+    name = "ChatLineSquare", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M160 826.88 273.536 736H800a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H224a64 64 0 0 0-64 64zM296 800 147.968 918.4A32 32 0 0 1 96 893.44V256a128 128 0 0 1 128-128h576a128 128 0 0 1 128 128v416a128 128 0 0 1-128 128z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M352 512h320q32 0 32 32t-32 32H352q-32 0-32-32t32-32m0-192h320q32 0 32 32t-32 32H352q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChatRound(): ImageVector = ImageVector.Builder(
+    name = "ChatRound", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m174.72 855.68 130.048-43.392 23.424 11.392C382.4 849.984 444.352 864 512 864c223.744 0 384-159.872 384-352 0-192.832-159.104-352-384-352S128 319.168 128 512a341.12 341.12 0 0 0 69.248 204.288l21.632 28.8-44.16 110.528zm-45.248 82.56A32 32 0 0 1 89.6 896l56.512-141.248A405.12 405.12 0 0 1 64 512C64 299.904 235.648 96 512 96s448 203.904 448 416-173.44 416-448 416c-79.68 0-150.848-17.152-211.712-46.72l-170.88 56.96z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChatSquare(): ImageVector = ImageVector.Builder(
+    name = "ChatSquare", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M273.536 736H800a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H224a64 64 0 0 0-64 64v570.88zM296 800 147.968 918.4A32 32 0 0 1 96 893.44V256a128 128 0 0 1 128-128h576a128 128 0 0 1 128 128v416a128 128 0 0 1-128 128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCherry(): ImageVector = ImageVector.Builder(
+    name = "Cherry", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M261.056 449.6c13.824-69.696 34.88-128.96 63.36-177.728 23.744-40.832 61.12-88.64 112.256-143.872H320a32 32 0 0 1 0-64h384a32 32 0 1 1 0 64H554.752c14.912 39.168 41.344 86.592 79.552 141.76 47.36 68.48 84.8 106.752 106.304 114.304a224 224 0 1 1-84.992 14.784c-22.656-22.912-47.04-53.76-73.92-92.608-38.848-56.128-67.008-105.792-84.352-149.312-55.296 58.24-94.528 107.52-117.76 147.2-23.168 39.744-41.088 88.768-53.568 147.072a224.064 224.064 0 1 1-64.96-1.6M288 832a160 160 0 1 0 0-320 160 160 0 0 0 0 320m448-64a160 160 0 1 0 0-320 160 160 0 0 0 0 320").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChicken(): ImageVector = ImageVector.Builder(
+    name = "Chicken", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M349.952 716.992 478.72 588.16a106.7 106.7 0 0 1-26.176-19.072 106.7 106.7 0 0 1-19.072-26.176L304.704 671.744c.768 3.072 1.472 6.144 2.048 9.216l2.048 31.936 31.872 1.984c3.136.64 6.208 1.28 9.28 2.112m57.344 33.152a128 128 0 1 1-216.32 114.432l-1.92-32-32-1.92a128 128 0 1 1 114.432-216.32L416.64 469.248c-2.432-101.44 58.112-239.104 149.056-330.048 107.328-107.328 231.296-85.504 316.8 0 85.44 85.44 107.328 209.408 0 316.8-91.008 90.88-228.672 151.424-330.112 149.056L407.296 750.08zm90.496-226.304c49.536 49.536 233.344-7.04 339.392-113.088 78.208-78.208 63.232-163.072 0-226.304-63.168-63.232-148.032-78.208-226.24 0C504.896 290.496 448.32 474.368 497.792 523.84M244.864 708.928a64 64 0 1 0-59.84 59.84l56.32-3.52zm8.064 127.68a64 64 0 1 0 59.84-59.84l-56.32 3.52z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildChromeFilled(): ImageVector = ImageVector.Builder(
+    name = "ChromeFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M938.67 512.01c0-44.59-6.82-87.6-19.54-128H682.67a212.37 212.37 0 0 1 42.67 128c.06 38.71-10.45 76.7-30.42 109.87l-182.91 316.8c235.65-.01 426.66-191.02 426.66-426.67").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M576.79 401.63a127.9 127.9 0 0 0-63.56-17.6c-22.36-.22-44.39 5.43-63.89 16.38s-35.79 26.82-47.25 46.02a128 128 0 0 0-2.16 127.44l1.24 2.13a127.9 127.9 0 0 0 46.36 46.61 127.9 127.9 0 0 0 63.38 17.44c22.29.2 44.24-5.43 63.68-16.33a127.94 127.94 0 0 0 47.16-45.79v-.01l1.11-1.92a127.98 127.98 0 0 0 .29-127.46 127.96 127.96 0 0 0-46.36-46.91").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M394.45 333.96A213.34 213.34 0 0 1 512 298.67h369.58A426.5 426.5 0 0 0 512 85.34a425.6 425.6 0 0 0-171.74 35.98 425.6 425.6 0 0 0-142.62 102.22l118.14 204.63a213.4 213.4 0 0 1 78.67-94.21m117.56 604.72H512zm-97.25-236.73a213.3 213.3 0 0 1-89.54-86.81L142.48 298.6c-36.35 62.81-57.13 135.68-57.13 213.42 0 203.81 142.93 374.22 333.95 416.55h.04l118.19-204.71a213.3 213.3 0 0 1-122.77-21.91").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCirclePlusFilled(): ImageVector = ImageVector.Builder(
+    name = "CirclePlusFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896m-38.4 409.6H326.4a38.4 38.4 0 1 0 0 76.8h147.2v147.2a38.4 38.4 0 0 0 76.8 0V550.4h147.2a38.4 38.4 0 0 0 0-76.8H550.4V326.4a38.4 38.4 0 1 0-76.8 0z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCoffee(): ImageVector = ImageVector.Builder(
+    name = "Coffee", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M822.592 192h14.272a32 32 0 0 1 31.616 26.752l21.312 128A32 32 0 0 1 858.24 384h-49.344l-39.04 546.304A32 32 0 0 1 737.92 960H285.824a32 32 0 0 1-32-29.696L214.912 384H165.76a32 32 0 0 1-31.552-37.248l21.312-128A32 32 0 0 1 187.136 192h14.016l-6.72-93.696A32 32 0 0 1 226.368 64h571.008a32 32 0 0 1 31.936 34.304zm-64.128 0 4.544-64H260.736l4.544 64zm-548.16 128H820.48l-10.688-64H214.208l-10.688 64zm68.736 64 36.544 512H708.16l36.544-512z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCoffeeCup(): ImageVector = ImageVector.Builder(
+    name = "CoffeeCup", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M768 192a192 192 0 1 1-8 383.808A256.13 256.13 0 0 1 512 768H320A256 256 0 0 1 64 512V160a32 32 0 0 1 32-32h640a32 32 0 0 1 32 32zm0 64v256a128 128 0 1 0 0-256M96 832h640a32 32 0 1 1 0 64H96a32 32 0 1 1 0-64m32-640v320a192 192 0 0 0 192 192h192a192 192 0 0 0 192-192V192z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCoin(): ImageVector = ImageVector.Builder(
+    name = "Coin", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m161.92 580.736 29.888 58.88C171.328 659.776 160 681.728 160 704c0 82.304 155.328 160 352 160s352-77.696 352-160c0-22.272-11.392-44.16-31.808-64.32l30.464-58.432C903.936 615.808 928 657.664 928 704c0 129.728-188.544 224-416 224S96 833.728 96 704c0-46.592 24.32-88.576 65.92-123.264").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("m161.92 388.736 29.888 58.88C171.328 467.84 160 489.792 160 512c0 82.304 155.328 160 352 160s352-77.696 352-160c0-22.272-11.392-44.16-31.808-64.32l30.464-58.432C903.936 423.808 928 465.664 928 512c0 129.728-188.544 224-416 224S96 641.728 96 512c0-46.592 24.32-88.576 65.92-123.264").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 544c-227.456 0-416-94.272-416-224S284.544 96 512 96s416 94.272 416 224-188.544 224-416 224m0-64c196.672 0 352-77.696 352-160S708.672 160 512 160s-352 77.696-352 160 155.328 160 352 160").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildColdDrink(): ImageVector = ImageVector.Builder(
+    name = "ColdDrink", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M768 64a192 192 0 1 1-69.952 370.88L480 725.376V896h96a32 32 0 1 1 0 64H320a32 32 0 1 1 0-64h96V725.376L76.8 273.536a64 64 0 0 1-12.8-38.4v-10.688a32 32 0 0 1 32-32h71.808l-65.536-83.84a32 32 0 0 1 50.432-39.424l96.256 123.264h337.728A192.06 192.06 0 0 1 768 64M656.896 192.448H800a32 32 0 0 1 32 32v10.624a64 64 0 0 1-12.8 38.4l-80.448 107.2a128 128 0 1 0-81.92-188.16v-.064zm-357.888 64 129.472 165.76a32 32 0 0 1-50.432 39.36l-160.256-205.12H144l304 404.928 304-404.928z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCollection(): ImageVector = ImageVector.Builder(
+    name = "Collection", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 736h640V128H256a64 64 0 0 0-64 64zm64-672h608a32 32 0 0 1 32 32v672a32 32 0 0 1-32 32H160l-32 57.536V192A128 128 0 0 1 256 64").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M240 800a48 48 0 1 0 0 96h592v-96zm0-64h656v160a64 64 0 0 1-64 64H240a112 112 0 0 1 0-224m144-608v250.88l96-76.8 96 76.8V128zm-64-64h320v381.44a32 32 0 0 1-51.968 24.96L480 384l-108.032 86.4A32 32 0 0 1 320 445.44z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCollectionTag(): ImageVector = ImageVector.Builder(
+    name = "CollectionTag", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 128v698.88l196.032-156.864a96 96 0 0 1 119.936 0L768 826.816V128zm-32-64h576a32 32 0 0 1 32 32v797.44a32 32 0 0 1-51.968 24.96L531.968 720a32 32 0 0 0-39.936 0L243.968 918.4A32 32 0 0 1 192 893.44V96a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildComment(): ImageVector = ImageVector.Builder(
+    name = "Comment", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M736 504a56 56 0 1 1 0-112 56 56 0 0 1 0 112m-224 0a56 56 0 1 1 0-112 56 56 0 0 1 0 112m-224 0a56 56 0 1 1 0-112 56 56 0 0 1 0 112M128 128v640h192v160l224-160h352V128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildConnection(): ImageVector = ImageVector.Builder(
+    name = "Connection", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M640 384v64H448a128 128 0 0 0-128 128v128a128 128 0 0 0 128 128h320a128 128 0 0 0 128-128V576a128 128 0 0 0-64-110.848V394.88c74.56 26.368 128 97.472 128 181.056v128a192 192 0 0 1-192 192H448a192 192 0 0 1-192-192V576a192 192 0 0 1 192-192z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M384 640v-64h192a128 128 0 0 0 128-128V320a128 128 0 0 0-128-128H256a128 128 0 0 0-128 128v128a128 128 0 0 0 64 110.848v70.272A192.06 192.06 0 0 1 64 448V320a192 192 0 0 1 192-192h320a192 192 0 0 1 192 192v128a192 192 0 0 1-192 192z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCoordinate(): ImageVector = ImageVector.Builder(
+    name = "Coordinate", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M480 512h64v320h-64z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M192 896h640a64 64 0 0 0-64-64H256a64 64 0 0 0-64 64m64-128h512a128 128 0 0 1 128 128v64H128v-64a128 128 0 0 1 128-128m256-256a192 192 0 1 0 0-384 192 192 0 0 0 0 384m0 64a256 256 0 1 1 0-512 256 256 0 0 1 0 512").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCpu(): ImageVector = ImageVector.Builder(
+    name = "Cpu", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M320 256a64 64 0 0 0-64 64v384a64 64 0 0 0 64 64h384a64 64 0 0 0 64-64V320a64 64 0 0 0-64-64zm0-64h384a128 128 0 0 1 128 128v384a128 128 0 0 1-128 128H320a128 128 0 0 1-128-128V320a128 128 0 0 1 128-128").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 64a32 32 0 0 1 32 32v128h-64V96a32 32 0 0 1 32-32m160 0a32 32 0 0 1 32 32v128h-64V96a32 32 0 0 1 32-32m-320 0a32 32 0 0 1 32 32v128h-64V96a32 32 0 0 1 32-32m160 896a32 32 0 0 1-32-32V800h64v128a32 32 0 0 1-32 32m160 0a32 32 0 0 1-32-32V800h64v128a32 32 0 0 1-32 32m-320 0a32 32 0 0 1-32-32V800h64v128a32 32 0 0 1-32 32M64 512a32 32 0 0 1 32-32h128v64H96a32 32 0 0 1-32-32m0-160a32 32 0 0 1 32-32h128v64H96a32 32 0 0 1-32-32m0 320a32 32 0 0 1 32-32h128v64H96a32 32 0 0 1-32-32m896-160a32 32 0 0 1-32 32H800v-64h128a32 32 0 0 1 32 32m0-160a32 32 0 0 1-32 32H800v-64h128a32 32 0 0 1 32 32m0 320a32 32 0 0 1-32 32H800v-64h128a32 32 0 0 1 32 32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildCreditCard(): ImageVector = ImageVector.Builder(
+    name = "CreditCard", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M896 324.096c0-42.368-2.496-55.296-9.536-68.48a52.35 52.35 0 0 0-22.144-22.08c-13.12-7.04-26.048-9.536-68.416-9.536H228.096c-42.368 0-55.296 2.496-68.48 9.536a52.35 52.35 0 0 0-22.08 22.144c-7.04 13.12-9.536 26.048-9.536 68.416v375.808c0 42.368 2.496 55.296 9.536 68.48a52.35 52.35 0 0 0 22.144 22.08c13.12 7.04 26.048 9.536 68.416 9.536h567.808c42.368 0 55.296-2.496 68.48-9.536a52.35 52.35 0 0 0 22.08-22.144c7.04-13.12 9.536-26.048 9.536-68.416zm64 0v375.808c0 57.088-5.952 77.76-17.088 98.56-11.136 20.928-27.52 37.312-48.384 48.448S852.928 864 795.968 864H228.032c-57.088 0-77.76-5.952-98.56-17.088a116.3 116.3 0 0 1-48.448-48.384c-11.136-20.864-17.088-41.6-17.088-98.56V324.032c0-57.088 5.952-77.76 17.088-98.56 11.136-20.928 27.52-37.312 48.384-48.448s41.6-17.088 98.56-17.088H795.84c57.088 0 77.76 5.952 98.56 17.088 20.928 11.136 37.312 27.52 48.448 48.384s17.088 41.6 17.088 98.56z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M64 320h896v64H64zm0 128h896v64H64zm128 192h256v64H192z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDCaret(): ImageVector = ImageVector.Builder(
+    name = "DCaret", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m512 128 288 320H224zM224 576h576L512 896z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDataBoard(): ImageVector = ImageVector.Builder(
+    name = "DataBoard", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M32 128h960v64H32z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M192 192v512h640V192zm-64-64h768v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M322.176 960H248.32l144.64-250.56 55.424 32zm453.888 0h-73.856L576 741.44l55.424-32z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDeleteFilled(): ImageVector = ImageVector.Builder(
+    name = "DeleteFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64zm64 0h192v-64H416zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32m192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDeleteLocation(): ImageVector = ImageVector.Builder(
+    name = "DeleteLocation", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M288 896h448q32 0 32 32t-32 32H288q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M384 384h256q32 0 32 32t-32 32H384q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDessert(): ImageVector = ImageVector.Builder(
+    name = "Dessert", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 416v-48a144 144 0 0 1 168.64-141.888 224.128 224.128 0 0 1 430.72 0A144 144 0 0 1 896 368v48a384 384 0 0 1-352 382.72V896h-64v-97.28A384 384 0 0 1 128 416m287.104-32.064h193.792a143.81 143.81 0 0 1 58.88-132.736 160.064 160.064 0 0 0-311.552 0 143.81 143.81 0 0 1 58.88 132.8zm-72.896 0a72 72 0 1 0-140.48 0zm339.584 0h140.416a72 72 0 1 0-140.48 0zM512 736a320 320 0 0 0 318.4-288.064H193.6A320 320 0 0 0 512 736M384 896.064h256a32 32 0 1 1 0 64H384a32 32 0 1 1 0-64").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDish(): ImageVector = ImageVector.Builder(
+    name = "Dish", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M480 257.152V192h-96a32 32 0 0 1 0-64h256a32 32 0 1 1 0 64h-96v65.152A448 448 0 0 1 955.52 768H68.48A448 448 0 0 1 480 257.152M128 704h768a384 384 0 1 0-768 0M96 832h832a32 32 0 1 1 0 64H96a32 32 0 1 1 0-64").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDishDot(): ImageVector = ImageVector.Builder(
+    name = "DishDot", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m384.064 274.56.064-50.688A128 128 0 0 1 512.128 96c70.528 0 127.68 57.152 127.68 127.68v50.752A448.19 448.19 0 0 1 955.392 768H68.544A448.19 448.19 0 0 1 384 274.56zM96 832h832a32 32 0 1 1 0 64H96a32 32 0 1 1 0-64m32-128h768a384 384 0 1 0-768 0m447.808-448v-32.32a63.68 63.68 0 0 0-63.68-63.68 64 64 0 0 0-64 63.936V256z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDocumentAdd(): ImageVector = ImageVector.Builder(
+    name = "DocumentAdd", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M832 384H576V128H192v768h640zm-26.496-64L640 154.496V320zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m320 512V448h64v128h128v64H544v128h-64V640H352v-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDocumentChecked(): ImageVector = ImageVector.Builder(
+    name = "DocumentChecked", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M805.504 320 640 154.496V320zM832 384H576V128H192v768h640zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m318.4 582.144 180.992-180.992L704.64 510.4 478.4 736.64 320 578.304l45.248-45.312z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDocumentCopy(): ImageVector = ImageVector.Builder(
+    name = "DocumentCopy", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 320v576h576V320zm-32-64h640a32 32 0 0 1 32 32v640a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V288a32 32 0 0 1 32-32M960 96v704a32 32 0 0 1-32 32h-96v-64h64V128H384v64h-64V96a32 32 0 0 1 32-32h576a32 32 0 0 1 32 32M256 672h320v64H256zm0-192h320v64H256z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDocumentDelete(): ImageVector = ImageVector.Builder(
+    name = "DocumentDelete", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M805.504 320 640 154.496V320zM832 384H576V128H192v768h640zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m308.992 546.304-90.496-90.624 45.248-45.248 90.56 90.496 90.496-90.432 45.248 45.248-90.496 90.56 90.496 90.496-45.248 45.248-90.496-90.496-90.56 90.496-45.248-45.248z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDocumentRemove(): ImageVector = ImageVector.Builder(
+    name = "DocumentRemove", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M805.504 320 640 154.496V320zM832 384H576V128H192v768h640zM160 64h480l256 256v608a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m192 512h320v64H352z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildDrizzling(): ImageVector = ImageVector.Builder(
+    name = "Drizzling", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m739.328 291.328-35.2-6.592-12.8-33.408a192.064 192.064 0 0 0-365.952 23.232l-9.92 40.896-41.472 7.04a176.32 176.32 0 0 0-146.24 173.568c0 97.28 78.72 175.936 175.808 175.936h400a192 192 0 0 0 35.776-380.672M959.552 480a256 256 0 0 1-256 256h-400A239.81 239.81 0 0 1 63.744 496.192a240.32 240.32 0 0 1 199.488-236.8 256.128 256.128 0 0 1 487.872-30.976A256.064 256.064 0 0 1 959.552 480M288 800h64v64h-64zm192 0h64v64h-64zm-96 96h64v64h-64zm192 0h64v64h-64zm96-96h64v64h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildEditPen(): ImageVector = ImageVector.Builder(
+    name = "EditPen", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m199.04 672.64 193.984 112 224-387.968-193.92-112-224 388.032zm-23.872 60.16 32.896 148.288 144.896-45.696zM455.04 229.248l193.92 112 56.704-98.112-193.984-112zM104.32 708.8l384-665.024 304.768 175.936L409.152 884.8h.064l-248.448 78.336zm384 254.272v-64h448v64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildEleme(): ImageVector = ImageVector.Builder(
+    name = "Eleme", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M300.032 188.8c174.72-113.28 408-63.36 522.24 109.44 5.76 10.56 11.52 20.16 17.28 30.72v.96a22.4 22.4 0 0 1-7.68 26.88l-352.32 228.48c-9.6 6.72-22.08 3.84-28.8-5.76l-18.24-27.84a54.336 54.336 0 0 1 16.32-74.88l225.6-146.88c9.6-6.72 12.48-19.2 5.76-28.8-.96-1.92-1.92-3.84-3.84-4.8a267.84 267.84 0 0 0-315.84-17.28c-123.84 81.6-159.36 247.68-78.72 371.52a268.096 268.096 0 0 0 370.56 78.72 54.336 54.336 0 0 1 74.88 16.32l17.28 26.88c5.76 9.6 3.84 21.12-4.8 27.84-8.64 7.68-18.24 14.4-28.8 21.12a377.92 377.92 0 0 1-522.24-110.4c-113.28-174.72-63.36-408 111.36-522.24m526.08 305.28a22.336 22.336 0 0 1 28.8 5.76l23.04 35.52a63.23 63.23 0 0 1-18.24 87.36l-35.52 23.04c-9.6 6.72-22.08 3.84-28.8-5.76l-46.08-71.04c-6.72-9.6-3.84-22.08 5.76-28.8z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildElemeFilled(): ImageVector = ImageVector.Builder(
+    name = "ElemeFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M176 64h672c61.824 0 112 50.176 112 112v672a112 112 0 0 1-112 112H176A112 112 0 0 1 64 848V176c0-61.824 50.176-112 112-112m150.528 173.568c-152.896 99.968-196.544 304.064-97.408 456.96a330.69 330.69 0 0 0 456.96 96.64c9.216-5.888 17.6-11.776 25.152-18.56a18.24 18.24 0 0 0 4.224-24.32L700.352 724.8a47.55 47.55 0 0 0-65.536-14.272A234.56 234.56 0 0 1 310.592 641.6C240 533.248 271.104 387.968 379.456 316.48a234.3 234.3 0 0 1 276.352 15.168c1.664.832 2.56 2.56 3.392 4.224 5.888 8.384 3.328 19.328-5.12 25.216L456.832 489.6a47.55 47.55 0 0 0-14.336 65.472l16 24.384c5.888 8.384 16.768 10.88 25.216 5.056l308.224-199.936a19.584 19.584 0 0 0 6.72-23.488v-.896c-4.992-9.216-10.048-17.6-15.104-26.88-99.968-151.168-304.064-194.88-456.96-95.744zM786.88 504.704l-62.208 40.32c-8.32 5.888-10.88 16.768-4.992 25.216L760 632.32c5.888 8.448 16.768 11.008 25.152 5.12l31.104-20.16a55.36 55.36 0 0 0 16-76.48l-20.224-31.04a19.52 19.52 0 0 0-25.152-5.12z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildElementPlus(): ImageVector = ImageVector.Builder(
+    name = "ElementPlus", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M839.7 734.7c0 33.3-17.9 41-17.9 41S519.7 949.8 499.2 960c-10.2 5.1-20.5 5.1-30.7 0 0 0-314.9-184.3-325.1-192-5.1-5.1-10.2-12.8-12.8-20.5V368.6c0-17.9 20.5-28.2 20.5-28.2L466 158.6q19.2-7.65 38.4 0s279 161.3 309.8 179.2c17.9 7.7 28.2 25.6 25.6 46.1-.1-5-.1 317.5-.1 350.8M714.2 371.2c-64-35.8-217.6-125.4-217.6-125.4-7.7-5.1-20.5-5.1-30.7 0L217.6 389.1s-17.9 10.2-17.9 23v297c0 5.1 5.1 12.8 7.7 17.9 7.7 5.1 256 148.5 256 148.5 7.7 5.1 17.9 5.1 25.6 0 15.4-7.7 250.9-145.9 250.9-145.9s12.8-5.1 12.8-30.7v-74.2l-276.5 169v-64c0-17.9 7.7-30.7 20.5-46.1L745 535c5.1-7.7 10.2-20.5 10.2-30.7v-66.6l-279 169v-69.1c0-15.4 5.1-30.7 17.9-38.4zM919 135.7c0-5.1-5.1-7.7-7.7-7.7h-58.9V66.6c0-5.1-5.1-5.1-10.2-5.1l-30.7 5.1c-5.1 0-5.1 2.6-5.1 5.1V128h-56.3c-5.1 0-5.1 5.1-7.7 5.1v38.4h69.1v64c0 5.1 5.1 5.1 10.2 5.1l30.7-5.1c5.1 0 5.1-2.6 5.1-5.1v-56.3h64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildExpand(): ImageVector = ImageVector.Builder(
+    name = "Expand", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 192h768v128H128zm0 256h512v128H128zm0 256h768v128H128zm576-352 192 160-192 128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFailed(): ImageVector = ImageVector.Builder(
+    name = "Failed", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m557.248 608 135.744-135.744-45.248-45.248-135.68 135.744-135.808-135.68-45.248 45.184L466.752 608l-135.68 135.68 45.184 45.312L512 653.248l135.744 135.744 45.248-45.248L557.312 608zM704 192h160v736H160V192h160v64h384zm-320 0V96h256v96z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFemale(): ImageVector = ImageVector.Builder(
+    name = "Female", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 640a256 256 0 1 0 0-512 256 256 0 0 0 0 512m0 64a320 320 0 1 1 0-640 320 320 0 0 1 0 640").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 640q32 0 32 32v256q0 32-32 32t-32-32V672q0-32 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M352 800h320q32 0 32 32t-32 32H352q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFiles(): ImageVector = ImageVector.Builder(
+    name = "Files", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 384v448h768V384zm-32-64h832a32 32 0 0 1 32 32v512a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V352a32 32 0 0 1 32-32m64-128h704v64H160zm96-128h512v64H256z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFirstAidKit(): ImageVector = ImageVector.Builder(
+    name = "FirstAidKit", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 256a64 64 0 0 0-64 64v448a64 64 0 0 0 64 64h640a64 64 0 0 0 64-64V320a64 64 0 0 0-64-64zm0-64h640a128 128 0 0 1 128 128v448a128 128 0 0 1-128 128H192A128 128 0 0 1 64 768V320a128 128 0 0 1 128-128").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M544 512h96a32 32 0 0 1 0 64h-96v96a32 32 0 0 1-64 0v-96h-96a32 32 0 0 1 0-64h96v-96a32 32 0 0 1 64 0zM352 128v64h320v-64zm-32-64h384a32 32 0 0 1 32 32v128a32 32 0 0 1-32 32H320a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFold(): ImageVector = ImageVector.Builder(
+    name = "Fold", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M896 192H128v128h768zm0 256H384v128h512zm0 256H128v128h768zM320 384 128 512l192 128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFolderAdd(): ImageVector = ImageVector.Builder(
+    name = "FolderAdd", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 192v640h768V320H485.76L357.504 192zm-32-64h287.872l128.384 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32m384 416V416h64v128h128v64H544v128h-64V608H352v-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFolderChecked(): ImageVector = ImageVector.Builder(
+    name = "FolderChecked", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 192v640h768V320H485.76L357.504 192zm-32-64h287.872l128.384 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32m414.08 502.144 180.992-180.992L736.32 494.4 510.08 720.64l-158.4-158.336 45.248-45.312z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFolderDelete(): ImageVector = ImageVector.Builder(
+    name = "FolderDelete", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 192v640h768V320H485.76L357.504 192zm-32-64h287.872l128.384 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32m370.752 448-90.496-90.496 45.248-45.248L512 530.752l90.496-90.496 45.248 45.248L557.248 576l90.496 90.496-45.248 45.248L512 621.248l-90.496 90.496-45.248-45.248z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFolderOpened(): ImageVector = ImageVector.Builder(
+    name = "FolderOpened", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M878.08 448H241.92l-96 384h636.16zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFolderRemove(): ImageVector = ImageVector.Builder(
+    name = "FolderRemove", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 192v640h768V320H485.76L357.504 192zm-32-64h287.872l128.384 128H928a32 32 0 0 1 32 32v576a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32m256 416h320v64H352z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFood(): ImageVector = ImageVector.Builder(
+    name = "Food", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 352.576V352a288 288 0 0 1 491.072-204.224 192 192 0 0 1 274.24 204.48 64 64 0 0 1 57.216 74.24C921.6 600.512 850.048 710.656 736 756.992V800a96 96 0 0 1-96 96H384a96 96 0 0 1-96-96v-43.008c-114.048-46.336-185.6-156.48-214.528-330.496A64 64 0 0 1 128 352.64zm64-.576h64a160 160 0 0 1 320 0h64a224 224 0 0 0-448 0m128 0h192a96 96 0 0 0-192 0m439.424 0h68.544A128.256 128.256 0 0 0 704 192c-15.36 0-29.952 2.688-43.52 7.616 11.328 18.176 20.672 37.76 27.84 58.304A64.128 64.128 0 0 1 759.424 352M672 768H352v32a32 32 0 0 0 32 32h256a32 32 0 0 0 32-32zm-342.528-64h365.056c101.504-32.64 165.76-124.928 192.896-288H136.576c27.136 163.072 91.392 255.36 192.896 288").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFootball(): ImageVector = ImageVector.Builder(
+    name = "Football", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 960a448 448 0 1 1 0-896 448 448 0 0 1 0 896m0-64a384 384 0 1 0 0-768 384 384 0 0 0 0 768").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M186.816 268.288c16-16.384 31.616-31.744 46.976-46.08 17.472 30.656 39.808 58.112 65.984 81.28l-32.512 56.448a386 386 0 0 1-80.448-91.648m653.696-5.312a385.9 385.9 0 0 1-83.776 96.96l-32.512-56.384a322.9 322.9 0 0 0 68.48-85.76c15.552 14.08 31.488 29.12 47.808 45.184M465.984 445.248l11.136-63.104a323.6 323.6 0 0 0 69.76 0l11.136 63.104a388 388 0 0 1-92.032 0m-62.72-12.8A381.8 381.8 0 0 1 320 396.544l32-55.424a320 320 0 0 0 62.464 27.712l-11.2 63.488zm300.8-35.84a381.8 381.8 0 0 1-83.328 35.84l-11.2-63.552A320 320 0 0 0 672 341.184l32 55.424zm-520.768 364.8a385.9 385.9 0 0 1 83.968-97.28l32.512 56.32c-26.88 23.936-49.856 52.352-67.52 84.032-16-13.44-32.32-27.712-48.96-43.072m657.536.128a1443 1443 0 0 1-49.024 43.072 321.4 321.4 0 0 0-67.584-84.16l32.512-56.32c33.216 27.456 61.696 60.352 84.096 97.408M465.92 578.752a388 388 0 0 1 92.032 0l-11.136 63.104a323.6 323.6 0 0 0-69.76 0zm-62.72 12.8 11.2 63.552a320 320 0 0 0-62.464 27.712L320 627.392a381.8 381.8 0 0 1 83.264-35.84zm300.8 35.84-32 55.424a318.3 318.3 0 0 0-62.528-27.712l11.2-63.488c29.44 8.64 57.28 20.736 83.264 35.776z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildForkSpoon(): ImageVector = ImageVector.Builder(
+    name = "ForkSpoon", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 410.304V96a32 32 0 0 1 64 0v314.304a96 96 0 0 0 64-90.56V96a32 32 0 0 1 64 0v223.744a160 160 0 0 1-128 156.8V928a32 32 0 1 1-64 0V476.544a160 160 0 0 1-128-156.8V96a32 32 0 0 1 64 0v223.744a96 96 0 0 0 64 90.56M672 572.48C581.184 552.128 512 446.848 512 320c0-141.44 85.952-256 192-256s192 114.56 192 256c0 126.848-69.184 232.128-160 252.48V928a32 32 0 1 1-64 0zM704 512c66.048 0 128-82.56 128-192s-61.952-192-128-192-128 82.56-128 192 61.952 192 128 192").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildFries(): ImageVector = ImageVector.Builder(
+    name = "Fries", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M608 224v-64a32 32 0 0 0-64 0v336h26.88A64 64 0 0 0 608 484.096zm101.12 160A64 64 0 0 0 672 395.904V384h64V224a32 32 0 1 0-64 0v160zm74.88 0a92.928 92.928 0 0 1 91.328 110.08l-60.672 323.584A96 96 0 0 1 720.32 896H303.68a96 96 0 0 1-94.336-78.336L148.672 494.08A92.928 92.928 0 0 1 240 384h-16V224a96 96 0 0 1 188.608-25.28A95.74 95.74 0 0 1 480 197.44V160a96 96 0 0 1 188.608-25.28A96 96 0 0 1 800 224v160zM670.784 512a128 128 0 0 1-99.904 48H453.12a128 128 0 0 1-99.84-48H352v-1.536a128 128 0 0 1-9.984-14.976L314.88 448H240a28.928 28.928 0 0 0-28.48 34.304L241.088 640h541.824l29.568-157.696A28.928 28.928 0 0 0 784 448h-74.88l-27.136 47.488A132 132 0 0 1 672 510.464V512zM480 288a32 32 0 0 0-64 0v196.096A64 64 0 0 0 453.12 496H480zm-128 96V224a32 32 0 0 0-64 0v160zh-37.12A64 64 0 0 1 352 395.904zm-98.88 320 19.072 101.888A32 32 0 0 0 303.68 832h416.64a32 32 0 0 0 31.488-26.112L770.88 704z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGoblet(): ImageVector = ImageVector.Builder(
+    name = "Goblet", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M544 638.4V896h96a32 32 0 1 1 0 64H384a32 32 0 1 1 0-64h96V638.4A320 320 0 0 1 192 320c0-85.632 21.312-170.944 64-256h512c42.688 64.32 64 149.632 64 256a320 320 0 0 1-288 318.4M256 320a256 256 0 1 0 512 0c0-78.592-12.608-142.4-36.928-192h-434.24C269.504 192.384 256 256.256 256 320").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGobletFull(): ImageVector = ImageVector.Builder(
+    name = "GobletFull", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 320h512c0-78.592-12.608-142.4-36.928-192h-434.24C269.504 192.384 256 256.256 256 320m503.936 64H264.064a256.128 256.128 0 0 0 495.872 0M544 638.4V896h96a32 32 0 1 1 0 64H384a32 32 0 1 1 0-64h96V638.4A320 320 0 0 1 192 320c0-85.632 21.312-170.944 64-256h512c42.688 64.32 64 149.632 64 256a320 320 0 0 1-288 318.4").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGobletSquare(): ImageVector = ImageVector.Builder(
+    name = "GobletSquare", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M544 638.912V896h96a32 32 0 1 1 0 64H384a32 32 0 1 1 0-64h96V638.848C250.624 623.424 192 442.496 192 319.68V96a32 32 0 0 1 32-32h576a32 32 0 0 1 32 32v224c0 122.816-58.624 303.68-288 318.912M256 319.68c0 149.568 80 256.192 256 256.256C688.128 576 768 469.568 768 320V128H256z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGobletSquareFull(): ImageVector = ImageVector.Builder(
+    name = "GobletSquareFull", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 270.912c10.048 6.72 22.464 14.912 28.992 18.624a220.16 220.16 0 0 0 114.752 30.72c30.592 0 49.408-9.472 91.072-41.152l.64-.448c52.928-40.32 82.368-55.04 132.288-54.656 55.552.448 99.584 20.8 142.72 57.408l1.536 1.28V128H256zm.96 76.288C266.368 482.176 346.88 575.872 512 576c157.44.064 237.952-85.056 253.248-209.984a952 952 0 0 1-40.192-35.712c-32.704-27.776-63.36-41.92-101.888-42.24-31.552-.256-50.624 9.28-93.12 41.6l-.576.448c-52.096 39.616-81.024 54.208-129.792 54.208-54.784 0-100.48-13.376-142.784-37.056zM480 638.848C250.624 623.424 192 442.496 192 319.68V96a32 32 0 0 1 32-32h576a32 32 0 0 1 32 32v224c0 122.816-58.624 303.68-288 318.912V896h96a32 32 0 1 1 0 64H384a32 32 0 1 1 0-64h96z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGoldMedal(): ImageVector = ImageVector.Builder(
+    name = "GoldMedal", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m772.13 452.84 53.86-351.81c1.32-10.01-1.17-18.68-7.49-26.02S804.35 64 795.01 64H228.99v-.01h-.06c-9.33 0-17.15 3.67-23.49 11.01s-8.83 16.01-7.49 26.02l53.87 351.89C213.54 505.73 193.59 568.09 192 640c2 90.67 33.17 166.17 93.5 226.5S421.33 957.99 512 960c90.67-2 166.17-33.17 226.5-93.5 60.33-60.34 91.49-135.83 93.5-226.5-1.59-71.94-21.56-134.32-59.87-187.16M640.01 128h117.02l-39.01 254.02c-20.75-10.64-40.74-19.73-59.94-27.28-5.92-3-11.95-5.8-18.08-8.41V128zM576 128v198.76c-13.18-2.58-26.74-4.43-40.67-5.55-8.07-.8-15.85-1.2-23.33-1.2-10.54 0-21.09.66-31.64 1.96a360 360 0 0 0-32.36 4.79V128zm-192 0h.04v218.3c-6.22 2.66-12.34 5.5-18.36 8.56-19.13 7.54-39.02 16.6-59.66 27.16L267.01 128zm308.99 692.99c-48 48-108.33 73-180.99 75.01-72.66-2.01-132.99-27.01-180.99-75.01S258.01 712.66 256 640c2.01-72.66 27.01-132.99 75.01-180.99 19.67-19.67 41.41-35.47 65.22-47.41 38.33-15.04 71.15-23.92 98.44-26.65 5.07-.41 10.2-.7 15.39-.88.63-.01 1.28-.03 1.91-.03.66 0 1.35.03 2.02.04 5.11.17 10.15.46 15.13.86 27.4 2.71 60.37 11.65 98.91 26.79 23.71 11.93 45.36 27.69 64.96 47.29 48 48 73 108.33 75.01 180.99-2.01 72.65-27.01 132.98-75.01 180.98").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M544 480H416v64h64v192h-64v64h192v-64h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGoodsFilled(): ImageVector = ImageVector.Builder(
+    name = "GoodsFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 352h640l64 544H128zm128 224h64V448h-64zm320 0h64V448h-64zM384 288h-64a192 192 0 1 1 384 0h-64a128 128 0 1 0-256 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGrape(): ImageVector = ImageVector.Builder(
+    name = "Grape", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M544 195.2a160 160 0 0 1 96 60.8 160 160 0 1 1 146.24 254.976 160 160 0 0 1-128 224 160 160 0 1 1-292.48 0 160 160 0 0 1-128-224A160 160 0 1 1 384 256a160 160 0 0 1 96-60.8V128h-64a32 32 0 0 1 0-64h192a32 32 0 0 1 0 64h-64zM512 448a96 96 0 1 0 0-192 96 96 0 0 0 0 192m-256 0a96 96 0 1 0 0-192 96 96 0 0 0 0 192m128 224a96 96 0 1 0 0-192 96 96 0 0 0 0 192m128 224a96 96 0 1 0 0-192 96 96 0 0 0 0 192m128-224a96 96 0 1 0 0-192 96 96 0 0 0 0 192m128-224a96 96 0 1 0 0-192 96 96 0 0 0 0 192").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildGuide(): ImageVector = ImageVector.Builder(
+    name = "Guide", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M640 608h-64V416h64zm0 160v160a32 32 0 0 1-32 32H416a32 32 0 0 1-32-32V768h64v128h128V768zM384 608V416h64v192zm256-352h-64V128H448v128h-64V96a32 32 0 0 1 32-32h192a32 32 0 0 1 32 32z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("m220.8 256-71.232 80 71.168 80H768V256zm-14.4-64H800a32 32 0 0 1 32 32v224a32 32 0 0 1-32 32H206.4a32 32 0 0 1-23.936-10.752l-99.584-112a32 32 0 0 1 0-42.496l99.584-112A32 32 0 0 1 206.4 192m678.784 496-71.104 80H266.816V608h547.2zm-56.768-144H234.88a32 32 0 0 0-32 32v224a32 32 0 0 0 32 32h593.6a32 32 0 0 0 23.936-10.752l99.584-112a32 32 0 0 0 0-42.496l-99.584-112A32 32 0 0 0 828.48 544z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildHandbag(): ImageVector = ImageVector.Builder(
+    name = "Handbag", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M887.01 264.99c-6-5.99-13.67-8.99-23.01-8.99H704c-1.34-54.68-20.01-100.01-56-136s-81.32-54.66-136-56c-54.68 1.34-100.01 20.01-136 56s-54.66 81.32-56 136H160c-9.35 0-17.02 3-23.01 8.99-5.99 6-8.99 13.67-8.99 23.01v640c0 9.35 2.99 17.02 8.99 23.01S150.66 960 160 960h704c9.35 0 17.02-2.99 23.01-8.99S896 937.34 896 928V288c0-9.35-2.99-17.02-8.99-23.01M421.5 165.5c24.32-24.34 54.49-36.84 90.5-37.5 35.99.68 66.16 13.18 90.5 37.5s36.84 54.49 37.5 90.5H384c.68-35.99 13.18-66.16 37.5-90.5M832 896H192V320h128v128h64V320h256v128h64V320h128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildHelp(): ImageVector = ImageVector.Builder(
+    name = "Help", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m759.936 805.248-90.944-91.008A254.9 254.9 0 0 1 512 768a254.9 254.9 0 0 1-156.992-53.76l-90.944 91.008A382.46 382.46 0 0 0 512 896c94.528 0 181.12-34.176 247.936-90.752m45.312-45.312A382.46 382.46 0 0 0 896 512c0-94.528-34.176-181.12-90.752-247.936l-91.008 90.944C747.904 398.4 768 452.864 768 512s-20.096 113.6-53.76 156.992zm-45.312-541.184A382.46 382.46 0 0 0 512 128c-94.528 0-181.12 34.176-247.936 90.752l90.944 91.008A254.9 254.9 0 0 1 512 256c59.136 0 113.6 20.096 156.992 53.76zm-541.184 45.312A382.46 382.46 0 0 0 128 512c0 94.528 34.176 181.12 90.752 247.936l91.008-90.944A254.9 254.9 0 0 1 256 512c0-59.136 20.096-113.6 53.76-156.992zm417.28 394.496a194.6 194.6 0 0 0 22.528-22.528C686.912 602.56 704 559.232 704 512a191.23 191.23 0 0 0-67.968-146.56A191.3 191.3 0 0 0 512 320a191.23 191.23 0 0 0-146.56 67.968C337.088 421.44 320 464.768 320 512a191.23 191.23 0 0 0 67.968 146.56C421.44 686.912 464.768 704 512 704c47.296 0 90.56-17.088 124.032-45.44M512 960a448 448 0 1 1 0-896 448 448 0 0 1 0 896").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildHelpFilled(): ImageVector = ImageVector.Builder(
+    name = "HelpFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M926.784 480H701.312A192.51 192.51 0 0 0 544 322.688V97.216A416.064 416.064 0 0 1 926.784 480m0 64A416.064 416.064 0 0 1 544 926.784V701.312A192.51 192.51 0 0 0 701.312 544zM97.28 544h225.472A192.51 192.51 0 0 0 480 701.312v225.472A416.064 416.064 0 0 1 97.216 544zm0-64A416.064 416.064 0 0 1 480 97.216v225.472A192.51 192.51 0 0 0 322.688 480H97.216z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildHotWater(): ImageVector = ImageVector.Builder(
+    name = "HotWater", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M273.067 477.867h477.866V409.6H273.067zm0 68.266v51.2A187.733 187.733 0 0 0 460.8 785.067h102.4a187.733 187.733 0 0 0 187.733-187.734v-51.2zm-34.134-204.8h546.134a34.133 34.133 0 0 1 34.133 34.134v221.866a256 256 0 0 1-256 256H460.8a256 256 0 0 1-256-256V375.467a34.133 34.133 0 0 1 34.133-34.134M512 34.133a34.133 34.133 0 0 1 34.133 34.134v170.666a34.133 34.133 0 0 1-68.266 0V68.267A34.133 34.133 0 0 1 512 34.133M375.467 102.4a34.133 34.133 0 0 1 34.133 34.133v102.4a34.133 34.133 0 0 1-68.267 0v-102.4a34.133 34.133 0 0 1 34.134-34.133m273.066 0a34.133 34.133 0 0 1 34.134 34.133v102.4a34.133 34.133 0 1 1-68.267 0v-102.4a34.133 34.133 0 0 1 34.133-34.133M170.667 921.668h682.666a34.133 34.133 0 1 1 0 68.267H170.667a34.133 34.133 0 1 1 0-68.267").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildHouse(): ImageVector = ImageVector.Builder(
+    name = "House", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 413.952V896h640V413.952L512 147.328zM139.52 374.4l352-293.312a32 32 0 0 1 40.96 0l352 293.312A32 32 0 0 1 896 398.976V928a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V398.976a32 32 0 0 1 11.52-24.576").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildIceCream(): ImageVector = ImageVector.Builder(
+    name = "IceCream", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128.64 448a208 208 0 0 1 193.536-191.552 224 224 0 0 1 445.248 15.488A208.13 208.13 0 0 1 894.784 448H896L548.8 983.68a32 32 0 0 1-53.248.704L128 448zm64.256 0h286.208a144 144 0 0 0-286.208 0m351.36 0h286.272a144 144 0 0 0-286.272 0m-294.848 64 271.808 396.608L778.24 512zM511.68 352.64a207.87 207.87 0 0 1 189.184-96.192 160 160 0 0 0-314.752 5.632c52.608 12.992 97.28 46.08 125.568 90.56").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildIceCreamRound(): ImageVector = ImageVector.Builder(
+    name = "IceCreamRound", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m308.352 489.344 226.304 226.304a32 32 0 0 0 45.248 0L783.552 512A192 192 0 1 0 512 240.448L308.352 444.16a32 32 0 0 0 0 45.248zm135.744 226.304L308.352 851.392a96 96 0 0 1-135.744-135.744l135.744-135.744-45.248-45.248a96 96 0 0 1 0-135.808L466.752 195.2A256 256 0 0 1 828.8 557.248L625.152 760.96a96 96 0 0 1-135.808 0l-45.248-45.248zM398.848 670.4 353.6 625.152 217.856 760.896a32 32 0 0 0 45.248 45.248zm248.96-384.64a32 32 0 0 1 0 45.248L466.624 512a32 32 0 1 1-45.184-45.248l180.992-181.056a32 32 0 0 1 45.248 0zm90.496 90.496a32 32 0 0 1 0 45.248L557.248 602.496A32 32 0 1 1 512 557.248l180.992-180.992a32 32 0 0 1 45.312 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildIceCreamSquare(): ImageVector = ImageVector.Builder(
+    name = "IceCreamSquare", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M416 640h256a32 32 0 0 0 32-32V160a32 32 0 0 0-32-32H352a32 32 0 0 0-32 32v448a32 32 0 0 0 32 32zm192 64v160a96 96 0 0 1-192 0V704h-64a96 96 0 0 1-96-96V160a96 96 0 0 1 96-96h320a96 96 0 0 1 96 96v448a96 96 0 0 1-96 96zm-64 0h-64v160a32 32 0 1 0 64 0z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildIceDrink(): ImageVector = ImageVector.Builder(
+    name = "IceDrink", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 448v128h239.68l16.064-128zm-64 0H256.256l16.064 128H448zm64-255.36V384h247.744A256.13 256.13 0 0 0 512 192.64m-64 8.064A256.45 256.45 0 0 0 264.256 384H448zm64-72.064A320.13 320.13 0 0 1 825.472 384H896a32 32 0 1 1 0 64h-64v1.92l-56.96 454.016A64 64 0 0 1 711.552 960H312.448a64 64 0 0 1-63.488-56.064L192 449.92V448h-64a32 32 0 0 1 0-64h70.528A320.38 320.38 0 0 1 448 135.04V96a96 96 0 0 1 96-96h128a32 32 0 1 1 0 64H544a32 32 0 0 0-32 32zM743.68 640H280.32l32.128 256h399.104z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildIceTea(): ImageVector = ImageVector.Builder(
+    name = "IceTea", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M197.696 259.648a320.128 320.128 0 0 1 628.608 0A96 96 0 0 1 896 352v64a96 96 0 0 1-71.616 92.864l-49.408 395.072A64 64 0 0 1 711.488 960H312.512a64 64 0 0 1-63.488-56.064l-49.408-395.072A96 96 0 0 1 128 416v-64a96 96 0 0 1 69.696-92.352M264.064 256h495.872a256.128 256.128 0 0 0-495.872 0m495.424 256H264.512l48 384h398.976zM224 448h576a32 32 0 0 0 32-32v-64a32 32 0 0 0-32-32H224a32 32 0 0 0-32 32v64a32 32 0 0 0 32 32m160 192h64v64h-64zm192 64h64v64h-64zm-128 64h64v64h-64zm64-192h64v64h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildKey(): ImageVector = ImageVector.Builder(
+    name = "Key", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M448 456.064V96a32 32 0 0 1 32-32.064L672 64a32 32 0 0 1 0 64H512v128h160a32 32 0 0 1 0 64H512v128a256 256 0 1 1-64 8.064M512 896a192 192 0 1 0 0-384 192 192 0 0 0 0 384").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildKnifeFork(): ImageVector = ImageVector.Builder(
+    name = "KnifeFork", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 410.56V96a32 32 0 0 1 64 0v314.56A96 96 0 0 0 384 320V96a32 32 0 0 1 64 0v224a160 160 0 0 1-128 156.8V928a32 32 0 1 1-64 0V476.8A160 160 0 0 1 128 320V96a32 32 0 0 1 64 0v224a96 96 0 0 0 64 90.56m384-250.24V544h126.72c-3.328-78.72-12.928-147.968-28.608-207.744-14.336-54.528-46.848-113.344-98.112-175.872zM640 608v320a32 32 0 1 1-64 0V64h64c85.312 89.472 138.688 174.848 160 256s32 177.152 32 288z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildLocationFilled(): ImageVector = ImageVector.Builder(
+    name = "LocationFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 928c23.936 0 117.504-68.352 192.064-153.152C803.456 661.888 864 535.808 864 416c0-189.632-155.84-320-352-320S160 226.368 160 416c0 120.32 60.544 246.4 159.936 359.232C394.432 859.84 488 928 512 928m0-435.2a64 64 0 1 0 0-128 64 64 0 0 0 0 128m0 140.8a204.8 204.8 0 1 1 0-409.6 204.8 204.8 0 0 1 0 409.6").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildLocationInformation(): ImageVector = ImageVector.Builder(
+    name = "LocationInformation", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M288 896h448q32 0 32 32t-32 32H288q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 512a96 96 0 1 0 0-192 96 96 0 0 0 0 192m0 64a160 160 0 1 1 0-320 160 160 0 0 1 0 320").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildLollipop(): ImageVector = ImageVector.Builder(
+    name = "Lollipop", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M513.28 448a64 64 0 1 1 76.544 49.728A96 96 0 0 0 768 448h64a160 160 0 0 1-320 0zm-126.976-29.696a256 256 0 1 0 43.52-180.48A256 256 0 0 1 832 448h-64a192 192 0 0 0-381.696-29.696m105.664 249.472L285.696 874.048a96 96 0 0 1-135.68-135.744l206.208-206.272a320 320 0 1 1 135.744 135.744m-54.464-36.032a322 322 0 0 1-45.248-45.248L195.2 783.552a32 32 0 1 0 45.248 45.248l197.056-197.12z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMagnet(): ImageVector = ImageVector.Builder(
+    name = "Magnet", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M832 320V192H704v320a192 192 0 1 1-384 0V192H192v128h128v64H192v128a320 320 0 0 0 640 0V384H704v-64zM640 512V128h256v384a384 384 0 1 1-768 0V128h256v384a128 128 0 1 0 256 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMale(): ImageVector = ImageVector.Builder(
+    name = "Male", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M399.5 849.5a225 225 0 1 0 0-450 225 225 0 0 0 0 450m0 56.25a281.25 281.25 0 1 1 0-562.5 281.25 281.25 0 0 1 0 562.5m253.125-787.5h225q28.125 0 28.125 28.125T877.625 174.5h-225q-28.125 0-28.125-28.125t28.125-28.125").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M877.625 118.25q28.125 0 28.125 28.125v225q0 28.125-28.125 28.125T849.5 371.375v-225q0-28.125 28.125-28.125").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M604.813 458.9 565.1 419.131l292.613-292.668 39.825 39.824z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildManagement(): ImageVector = ImageVector.Builder(
+    name = "Management", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M576 128v288l96-96 96 96V128h128v768H320V128zm-448 0h128v768H128z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMapLocation(): ImageVector = ImageVector.Builder(
+    name = "MapLocation", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M800 416a288 288 0 1 0-576 0c0 118.144 94.528 272.128 288 456.576C705.472 688.128 800 534.144 800 416M512 960C277.312 746.688 160 565.312 160 416a352 352 0 0 1 704 0c0 149.312-117.312 330.688-352 544").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 448a64 64 0 1 0 0-128 64 64 0 0 0 0 128m0 64a128 128 0 1 1 0-256 128 128 0 0 1 0 256m345.6 192L960 960H672v-64H352v64H64l102.4-256zm-68.928 0H235.328l-76.8 192h706.944z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMemo(): ImageVector = ImageVector.Builder(
+    name = "Memo", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M480 320h192c21.33 0 32-10.67 32-32s-10.67-32-32-32H480c-21.33 0-32 10.67-32 32s10.67 32 32 32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M887.01 72.99C881.01 67 873.34 64 864 64H160c-9.35 0-17.02 3-23.01 8.99C131 78.99 128 86.66 128 96v832c0 9.35 2.99 17.02 8.99 23.01S150.66 960 160 960h704c9.35 0 17.02-2.99 23.01-8.99S896 937.34 896 928V96c0-9.35-3-17.02-8.99-23.01M192 896V128h96v768zm640 0H352V128h480z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M480 512h192c21.33 0 32-10.67 32-32s-10.67-32-32-32H480c-21.33 0-32 10.67-32 32s10.67 32 32 32m0 192h192c21.33 0 32-10.67 32-32s-10.67-32-32-32H480c-21.33 0-32 10.67-32 32s10.67 32 32 32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMessageBox(): ImageVector = ImageVector.Builder(
+    name = "MessageBox", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M288 384h448v64H288zm96-128h256v64H384zM131.456 512H384v128h256V512h252.544L721.856 192H302.144zM896 576H704v128H320V576H128v256h768zM275.776 128h472.448a32 32 0 0 1 28.608 17.664l179.84 359.552A32 32 0 0 1 960 519.552V864a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V519.552a32 32 0 0 1 3.392-14.336l179.776-359.552A32 32 0 0 1 275.776 128").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMicrophone(): ImageVector = ImageVector.Builder(
+    name = "Microphone", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 128a128 128 0 0 0-128 128v256a128 128 0 1 0 256 0V256a128 128 0 0 0-128-128m0-64a192 192 0 0 1 192 192v256a192 192 0 1 1-384 0V256A192 192 0 0 1 512 64m-32 832v-64a288 288 0 0 1-288-288v-32a32 32 0 0 1 64 0v32a224 224 0 0 0 224 224h64a224 224 0 0 0 224-224v-32a32 32 0 1 1 64 0v32a288 288 0 0 1-288 288v64h64a32 32 0 1 1 0 64H416a32 32 0 1 1 0-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMilkTea(): ImageVector = ImageVector.Builder(
+    name = "MilkTea", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M416 128V96a96 96 0 0 1 96-96h128a32 32 0 1 1 0 64H512a32 32 0 0 0-32 32v32h320a96 96 0 0 1 11.712 191.296l-39.68 581.056A64 64 0 0 1 708.224 960H315.776a64 64 0 0 1-63.872-59.648l-39.616-581.056A96 96 0 0 1 224 128zM276.48 320l39.296 576h392.448l4.8-70.784a224.064 224.064 0 0 1 30.016-439.808L747.52 320zM224 256h576a32 32 0 1 0 0-64H224a32 32 0 0 0 0 64m493.44 503.872 21.12-309.12a160 160 0 0 0-21.12 309.12").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMoonNight(): ImageVector = ImageVector.Builder(
+    name = "MoonNight", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M384 512a448 448 0 0 1 215.872-383.296A384 384 0 0 0 213.76 640h188.8A448.3 448.3 0 0 1 384 512M171.136 704a448 448 0 0 1 636.992-575.296A384 384 0 0 0 499.328 704h-328.32z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M32 640h960q32 0 32 32t-32 32H32q-32 0-32-32t32-32m128 128h384a32 32 0 1 1 0 64H160a32 32 0 1 1 0-64m160 127.68 224 .256a32 32 0 0 1 32 32V928a32 32 0 0 1-32 32l-224-.384a32 32 0 0 1-32-32v-.064a32 32 0 0 1 32-32z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMostlyCloudy(): ImageVector = ImageVector.Builder(
+    name = "MostlyCloudy", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M737.216 357.952 704 349.824l-11.776-32a192.064 192.064 0 0 0-367.424 23.04l-8.96 39.04-39.04 8.96A192.064 192.064 0 0 0 320 768h368a207.81 207.81 0 0 0 207.808-208 208.32 208.32 0 0 0-158.592-202.048m15.168-62.208A272.32 272.32 0 0 1 959.744 560a271.81 271.81 0 0 1-271.552 272H320a256 256 0 0 1-57.536-505.536 256.128 256.128 0 0 1 489.92-30.72").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMouse(): ImageVector = ImageVector.Builder(
+    name = "Mouse", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M438.144 256c-68.352 0-92.736 4.672-117.76 18.112q-30.144 16.128-46.272 46.272C260.672 345.408 256 369.792 256 438.144v275.712c0 68.352 4.672 92.736 18.112 117.76q16.128 30.144 46.272 46.272C345.408 891.328 369.792 896 438.144 896h147.712c68.352 0 92.736-4.672 117.76-18.112q30.144-16.128 46.272-46.272C763.328 806.592 768 782.208 768 713.856V438.144c0-68.352-4.672-92.736-18.112-117.76a110.46 110.46 0 0 0-46.272-46.272C678.592 260.672 654.208 256 585.856 256zm0-64h147.712c85.568 0 116.608 8.96 147.904 25.6 31.36 16.768 55.872 41.344 72.576 72.64C823.104 321.536 832 352.576 832 438.08v275.84c0 85.504-8.96 116.544-25.6 147.84a174.46 174.46 0 0 1-72.64 72.576C702.464 951.104 671.424 960 585.92 960H438.08c-85.504 0-116.544-8.96-147.84-25.6a174.46 174.46 0 0 1-72.64-72.704c-16.768-31.296-25.664-62.336-25.664-147.84v-275.84c0-85.504 8.96-116.544 25.6-147.84a174.46 174.46 0 0 1 72.768-72.576c31.232-16.704 62.272-25.6 147.776-25.6z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 320q32 0 32 32v128q0 32-32 32t-32-32V352q0-32 32-32m32-96a32 32 0 0 1-64 0v-64a32 32 0 0 0-32-32h-96a32 32 0 0 1 0-64h96a96 96 0 0 1 96 96z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMug(): ImageVector = ImageVector.Builder(
+    name = "Mug", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M736 800V160H160v640a64 64 0 0 0 64 64h448a64 64 0 0 0 64-64m64-544h63.552a96 96 0 0 1 96 96v224a96 96 0 0 1-96 96H800v128a128 128 0 0 1-128 128H224A128 128 0 0 1 96 800V128a32 32 0 0 1 32-32h640a32 32 0 0 1 32 32zm0 64v288h63.552a32 32 0 0 0 32-32V352a32 32 0 0 0-32-32z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildMuteNotification(): ImageVector = ImageVector.Builder(
+    name = "MuteNotification", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m241.216 832 63.616-64H768V448c0-42.368-10.24-82.304-28.48-117.504l46.912-47.232C815.36 331.392 832 387.84 832 448v320h96a32 32 0 1 1 0 64zm-90.24 0H96a32 32 0 1 1 0-64h96V448a320.13 320.13 0 0 1 256-313.6V128a64 64 0 1 1 128 0v6.4a319.55 319.55 0 0 1 171.648 97.088l-45.184 45.44A256 256 0 0 0 256 448v278.336L151.04 832zM448 896h128a64 64 0 0 1-128 0").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M150.72 859.072a32 32 0 0 1-45.44-45.056l704-708.544a32 32 0 0 1 45.44 45.056z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildNoSmoking(): ImageVector = ImageVector.Builder(
+    name = "NoSmoking", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M440.256 576H256v128h56.256l-64 64H224a32 32 0 0 1-32-32V544a32 32 0 0 1 32-32h280.256zm143.488 128H704V583.744L775.744 512H928a32 32 0 0 1 32 32v192a32 32 0 0 1-32 32H519.744zM768 576v128h128V576zm-29.696-207.552 45.248 45.248-497.856 497.856-45.248-45.248zM256 64h64v320h-64zM128 192h64v192h-64zM64 512h64v256H64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildNotebook(): ImageVector = ImageVector.Builder(
+    name = "Notebook", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 128v768h640V128zm-32-64h704a32 32 0 0 1 32 32v832a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M672 128h64v768h-64zM96 192h128q32 0 32 32t-32 32H96q-32 0-32-32t32-32m0 192h128q32 0 32 32t-32 32H96q-32 0-32-32t32-32m0 192h128q32 0 32 32t-32 32H96q-32 0-32-32t32-32m0 192h128q32 0 32 32t-32 32H96q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildNotification(): ImageVector = ImageVector.Builder(
+    name = "Notification", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 128v64H256a64 64 0 0 0-64 64v512a64 64 0 0 0 64 64h512a64 64 0 0 0 64-64V512h64v256a128 128 0 0 1-128 128H256a128 128 0 0 1-128-128V256a128 128 0 0 1 128-128z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M768 384a128 128 0 1 0 0-256 128 128 0 0 0 0 256m0 64a192 192 0 1 1 0-384 192 192 0 0 1 0 384").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildOdometer(): ImageVector = ImageVector.Builder(
+    name = "Odometer", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M192 512a320 320 0 1 1 640 0 32 32 0 1 1-64 0 256 256 0 1 0-512 0 32 32 0 0 1-64 0").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M570.432 627.84A96 96 0 1 1 509.568 608l60.992-187.776A32 32 0 1 1 631.424 440l-60.992 187.776zM502.08 734.464a32 32 0 1 0 19.84-60.928 32 32 0 0 0-19.84 60.928").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildOfficeBuilding(): ImageVector = ImageVector.Builder(
+    name = "OfficeBuilding", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 128v704h384V128zm-32-64h448a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M256 256h256v64H256zm0 192h256v64H256zm0 192h256v64H256zm384-128h128v64H640zm0 128h128v64H640zM64 832h896v64H64z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M640 384v448h192V384zm-32-64h256a32 32 0 0 1 32 32v512a32 32 0 0 1-32 32H608a32 32 0 0 1-32-32V352a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildOpen(): ImageVector = ImageVector.Builder(
+    name = "Open", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M329.956 257.138a254.862 254.862 0 0 0 0 509.724h364.088a254.862 254.862 0 0 0 0-509.724zm0-72.818h364.088a327.68 327.68 0 1 1 0 655.36H329.956a327.68 327.68 0 1 1 0-655.36").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M694.044 621.227a109.227 109.227 0 1 0 0-218.454 109.227 109.227 0 0 0 0 218.454m0 72.817a182.044 182.044 0 1 1 0-364.088 182.044 182.044 0 0 1 0 364.088").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildOpportunity(): ImageVector = ImageVector.Builder(
+    name = "Opportunity", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M384 960v-64h192.064v64zm448-544a350.66 350.66 0 0 1-128.32 271.424C665.344 719.04 640 763.776 640 813.504V832H320v-14.336c0-48-19.392-95.36-57.216-124.992a351.55 351.55 0 0 1-128.448-344.256c25.344-136.448 133.888-248.128 269.76-276.48A352.384 352.384 0 0 1 832 416m-544 32c0-132.288 75.904-224 192-224v-64c-154.432 0-256 122.752-256 288z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildOrange(): ImageVector = ImageVector.Builder(
+    name = "Orange", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M544 894.72a382.34 382.34 0 0 0 215.936-89.472L577.024 622.272c-10.24 6.016-21.248 10.688-33.024 13.696v258.688zm261.248-134.784A382.34 382.34 0 0 0 894.656 544H635.968c-3.008 11.776-7.68 22.848-13.696 33.024zM894.656 480a382.34 382.34 0 0 0-89.408-215.936L622.272 446.976c6.016 10.24 10.688 21.248 13.696 33.024zm-134.72-261.248A382.34 382.34 0 0 0 544 129.344v258.688c11.776 3.008 22.848 7.68 33.024 13.696zM480 129.344a382.34 382.34 0 0 0-215.936 89.408l182.912 182.976c10.24-6.016 21.248-10.688 33.024-13.696zm-261.248 134.72A382.34 382.34 0 0 0 129.344 480h258.688c3.008-11.776 7.68-22.848 13.696-33.024zM129.344 544a382.34 382.34 0 0 0 89.408 215.936l182.976-182.912A127.2 127.2 0 0 1 388.032 544zm134.72 261.248A382.34 382.34 0 0 0 480 894.656V635.968a127.2 127.2 0 0 1-33.024-13.696zM512 960a448 448 0 1 1 0-896 448 448 0 0 1 0 896m0-384a64 64 0 1 0 0-128 64 64 0 0 0 0 128").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPaperclip(): ImageVector = ImageVector.Builder(
+    name = "Paperclip", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M602.496 240.448A192 192 0 1 1 874.048 512l-316.8 316.8A256 256 0 0 1 195.2 466.752L602.496 59.456l45.248 45.248L240.448 512A192 192 0 0 0 512 783.552l316.8-316.8a128 128 0 1 0-181.056-181.056L353.6 579.904a32 32 0 1 0 45.248 45.248l294.144-294.144 45.312 45.248L444.096 670.4a96 96 0 1 1-135.744-135.744z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPartlyCloudy(): ImageVector = ImageVector.Builder(
+    name = "PartlyCloudy", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M598.4 895.872H328.192a256 256 0 0 1-34.496-510.528A352 352 0 1 1 598.4 895.872m-271.36-64h272.256a288 288 0 1 0-248.512-417.664L335.04 445.44l-34.816 3.584a192 192 0 0 0 26.88 382.848z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M139.84 501.888a256 256 0 1 1 417.856-277.12c-17.728 2.176-38.208 8.448-61.504 18.816A192 192 0 1 0 189.12 460.48a6004 6004 0 0 0-49.28 41.408").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPear(): ImageVector = ImageVector.Builder(
+    name = "Pear", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M542.336 258.816a443 443 0 0 0-9.024 25.088 32 32 0 1 1-60.8-20.032l1.088-3.328a162.69 162.69 0 0 0-122.048 131.392l-17.088 102.72-20.736 15.36C256.192 552.704 224 610.88 224 672c0 120.576 126.4 224 288 224s288-103.424 288-224c0-61.12-32.192-119.296-89.728-161.92l-20.736-15.424-17.088-102.72a162.69 162.69 0 0 0-130.112-133.12m-40.128-66.56c7.936-15.552 16.576-30.08 25.92-43.776 23.296-33.92 49.408-59.776 78.528-77.12a32 32 0 1 1 32.704 55.04c-20.544 12.224-40.064 31.552-58.432 58.304a317 317 0 0 0-9.792 15.104 226.69 226.69 0 0 1 164.48 181.568l12.8 77.248C819.456 511.36 864 587.392 864 672c0 159.04-157.568 288-352 288S160 831.04 160 672c0-84.608 44.608-160.64 115.584-213.376l12.8-77.248a226.624 226.624 0 0 1 213.76-189.184z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPhoneFilled(): ImageVector = ImageVector.Builder(
+    name = "PhoneFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M199.232 125.568 90.624 379.008a32 32 0 0 0 6.784 35.2l512.384 512.384a32 32 0 0 0 35.2 6.784l253.44-108.608a32 32 0 0 0 10.048-52.032L769.6 633.92a32 32 0 0 0-36.928-5.952l-130.176 65.088-271.488-271.552 65.024-130.176a32 32 0 0 0-5.952-36.928L251.2 115.52a32 32 0 0 0-51.968 10.048").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPictureFilled(): ImageVector = ImageVector.Builder(
+    name = "PictureFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M96 896a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h832a32 32 0 0 1 32 32v704a32 32 0 0 1-32 32zm315.52-228.48-68.928-68.928a32 32 0 0 0-45.248 0L128 768.064h778.688l-242.112-290.56a32 32 0 0 0-49.216 0L458.752 665.408a32 32 0 0 1-47.232 2.112M256 384a96 96 0 1 0 192.064-.064A96 96 0 0 0 256 384").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPictureRounded(): ImageVector = ImageVector.Builder(
+    name = "PictureRounded", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 128a384 384 0 1 0 0 768 384 384 0 0 0 0-768m0-64a448 448 0 1 1 0 896 448 448 0 0 1 0-896").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M640 288q64 0 64 64t-64 64-64-64 64-64M214.656 790.656l-45.312-45.312 185.664-185.6a96 96 0 0 1 123.712-10.24l138.24 98.688a32 32 0 0 0 39.872-2.176L906.688 422.4l42.624 47.744L699.52 693.696a96 96 0 0 1-119.808 6.592l-138.24-98.752a32 32 0 0 0-41.152 3.456l-185.664 185.6z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPlace(): ImageVector = ImageVector.Builder(
+    name = "Place", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 512a192 192 0 1 0 0-384 192 192 0 0 0 0 384m0 64a256 256 0 1 1 0-512 256 256 0 0 1 0 512").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 512a32 32 0 0 1 32 32v256a32 32 0 1 1-64 0V544a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M384 649.088v64.96C269.76 732.352 192 771.904 192 800c0 37.696 139.904 96 320 96s320-58.304 320-96c0-28.16-77.76-67.648-192-85.952v-64.96C789.12 671.04 896 730.368 896 800c0 88.32-171.904 160-384 160s-384-71.68-384-160c0-69.696 106.88-128.96 256-150.912").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPlatform(): ImageVector = ImageVector.Builder(
+    name = "Platform", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M448 832v-64h128v64h192v64H256v-64zM128 704V128h768v576z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPointer(): ImageVector = ImageVector.Builder(
+    name = "Pointer", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M511.552 128c-35.584 0-64.384 28.8-64.384 64.448v516.48L274.048 570.88a94.27 94.27 0 0 0-112.896-3.456 44.416 44.416 0 0 0-8.96 62.208L332.8 870.4A64 64 0 0 0 384 896h512V575.232a64 64 0 0 0-45.632-61.312l-205.952-61.76A96 96 0 0 1 576 360.192V192.448C576 156.8 547.2 128 511.552 128M359.04 556.8l24.128 19.2V192.448a128.448 128.448 0 1 1 256.832 0v167.744a32 32 0 0 0 22.784 30.656l206.016 61.76A128 128 0 0 1 960 575.232V896a64 64 0 0 1-64 64H384a128 128 0 0 1-102.4-51.2L101.056 668.032A108.416 108.416 0 0 1 128 512.512a158.27 158.27 0 0 1 185.984 8.32z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPosition(): ImageVector = ImageVector.Builder(
+    name = "Position", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m249.6 417.088 319.744 43.072 39.168 310.272L845.12 178.88zm-129.024 47.168a32 32 0 0 1-7.68-61.44l777.792-311.04a32 32 0 0 1 41.6 41.6l-310.336 775.68a32 32 0 0 1-61.44-7.808L512 516.992z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPostcard(): ImageVector = ImageVector.Builder(
+    name = "Postcard", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M160 224a32 32 0 0 0-32 32v512a32 32 0 0 0 32 32h704a32 32 0 0 0 32-32V256a32 32 0 0 0-32-32zm0-64h704a96 96 0 0 1 96 96v512a96 96 0 0 1-96 96H160a96 96 0 0 1-96-96V256a96 96 0 0 1 96-96").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M704 320a64 64 0 1 1 0 128 64 64 0 0 1 0-128M288 448h256q32 0 32 32t-32 32H288q-32 0-32-32t32-32m0 128h256q32 0 32 32t-32 32H288q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPouring(): ImageVector = ImageVector.Builder(
+    name = "Pouring", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m739.328 291.328-35.2-6.592-12.8-33.408a192.064 192.064 0 0 0-365.952 23.232l-9.92 40.896-41.472 7.04a176.32 176.32 0 0 0-146.24 173.568c0 97.28 78.72 175.936 175.808 175.936h400a192 192 0 0 0 35.776-380.672M959.552 480a256 256 0 0 1-256 256h-400A239.81 239.81 0 0 1 63.744 496.192a240.32 240.32 0 0 1 199.488-236.8 256.128 256.128 0 0 1 487.872-30.976A256.064 256.064 0 0 1 959.552 480M224 800a32 32 0 0 1 32 32v96a32 32 0 1 1-64 0v-96a32 32 0 0 1 32-32m192 0a32 32 0 0 1 32 32v96a32 32 0 1 1-64 0v-96a32 32 0 0 1 32-32m192 0a32 32 0 0 1 32 32v96a32 32 0 1 1-64 0v-96a32 32 0 0 1 32-32m192 0a32 32 0 0 1 32 32v96a32 32 0 1 1-64 0v-96a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPriceTag(): ImageVector = ImageVector.Builder(
+    name = "PriceTag", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M224 318.336V896h576V318.336L552.512 115.84a64 64 0 0 0-81.024 0zM593.024 66.304l259.2 212.096A32 32 0 0 1 864 303.168V928a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V303.168a32 32 0 0 1 11.712-24.768l259.2-212.096a128 128 0 0 1 162.112 0").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 448a64 64 0 1 0 0-128 64 64 0 0 0 0 128m0 64a128 128 0 1 1 0-256 128 128 0 0 1 0 256").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildPrinter(): ImageVector = ImageVector.Builder(
+    name = "Printer", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 768H105.024c-14.272 0-19.456-1.472-24.64-4.288a29.06 29.06 0 0 1-12.16-12.096C65.536 746.432 64 741.248 64 727.04V379.072c0-42.816 4.48-58.304 12.8-73.984 8.384-15.616 20.672-27.904 36.288-36.288 15.68-8.32 31.168-12.8 73.984-12.8H256V64h512v192h68.928c42.816 0 58.304 4.48 73.984 12.8 15.616 8.384 27.904 20.672 36.288 36.288 8.32 15.68 12.8 31.168 12.8 73.984v347.904c0 14.272-1.472 19.456-4.288 24.64a29.06 29.06 0 0 1-12.096 12.16c-5.184 2.752-10.368 4.224-24.64 4.224H768v192H256zm64-192v320h384V576zm-64 128V512h512v192h128V379.072c0-29.376-1.408-36.48-5.248-43.776a23.3 23.3 0 0 0-10.048-10.048c-7.232-3.84-14.4-5.248-43.776-5.248H187.072c-29.376 0-36.48 1.408-43.776 5.248a23.3 23.3 0 0 0-10.048 10.048c-3.84 7.232-5.248 14.4-5.248 43.776V704zm64-448h384V128H320zm-64 128h64v64h-64zm128 0h64v64h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildQuartzWatch(): ImageVector = ImageVector.Builder(
+    name = "QuartzWatch", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M422.02 602.01v-.03c-6.68-5.99-14.35-8.83-23.01-8.51q-13.005.48-22.5 10.02c-6.33 6.36-9.5 13.7-9.5 22.02s3 15.82 8.99 22.5c8.68 8.68 19.02 11.35 31.01 8s19.49-10.85 22.5-22.5.51-22.15-7.49-31.49zM384 512c0-9.35-3-17.02-8.99-23.01-6-5.99-13.66-8.99-23.01-8.99s-17.02 3-23.01 8.99c-5.99 6-8.99 13.66-8.99 23.01s3 17.02 8.99 23.01c6 5.99 13.66 8.99 23.01 8.99s17.02-3 23.01-8.99c5.99-6 8.99-13.67 8.99-23.01m6.53-82.49c11.65 3.01 22.15.51 31.49-7.49h.04c5.99-6.68 8.83-14.34 8.51-23.01s-3.66-16.16-10.02-22.5c-6.36-6.33-13.7-9.5-22.02-9.5s-15.82 3-22.5 8.99c-8.68 8.69-11.35 19.02-8 31.01q5.025 17.985 22.5 22.5m242.94 0q17.505-4.545 22.02-22.02c3.01-11.65.51-22.15-7.49-31.49h.01c-6.68-5.99-14.18-8.99-22.5-8.99s-15.66 3.16-22.02 9.5q-9.54 9.51-10.02 22.5c-.32 8.66 2.52 16.33 8.51 23.01 9.32 8.02 19.82 10.52 31.49 7.49M512 640c-9.35 0-17.02 3-23.01 8.99-5.99 6-8.99 13.66-8.99 23.01s3 17.02 8.99 23.01c6 5.99 13.67 8.99 23.01 8.99 9.35 0 17.02-3 23.01-8.99 5.99-6 8.99-13.66 8.99-23.01s-3-17.02-8.99-23.01c-6-5.99-13.66-8.99-23.01-8.99m183.01-151.01c-6-5.99-13.66-8.99-23.01-8.99s-17.02 3-23.01 8.99c-5.99 6-8.99 13.66-8.99 23.01s3 17.02 8.99 23.01c6 5.99 13.66 8.99 23.01 8.99s17.02-3 23.01-8.99c5.99-6 8.99-13.67 8.99-23.01 0-9.35-3-17.02-8.99-23.01").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M832 512c-2-90.67-33.17-166.17-93.5-226.5-20.43-20.42-42.6-37.49-66.5-51.23V64H352v170.26c-23.9 13.74-46.07 30.81-66.5 51.24-60.33 60.33-91.49 135.83-93.5 226.5 2 90.67 33.17 166.17 93.5 226.5 20.43 20.43 42.6 37.5 66.5 51.24V960h320V789.74c23.9-13.74 46.07-30.81 66.5-51.24 60.33-60.34 91.49-135.83 93.5-226.5M416 128h192v78.69c-29.85-9.03-61.85-13.93-96-14.69-34.15.75-66.15 5.65-96 14.68zm192 768H416v-78.68c29.85 9.03 61.85 13.93 96 14.68 34.15-.75 66.15-5.65 96-14.68zm-96-128c-72.66-2.01-132.99-27.01-180.99-75.01S258.01 584.66 256 512c2.01-72.66 27.01-132.99 75.01-180.99S439.34 258.01 512 256c72.66 2.01 132.99 27.01 180.99 75.01S765.99 439.34 768 512c-2.01 72.66-27.01 132.99-75.01 180.99S584.66 765.99 512 768").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 320c-9.35 0-17.02 3-23.01 8.99-5.99 6-8.99 13.66-8.99 23.01s3 17.02 8.99 23.01c6 5.99 13.67 8.99 23.01 8.99 9.35 0 17.02-3 23.01-8.99 5.99-6 8.99-13.66 8.99-23.01s-3-17.02-8.99-23.01c-6-5.99-13.66-8.99-23.01-8.99m112.99 273.5c-8.66-.32-16.33 2.52-23.01 8.51-7.98 9.32-10.48 19.82-7.49 31.49s10.49 19.17 22.5 22.5 22.35.66 31.01-8v.04c5.99-6.68 8.99-14.18 8.99-22.5s-3.16-15.66-9.5-22.02-13.84-9.7-22.5-10.02").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildQuestionFilled(): ImageVector = ImageVector.Builder(
+    name = "QuestionFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896m23.744 191.488c-52.096 0-92.928 14.784-123.2 44.352-30.976 29.568-45.76 70.4-45.76 122.496h80.256c0-29.568 5.632-52.8 17.6-68.992 13.376-19.712 35.2-28.864 66.176-28.864 23.936 0 42.944 6.336 56.32 19.712 12.672 13.376 19.712 31.68 19.712 54.912 0 17.6-6.336 34.496-19.008 49.984l-8.448 9.856c-45.76 40.832-73.216 70.4-82.368 89.408-9.856 19.008-14.08 42.24-14.08 68.992v9.856h80.96v-9.856c0-16.896 3.52-31.68 10.56-45.76 6.336-12.672 15.488-24.64 28.16-35.2 33.792-29.568 54.208-48.576 60.544-55.616 16.896-22.528 26.048-51.392 26.048-86.592q0-64.416-42.24-101.376c-28.16-25.344-65.472-37.312-111.232-37.312m-12.672 406.208a54.27 54.27 0 0 0-38.72 14.784 49.4 49.4 0 0 0-15.488 38.016c0 15.488 4.928 28.16 15.488 38.016A54.85 54.85 0 0 0 523.072 768c15.488 0 28.16-4.928 38.72-14.784a51.52 51.52 0 0 0 16.192-38.72 51.97 51.97 0 0 0-15.488-38.016 55.94 55.94 0 0 0-39.424-14.784").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildReading(): ImageVector = ImageVector.Builder(
+    name = "Reading", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m512 863.36 384-54.848v-638.72L525.568 222.72a96 96 0 0 1-27.136 0L128 169.792v638.72zM137.024 106.432l370.432 52.928a32 32 0 0 0 9.088 0l370.432-52.928A64 64 0 0 1 960 169.792v638.72a64 64 0 0 1-54.976 63.36l-388.48 55.488a32 32 0 0 1-9.088 0l-388.48-55.488A64 64 0 0 1 64 808.512v-638.72a64 64 0 0 1 73.024-63.36").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M480 192h64v704h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildReadingLamp(): ImageVector = ImageVector.Builder(
+    name = "ReadingLamp", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M352 896h320q32 0 32 32t-32 32H352q-32 0-32-32t32-32m-44.672-768-99.52 448h608.384l-99.52-448zm-25.6-64h460.608a32 32 0 0 1 31.232 25.088l113.792 512A32 32 0 0 1 856.128 640H167.872a32 32 0 0 1-31.232-38.912l113.792-512A32 32 0 0 1 281.664 64z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M672 576q32 0 32 32v128q0 32-32 32t-32-32V608q0-32 32-32m-192-.064h64V960h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildRefreshLeft(): ImageVector = ImageVector.Builder(
+    name = "RefreshLeft", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M289.088 296.704h92.992a32 32 0 0 1 0 64H232.96a32 32 0 0 1-32-32V179.712a32 32 0 0 1 64 0v50.56a384 384 0 0 1 643.84 282.88 384 384 0 0 1-383.936 384 384 384 0 0 1-384-384h64a320 320 0 1 0 640 0 320 320 0 0 0-555.712-216.448z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildRefreshRight(): ImageVector = ImageVector.Builder(
+    name = "RefreshRight", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M784.512 230.272v-50.56a32 32 0 1 1 64 0v149.056a32 32 0 0 1-32 32H667.52a32 32 0 1 1 0-64h92.992A320 320 0 1 0 524.8 833.152a320 320 0 0 0 320-320h64a384 384 0 0 1-384 384 384 384 0 0 1-384-384 384 384 0 0 1 643.712-282.88").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildRefrigerator(): ImageVector = ImageVector.Builder(
+    name = "Refrigerator", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 448h512V160a32 32 0 0 0-32-32H288a32 32 0 0 0-32 32zm0 64v352a32 32 0 0 0 32 32h448a32 32 0 0 0 32-32V512zm32-448h448a96 96 0 0 1 96 96v704a96 96 0 0 1-96 96H288a96 96 0 0 1-96-96V160a96 96 0 0 1 96-96m32 224h64v96h-64zm0 288h64v96h-64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildScaleToOriginal(): ImageVector = ImageVector.Builder(
+    name = "ScaleToOriginal", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M813.176 180.706a60.235 60.235 0 0 1 60.236 60.235v481.883a60.235 60.235 0 0 1-60.236 60.235H210.824a60.235 60.235 0 0 1-60.236-60.235V240.94a60.235 60.235 0 0 1 60.236-60.235h602.352zm0-60.235H210.824A120.47 120.47 0 0 0 90.353 240.94v481.883a120.47 120.47 0 0 0 120.47 120.47h602.353a120.47 120.47 0 0 0 120.471-120.47V240.94a120.47 120.47 0 0 0-120.47-120.47zm-120.47 180.705a30.12 30.12 0 0 0-30.118 30.118v301.177a30.118 30.118 0 0 0 60.236 0V331.294a30.12 30.12 0 0 0-30.118-30.118m-361.412 0a30.12 30.12 0 0 0-30.118 30.118v301.177a30.118 30.118 0 1 0 60.236 0V331.294a30.12 30.12 0 0 0-30.118-30.118M512 361.412a30.12 30.12 0 0 0-30.118 30.117v30.118a30.118 30.118 0 0 0 60.236 0V391.53A30.12 30.12 0 0 0 512 361.412M512 512a30.12 30.12 0 0 0-30.118 30.118v30.117a30.118 30.118 0 0 0 60.236 0v-30.117A30.12 30.12 0 0 0 512 512").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSchool(): ImageVector = ImageVector.Builder(
+    name = "School", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M224 128v704h576V128zm-32-64h640a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H192a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M64 832h896v64H64zm256-640h128v96H320z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M384 832h256v-64a128 128 0 1 0-256 0zm128-256a192 192 0 0 1 192 192v128H320V768a192 192 0 0 1 192-192M320 384h128v96H320zm256-192h128v96H576zm0 192h128v96H576z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSell(): ImageVector = ImageVector.Builder(
+    name = "Sell", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M704 288h131.072a32 32 0 0 1 31.808 28.8L886.4 512h-64.384l-16-160H704v96a32 32 0 1 1-64 0v-96H384v96a32 32 0 0 1-64 0v-96H217.92l-51.2 512H512v64H131.328a32 32 0 0 1-31.808-35.2l57.6-576a32 32 0 0 1 31.808-28.8H320v-22.336C320 154.688 405.504 64 512 64s192 90.688 192 201.664v22.4zm-64 0v-22.336C640 189.248 582.272 128 512 128s-128 61.248-128 137.664v22.4h256zm201.408 483.84L768 698.496V928a32 32 0 1 1-64 0V698.496l-73.344 73.344a32 32 0 1 1-45.248-45.248l128-128a32 32 0 0 1 45.248 0l128 128a32 32 0 1 1-45.248 45.248").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildService(): ImageVector = ImageVector.Builder(
+    name = "Service", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M864 409.6a192 192 0 0 1-37.888 349.44A256.064 256.064 0 0 1 576 960h-96a32 32 0 1 1 0-64h96a192.06 192.06 0 0 0 181.12-128H736a32 32 0 0 1-32-32V416a32 32 0 0 1 32-32h32c10.368 0 20.544.832 30.528 2.432a288 288 0 0 0-573.056 0A193 193 0 0 1 256 384h32a32 32 0 0 1 32 32v320a32 32 0 0 1-32 32h-32a192 192 0 0 1-96-358.4 352 352 0 0 1 704 0M256 448a128 128 0 1 0 0 256zm640 128a128 128 0 0 0-128-128v256a128 128 0 0 0 128-128").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSetUp(): ImageVector = ImageVector.Builder(
+    name = "SetUp", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M224 160a64 64 0 0 0-64 64v576a64 64 0 0 0 64 64h576a64 64 0 0 0 64-64V224a64 64 0 0 0-64-64zm0-64h576a128 128 0 0 1 128 128v576a128 128 0 0 1-128 128H224A128 128 0 0 1 96 800V224A128 128 0 0 1 224 96").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M384 416a64 64 0 1 0 0-128 64 64 0 0 0 0 128m0 64a128 128 0 1 1 0-256 128 128 0 0 1 0 256").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M480 320h256q32 0 32 32t-32 32H480q-32 0-32-32t32-32m160 416a64 64 0 1 0 0-128 64 64 0 0 0 0 128m0 64a128 128 0 1 1 0-256 128 128 0 0 1 0 256").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M288 640h256q32 0 32 32t-32 32H288q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildShare(): ImageVector = ImageVector.Builder(
+    name = "Share", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m679.872 348.8-301.76 188.608a127.8 127.8 0 0 1 5.12 52.16l279.936 104.96a128 128 0 1 1-22.464 59.904l-279.872-104.96a128 128 0 1 1-16.64-166.272l301.696-188.608a128 128 0 1 1 33.92 54.272z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildShop(): ImageVector = ImageVector.Builder(
+    name = "Shop", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M704 704h64v192H256V704h64v64h384zm188.544-152.192C894.528 559.616 896 567.616 896 576a96 96 0 1 1-192 0 96 96 0 1 1-192 0 96 96 0 1 1-192 0 96 96 0 1 1-192 0c0-8.384 1.408-16.384 3.392-24.192L192 128h640z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildShoppingBag(): ImageVector = ImageVector.Builder(
+    name = "ShoppingBag", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M704 320v96a32 32 0 0 1-32 32h-32V320H384v128h-32a32 32 0 0 1-32-32v-96H192v576h640V320zm-384-64a192 192 0 1 1 384 0h160a32 32 0 0 1 32 32v640a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V288a32 32 0 0 1 32-32zm64 0h256a128 128 0 1 0-256 0").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M192 704h640v64H192z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildShoppingCartFull(): ImageVector = ImageVector.Builder(
+    name = "ShoppingCartFull", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M432 928a48 48 0 1 1 0-96 48 48 0 0 1 0 96m320 0a48 48 0 1 1 0-96 48 48 0 0 1 0 96M96 128a32 32 0 0 1 0-64h160a32 32 0 0 1 31.36 25.728L320.64 256H928a32 32 0 0 1 31.296 38.72l-96 448A32 32 0 0 1 832 768H384a32 32 0 0 1-31.36-25.728L229.76 128zm314.24 576h395.904l82.304-384H333.44z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M699.648 256 608 145.984 516.352 256zm-140.8-151.04a64 64 0 0 1 98.304 0L836.352 320H379.648z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildShoppingTrolley(): ImageVector = ImageVector.Builder(
+    name = "ShoppingTrolley", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M368 833c-13.3 0-24.5 4.5-33.5 13.5S321 866.7 321 880s4.5 24.5 13.5 33.5 20.2 13.8 33.5 14.5c13.3-.7 24.5-5.5 33.5-14.5S415 893.3 415 880s-4.5-24.5-13.5-33.5S381.3 833 368 833m439-193c7.4 0 13.8-2.2 19.5-6.5S836 623.3 838 616l112-448c2-10-.2-19.2-6.5-27.5S929 128 919 128H96c-9.3 0-17 3-23 9s-9 13.7-9 23 3 17 9 23 13.7 9 23 9h96v576h672c9.3 0 17-3 23-9s9-13.7 9-23-3-17-9-23-13.7-9-23-9H256v-64zM256 192h622l-96 384H256zm432 641c-13.3 0-24.5 4.5-33.5 13.5S641 866.7 641 880s4.5 24.5 13.5 33.5 20.2 13.8 33.5 14.5c13.3-.7 24.5-5.5 33.5-14.5S735 893.3 735 880s-4.5-24.5-13.5-33.5S701.3 833 688 833").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSmoking(): ImageVector = ImageVector.Builder(
+    name = "Smoking", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 576v128h640V576zm-32-64h704a32 32 0 0 1 32 32v192a32 32 0 0 1-32 32H224a32 32 0 0 1-32-32V544a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M704 576h64v128h-64zM256 64h64v320h-64zM128 192h64v192h-64zM64 512h64v256H64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSoccer(): ImageVector = ImageVector.Builder(
+    name = "Soccer", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M418.496 871.04 152.256 604.8c-16.512 94.016-2.368 178.624 42.944 224 44.928 44.928 129.344 58.752 223.296 42.24m72.32-18.176a573.06 573.06 0 0 0 224.832-137.216 573.1 573.1 0 0 0 137.216-224.832L533.888 171.84a578.56 578.56 0 0 0-227.52 138.496A567.7 567.7 0 0 0 170.432 532.48zM871.04 418.496c16.512-93.952 2.688-178.368-42.24-223.296-44.544-44.544-128.704-58.048-222.592-41.536zM149.952 874.048c-112.96-112.96-88.832-408.96 111.168-608.96C461.056 65.152 760.96 36.928 874.048 149.952c113.024 113.024 86.784 411.008-113.152 610.944s-497.92 226.112-610.944 113.152m452.544-497.792 22.656-22.656a32 32 0 0 1 45.248 45.248l-22.656 22.656 45.248 45.248A32 32 0 1 1 647.744 512l-45.248-45.248L557.248 512l45.248 45.248a32 32 0 1 1-45.248 45.248L512 557.248l-45.248 45.248L512 647.744a32 32 0 1 1-45.248 45.248l-45.248-45.248-22.656 22.656a32 32 0 1 1-45.248-45.248l22.656-22.656-45.248-45.248A32 32 0 1 1 376.256 512l45.248 45.248L466.752 512l-45.248-45.248a32 32 0 1 1 45.248-45.248L512 466.752l45.248-45.248L512 376.256a32 32 0 0 1 45.248-45.248z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSoldOut(): ImageVector = ImageVector.Builder(
+    name = "SoldOut", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M704 288h131.072a32 32 0 0 1 31.808 28.8L886.4 512h-64.384l-16-160H704v96a32 32 0 1 1-64 0v-96H384v96a32 32 0 0 1-64 0v-96H217.92l-51.2 512H512v64H131.328a32 32 0 0 1-31.808-35.2l57.6-576a32 32 0 0 1 31.808-28.8H320v-22.336C320 154.688 405.504 64 512 64s192 90.688 192 201.664v22.4zm-64 0v-22.336C640 189.248 582.272 128 512 128s-128 61.248-128 137.664v22.4h256zm201.408 476.16a32 32 0 1 1 45.248 45.184l-128 128a32 32 0 0 1-45.248 0l-128-128a32 32 0 1 1 45.248-45.248L704 837.504V608a32 32 0 1 1 64 0v229.504l73.408-73.408z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildStamp(): ImageVector = ImageVector.Builder(
+    name = "Stamp", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M624 475.968V640h144a128 128 0 0 1 128 128H128a128 128 0 0 1 128-128h144V475.968a192 192 0 1 1 224 0M128 896v-64h768v64z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildStopwatch(): ImageVector = ImageVector.Builder(
+    name = "Stopwatch", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M672 234.88c-39.168 174.464-80 298.624-122.688 372.48-64 110.848-202.624 30.848-138.624-80C453.376 453.44 540.48 355.968 672 234.816z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSugar(): ImageVector = ImageVector.Builder(
+    name = "Sugar", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m801.728 349.184 4.48 4.48a128 128 0 0 1 0 180.992L534.656 806.144a128 128 0 0 1-181.056 0l-4.48-4.48-19.392 109.696a64 64 0 0 1-108.288 34.176L78.464 802.56a64 64 0 0 1 34.176-108.288l109.76-19.328-4.544-4.544a128 128 0 0 1 0-181.056l271.488-271.488a128 128 0 0 1 181.056 0l4.48 4.48 19.392-109.504a64 64 0 0 1 108.352-34.048l142.592 143.04a64 64 0 0 1-34.24 108.16zm-548.8 198.72h447.168v2.24l60.8-60.8a63.8 63.8 0 0 0 18.752-44.416h-426.88l-89.664 89.728a64 64 0 0 0-10.24 13.248zm0 64q4.128 7.104 10.176 13.248l135.744 135.744a64 64 0 0 0 90.496 0L638.4 611.904zm490.048-230.976L625.152 263.104a64 64 0 0 0-90.496 0L416.768 380.928zM123.712 757.312l142.976 142.976 24.32-137.6a25.6 25.6 0 0 0-29.696-29.632zm633.6-633.344-24.32 137.472a25.6 25.6 0 0 0 29.632 29.632l137.28-24.064-142.656-143.04z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSuitcase(): ImageVector = ImageVector.Builder(
+    name = "Suitcase", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M128 384h768v-64a64 64 0 0 0-64-64H192a64 64 0 0 0-64 64zm0 64v320a64 64 0 0 0 64 64h640a64 64 0 0 0 64-64V448zm64-256h640a128 128 0 0 1 128 128v448a128 128 0 0 1-128 128H192A128 128 0 0 1 64 768V320a128 128 0 0 1 128-128").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M384 128v64h256v-64zm0-64h256a64 64 0 0 1 64 64v64a64 64 0 0 1-64 64H384a64 64 0 0 1-64-64v-64a64 64 0 0 1 64-64").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSuitcaseLine(): ImageVector = ImageVector.Builder(
+    name = "SuitcaseLine", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M922.5 229.5c-24.32-24.34-54.49-36.84-90.5-37.5H704v-64c-.68-17.98-7.02-32.98-19.01-44.99S658.01 64.66 640 64H384c-17.98.68-32.98 7.02-44.99 19.01S320.66 110 320 128v64H192c-35.99.68-66.16 13.18-90.5 37.5S64.66 283.99 64 320v448c.68 35.99 13.18 66.16 37.5 90.5s54.49 36.84 90.5 37.5h640c35.99-.68 66.16-13.18 90.5-37.5s36.84-54.49 37.5-90.5V320c-.68-35.99-13.18-66.16-37.5-90.5M384 128h256v64H384zM256 832h-64c-17.98-.68-32.98-7.02-44.99-19.01S128.66 786.01 128 768V448h128zm448 0H320V448h384zm192-64c-.68 17.98-7.02 32.98-19.01 44.99S850.01 831.34 832 832h-64V448h128zm0-384H128v-64c.69-17.98 7.02-32.98 19.01-44.99S173.99 256.66 192 256h640c17.98.69 32.98 7.02 44.99 19.01S895.34 301.99 896 320z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSunrise(): ImageVector = ImageVector.Builder(
+    name = "Sunrise", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M32 768h960a32 32 0 1 1 0 64H32a32 32 0 1 1 0-64m129.408-96a352 352 0 0 1 701.184 0h-64.32a288 288 0 0 0-572.544 0zM512 128a32 32 0 0 1 32 32v96a32 32 0 0 1-64 0v-96a32 32 0 0 1 32-32m407.296 168.704a32 32 0 0 1 0 45.248l-67.84 67.84a32 32 0 1 1-45.248-45.248l67.84-67.84a32 32 0 0 1 45.248 0m-814.592 0a32 32 0 0 1 45.248 0l67.84 67.84a32 32 0 1 1-45.248 45.248l-67.84-67.84a32 32 0 0 1 0-45.248").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSunset(): ImageVector = ImageVector.Builder(
+    name = "Sunset", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M82.56 640a448 448 0 1 1 858.88 0h-67.2a384 384 0 1 0-724.288 0zM32 704h960q32 0 32 32t-32 32H32q-32 0-32-32t32-32m256 128h448q32 0 32 32t-32 32H288q-32 0-32-32t32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSwitch(): ImageVector = ImageVector.Builder(
+    name = "Switch", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M118.656 438.656a32 32 0 0 1 0-45.248L416 96l4.48-3.776A32 32 0 0 1 461.248 96l3.712 4.48a32.064 32.064 0 0 1-3.712 40.832L218.56 384H928a32 32 0 1 1 0 64H141.248a32 32 0 0 1-22.592-9.344M64 608a32 32 0 0 1 32-32h786.752a32 32 0 0 1 22.656 54.592L608 928l-4.48 3.776a32.064 32.064 0 0 1-40.832-49.024L805.632 640H96a32 32 0 0 1-32-32").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildSwitchFilled(): ImageVector = ImageVector.Builder(
+    name = "SwitchFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M247.47 358.4v.04c.07 19.17 7.72 37.53 21.27 51.09s31.92 21.2 51.09 21.27c39.86 0 72.41-32.6 72.41-72.4s-32.6-72.36-72.41-72.36-72.36 32.55-72.36 72.36").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M492.38 128H324.7c-52.16 0-102.19 20.73-139.08 57.61a196.66 196.66 0 0 0-57.61 139.08V698.7c-.01 25.84 5.08 51.42 14.96 75.29s24.36 45.56 42.63 63.83 39.95 32.76 63.82 42.65a196.7 196.7 0 0 0 75.28 14.98h167.68c3.03 0 5.46-2.43 5.46-5.42V133.42c.6-2.99-1.83-5.42-5.46-5.42m-56.11 705.88H324.7c-17.76.13-35.36-3.33-51.75-10.18s-31.22-16.94-43.61-29.67c-25.3-25.35-39.81-59.1-39.81-95.32V324.69c-.13-17.75 3.33-35.35 10.17-51.74a131.7 131.7 0 0 1 29.64-43.62c25.39-25.3 59.14-39.81 95.36-39.81h111.57zm402.12-647.67a196.66 196.66 0 0 0-139.08-57.61H580.48c-3.03 0-4.82 2.43-4.82 4.82v757.16c-.6 2.99 1.79 5.42 5.42 5.42h118.23a196.7 196.7 0 0 0 139.08-57.61A196.66 196.66 0 0 0 896 699.31V325.29a196.7 196.7 0 0 0-57.61-139.08m-111.3 441.92c-42.83 0-77.82-34.99-77.82-77.82s34.98-77.82 77.82-77.82c42.83 0 77.82 34.99 77.82 77.82s-34.99 77.82-77.82 77.82").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTakeawayBox(): ImageVector = ImageVector.Builder(
+    name = "TakeawayBox", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M832 384H192v448h640zM96 320h832V128H96zm800 64v480a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V384H64a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32h896a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32zM416 512h192a32 32 0 0 1 0 64H416a32 32 0 0 1 0-64").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTickets(): ImageVector = ImageVector.Builder(
+    name = "Tickets", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M192 128v768h640V128zm-32-64h704a32 32 0 0 1 32 32v832a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V96a32 32 0 0 1 32-32m160 448h384v64H320zm0-192h192v64H320zm0 384h384v64H320z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildToiletPaper(): ImageVector = ImageVector.Builder(
+    name = "ToiletPaper", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M595.2 128H320a192 192 0 0 0-192 192v576h384V352c0-90.496 32.448-171.2 83.2-224M736 64c123.712 0 224 128.96 224 288S859.712 640 736 640H576v320H64V320A256 256 0 0 1 320 64zM576 352v224h160c84.352 0 160-97.28 160-224s-75.648-224-160-224-160 97.28-160 224").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M736 448c-35.328 0-64-43.008-64-96s28.672-96 64-96 64 43.008 64 96-28.672 96-64 96").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTools(): ImageVector = ImageVector.Builder(
+    name = "Tools", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M764.416 254.72a351.7 351.7 0 0 1 86.336 149.184H960v192.064H850.752a351.7 351.7 0 0 1-86.336 149.312l54.72 94.72-166.272 96-54.592-94.72a352.64 352.64 0 0 1-172.48 0L371.136 936l-166.272-96 54.72-94.72a351.7 351.7 0 0 1-86.336-149.312H64v-192h109.248a351.7 351.7 0 0 1 86.336-149.312L204.8 160l166.208-96h.192l54.656 94.592a352.64 352.64 0 0 1 172.48 0L652.8 64h.128L819.2 160l-54.72 94.72zM704 499.968a192 192 0 1 0-384 0 192 192 0 0 0 384 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTopLeft(): ImageVector = ImageVector.Builder(
+    name = "TopLeft", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M256 256h416a32 32 0 1 0 0-64H224a32 32 0 0 0-32 32v448a32 32 0 0 0 64 0z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M246.656 201.344a32 32 0 0 0-45.312 45.312l544 544a32 32 0 0 0 45.312-45.312z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTopRight(): ImageVector = ImageVector.Builder(
+    name = "TopRight", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M768 256H353.6a32 32 0 1 1 0-64H800a32 32 0 0 1 32 32v448a32 32 0 0 1-64 0z").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M777.344 201.344a32 32 0 0 1 45.312 45.312l-544 544a32 32 0 0 1-45.312-45.312z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTrophyBase(): ImageVector = ImageVector.Builder(
+    name = "TrophyBase", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M918.4 201.6c-6.4-6.4-12.8-9.6-22.4-9.6H768V96c0-9.6-3.2-16-9.6-22.4S745.6 64 736 64H288c-9.6 0-16 3.2-22.4 9.6S256 86.4 256 96v96H128c-9.6 0-16 3.2-22.4 9.6S96 217.6 96 224c3.2 108.8 25.6 185.6 64 224 34.4 34.4 77.56 55.65 127.65 61.99 10.91 20.44 24.78 39.25 41.95 56.41 40.86 40.86 91 65.47 150.4 71.9V768h-96c-9.6 0-16 3.2-22.4 9.6S352 790.4 352 800s3.2 16 9.6 22.4 12.8 9.6 22.4 9.6h256c9.6 0 16-3.2 22.4-9.6s9.6-12.8 9.6-22.4-3.2-16-9.6-22.4-12.8-9.6-22.4-9.6h-96V637.26c59.4-7.71 109.54-30.01 150.4-70.86 17.2-17.2 31.51-36.06 42.81-56.55 48.93-6.51 90.02-27.7 126.79-61.85 38.4-38.4 60.8-112 64-224 0-6.4-3.2-16-9.6-22.4M256 438.4c-19.2-6.4-35.2-19.2-51.2-35.2-22.4-22.4-35.2-70.4-41.6-147.2H256zm390.4 80C608 553.6 566.4 576 512 576s-99.2-19.2-134.4-57.6S320 438.4 320 384V128h384v256q0 81.6-57.6 134.4m172.8-115.2c-16 16-32 25.6-51.2 35.2V256h92.8c-6.4 76.8-19.2 124.8-41.6 147.2M768 896H256c-9.6 0-16 3.2-22.4 9.6S224 918.4 224 928s3.2 16 9.6 22.4 12.8 9.6 22.4 9.6h512c9.6 0 16-3.2 22.4-9.6s9.6-12.8 9.6-22.4-3.2-16-9.6-22.4-12.8-9.6-22.4-9.6").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildTurnOff(): ImageVector = ImageVector.Builder(
+    name = "TurnOff", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M329.956 257.138a254.862 254.862 0 0 0 0 509.724h364.088a254.862 254.862 0 0 0 0-509.724zm0-72.818h364.088a327.68 327.68 0 1 1 0 655.36H329.956a327.68 327.68 0 1 1 0-655.36").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M329.956 621.227a109.227 109.227 0 1 0 0-218.454 109.227 109.227 0 0 0 0 218.454m0 72.817a182.044 182.044 0 1 1 0-364.088 182.044 182.044 0 0 1 0 364.088").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildUmbrella(): ImageVector = ImageVector.Builder(
+    name = "Umbrella", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M320 768a32 32 0 1 1 64 0 64 64 0 0 0 128 0V512H64a448 448 0 1 1 896 0H576v256a128 128 0 1 1-256 0m570.688-320a384.128 384.128 0 0 0-757.376 0z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildUnlock(): ImageVector = ImageVector.Builder(
+    name = "Unlock", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M224 448a32 32 0 0 0-32 32v384a32 32 0 0 0 32 32h576a32 32 0 0 0 32-32V480a32 32 0 0 0-32-32zm0-64h576a96 96 0 0 1 96 96v384a96 96 0 0 1-96 96H224a96 96 0 0 1-96-96V480a96 96 0 0 1 96-96").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M512 544a32 32 0 0 1 32 32v192a32 32 0 1 1-64 0V576a32 32 0 0 1 32-32m178.304-295.296A192.064 192.064 0 0 0 320 320v64h352l96 38.4V448H256V320a256 256 0 0 1 493.76-95.104z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildUploadFilled(): ImageVector = ImageVector.Builder(
+    name = "UploadFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M544 864V672h128L512 480 352 672h128v192H320v-1.6c-5.376.32-10.496 1.6-16 1.6A240 240 0 0 1 64 624c0-123.136 93.12-223.488 212.608-237.248A239.81 239.81 0 0 1 512 192a239.87 239.87 0 0 1 235.456 194.752c119.488 13.76 212.48 114.112 212.48 237.248a240 240 0 0 1-240 240c-5.376 0-10.56-1.28-16-1.6v1.6z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildUserFilled(): ImageVector = ImageVector.Builder(
+    name = "UserFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M288 320a224 224 0 1 0 448 0 224 224 0 1 0-448 0m544 608H160a32 32 0 0 1-32-32v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 0 1-32 32z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildVideoCamera(): ImageVector = ImageVector.Builder(
+    name = "VideoCamera", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M704 768V256H128v512zm64-416 192-96v512l-192-96v128a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V224a32 32 0 0 1 32-32h640a32 32 0 0 1 32 32zm0 71.552v176.896l128 64V359.552zM192 320h192v64H192z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildVideoCameraFilled(): ImageVector = ImageVector.Builder(
+    name = "VideoCameraFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m768 576 192-64v320l-192-64v96a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V480a32 32 0 0 1 32-32h640a32 32 0 0 1 32 32zM192 768v64h384v-64zm192-480a160 160 0 0 1 320 0 160 160 0 0 1-320 0m64 0a96 96 0 1 0 192.064-.064A96 96 0 0 0 448 288m-320 32a128 128 0 1 1 256.064.064A128 128 0 0 1 128 320m64 0a64 64 0 1 0 128 0 64 64 0 0 0-128 0").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildWalletFilled(): ImageVector = ImageVector.Builder(
+    name = "WalletFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M688 512a112 112 0 1 0 0 224h208v160H128V352h768v160zm32 160h-32a48 48 0 0 1 0-96h32a48 48 0 0 1 0 96m-80-544 128 160H384z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildWarnTriangleFilled(): ImageVector = ImageVector.Builder(
+    name = "WarnTriangleFilled", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M928.99 755.83 574.6 203.25c-12.89-20.16-36.76-32.58-62.6-32.58s-49.71 12.43-62.6 32.58L95.01 755.83c-12.91 20.12-12.9 44.91.01 65.03 12.92 20.12 36.78 32.51 62.59 32.49h708.78c25.82.01 49.68-12.37 62.59-32.49s12.92-44.91.01-65.03M554.67 768h-85.33v-85.33h85.33zm0-426.67v298.66h-85.33V341.32z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildWatch(): ImageVector = ImageVector.Builder(
+    name = "Watch", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M512 768a256 256 0 1 0 0-512 256 256 0 0 0 0 512m0 64a320 320 0 1 1 0-640 320 320 0 0 1 0 640").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M480 352a32 32 0 0 1 32 32v160a32 32 0 0 1-64 0V384a32 32 0 0 1 32-32").toNodes(), fill = SolidColor(Color.Black))
+    addPath(pathData = PathParser().parsePathString("M480 512h128q32 0 32 32t-32 32H480q-32 0-32-32t32-32m128-256V128H416v128h-64V64h320v192zM416 768v128h192V768h64v192H352V768z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildWatermelon(): ImageVector = ImageVector.Builder(
+    name = "Watermelon", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("m683.072 600.32-43.648 162.816-61.824-16.512 53.248-198.528L576 493.248l-158.4 158.4-45.248-45.248 158.4-158.4-55.616-55.616-198.528 53.248-16.512-61.824 162.816-43.648L282.752 200A384 384 0 0 0 824 741.248zm231.552 141.056a448 448 0 1 1-632-632z").toNodes(), fill = SolidColor(Color.Black))
+}.build()
+
+private fun buildWindPower(): ImageVector = ImageVector.Builder(
+    name = "WindPower", defaultWidth = 24.dp, defaultHeight = 24.dp,
+    viewportWidth = 1024f, viewportHeight = 1024f,
+).apply {
+    addPath(pathData = PathParser().parsePathString("M160 64q32 0 32 32v832q0 32-32 32t-32-32V96q0-32 32-32m416 354.624 128-11.584V168.96l-128-11.52v261.12zm-64 5.824V151.552L320 134.08V160h-64V64l616.704 56.064A96 96 0 0 1 960 215.68v144.64a96 96 0 0 1-87.296 95.616L256 512V224h64v217.92zm256-23.232 98.88-8.96A32 32 0 0 0 896 360.32V215.68a32 32 0 0 0-29.12-31.872l-98.88-8.96z").toNodes(), fill = SolidColor(Color.Black))
 }.build()

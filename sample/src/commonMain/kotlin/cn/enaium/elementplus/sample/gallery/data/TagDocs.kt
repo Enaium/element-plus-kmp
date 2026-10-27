@@ -101,4 +101,33 @@ fun TagDocs() {
             onClick = { checked = !checked },
         )
     }
+
+    DemoExample("Editable", "Add and remove tags dynamically.") {
+        var tags by remember { mutableStateOf(listOf("Tag 1", "Tag 2", "Tag 3")) }
+        var adding by remember { mutableStateOf(false) }
+        var input by remember { mutableStateOf("") }
+        fun commit() {
+            if (input.isNotBlank()) tags = tags + input.trim()
+            input = ""
+            adding = false
+        }
+        DemoRow {
+            tags.forEach { tag ->
+                ElTag(text = tag, closable = true, onClose = { tags = tags - tag })
+            }
+            if (adding) {
+                ElInput(
+                    value = input,
+                    onValueChange = { input = it },
+                    placeholder = "new tag",
+                    size = ElSize.Small,
+                    autofocus = true,
+                    onKeyboardAction = { commit() },
+                    modifier = Modifier.width(120.dp),
+                )
+            } else {
+                ElButton(text = "+ New Tag", size = ElSize.Small, onClick = { adding = true })
+            }
+        }
+    }
 }

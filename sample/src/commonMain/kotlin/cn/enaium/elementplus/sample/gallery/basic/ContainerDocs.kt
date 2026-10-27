@@ -45,10 +45,10 @@ fun ContainerDocs() {
         Box(Modifier.fillMaxWidth().height(220.dp)) {
             ElContainer(
                 header = {
-                    ElHeader(Modifier.padding(horizontal = 12.dp)) { BasicText("Header", style = theme.typography.small) }
+                    ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) }
                 },
                 footer = {
-                    ElFooter(Modifier.padding(horizontal = 12.dp)) { BasicText("Footer", style = theme.typography.small) }
+                    ElFooter { BasicText("Footer", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) }
                 },
             ) {
                 ElMain {
@@ -64,7 +64,7 @@ fun ContainerDocs() {
             ElContainer(
                 direction = ElContainerDirection.Horizontal,
                 header = {
-                    ElHeader(Modifier.padding(horizontal = 12.dp)) { BasicText("Header", style = theme.typography.small) }
+                    ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) }
                 },
                 aside = {
                     ElAside(width = 150.dp) {
@@ -87,8 +87,8 @@ fun ContainerDocs() {
         Box(Modifier.fillMaxWidth().height(240.dp)) {
             ElContainer(
                 direction = ElContainerDirection.Horizontal,
-                header = { ElHeader(Modifier.padding(horizontal = 12.dp)) { BasicText("Header", style = theme.typography.small) } },
-                footer = { ElFooter(Modifier.padding(horizontal = 12.dp)) { BasicText("Footer", style = theme.typography.small) } },
+                header = { ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
+                footer = { ElFooter { BasicText("Footer", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
                 aside = { ElAside(width = 140.dp) { BasicText("Aside", Modifier.padding(12.dp), style = theme.typography.small) } },
                 asideWidth = 140.dp,
             ) {
@@ -104,7 +104,7 @@ fun ContainerDocs() {
     DemoExample("Header and main", "A header above the main content area.") {
         Box(Modifier.fillMaxWidth().height(190.dp)) {
             ElContainer(
-                header = { ElHeader(Modifier.padding(horizontal = 12.dp)) { BasicText("Header", style = LocalElTheme.current.typography.small) } },
+                header = { ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = LocalElTheme.current.typography.small) } },
             ) {
                 ElMain {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -118,12 +118,107 @@ fun ContainerDocs() {
         Box(Modifier.fillMaxWidth().height(190.dp)) {
             ElContainer(
                 direction = ElContainerDirection.Horizontal,
-                aside = { ElAside(width = 140.dp) { BasicText("Aside", Modifier.padding(12.dp), style = LocalElTheme.current.typography.small) } },
+                aside = { ElAside(width = 140.dp) { BasicText("Aside", Modifier.padding(12.dp), style = theme.typography.small) } },
                 asideWidth = 140.dp,
             ) {
-                ElMain {
-                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        BasicText("Main content", style = LocalElTheme.current.typography.base.copy(color = LocalElTheme.current.colors.textSecondary))
+                ElMain { BasicText("Main content", Modifier.padding(12.dp), style = theme.typography.small) }
+            }
+        }
+    }
+    DemoExample("Aside, header and main", "Wrap a header and main area in a nested container next to the aside.") {
+        Box(Modifier.fillMaxWidth().height(230.dp)) {
+            ElContainer(
+                direction = ElContainerDirection.Horizontal,
+                aside = {
+                    ElAside(width = 120.dp) { BasicText("Aside", Modifier.padding(12.dp), style = theme.typography.small) }
+                },
+                asideWidth = 120.dp,
+            ) {
+                ElContainer(
+                    background = null,
+                    header = { ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
+                ) {
+                    ElMain { BasicText("Main", Modifier.padding(12.dp), style = theme.typography.small) }
+                }
+            }
+        }
+    }
+    DemoExample("Aside, header, main and footer", "The nested container can include a footer as well.") {
+        Box(Modifier.fillMaxWidth().height(250.dp)) {
+            ElContainer(
+                direction = ElContainerDirection.Horizontal,
+                aside = {
+                    ElAside(width = 120.dp) { BasicText("Aside", Modifier.padding(12.dp), style = theme.typography.small) }
+                },
+                asideWidth = 120.dp,
+            ) {
+                ElContainer(
+                    background = null,
+                    header = { ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
+                    footer = { ElFooter { BasicText("Footer", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
+                ) {
+                    ElMain { BasicText("Main", Modifier.padding(12.dp), style = theme.typography.small) }
+                }
+            }
+        }
+    }
+    DemoExample("Aside, main and aside", "Use asideEnd for a sidebar on the trailing side.") {
+        Box(Modifier.fillMaxWidth().height(190.dp)) {
+            ElContainer(
+                direction = ElContainerDirection.Horizontal,
+                aside = { ElAside(width = 120.dp) { BasicText("Aside", Modifier.padding(12.dp), style = theme.typography.small) } },
+                asideWidth = 120.dp,
+                asideEnd = { ElAside(width = 120.dp) { BasicText("Aside", Modifier.padding(12.dp), style = theme.typography.small) } },
+                asideEndWidth = 120.dp,
+            ) {
+                ElMain { BasicText("Main", Modifier.padding(12.dp), style = theme.typography.small) }
+            }
+        }
+    }
+    DemoExample("Header, main and footer", "A vertical page shell without an aside.") {
+        Box(Modifier.fillMaxWidth().height(210.dp)) {
+            ElContainer(
+                header = { ElHeader { BasicText("Header", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
+                footer = { ElFooter { BasicText("Footer", Modifier.padding(horizontal = 12.dp), style = theme.typography.small) } },
+            ) {
+                ElMain { BasicText("Main", Modifier.padding(12.dp), style = theme.typography.small) }
+            }
+        }
+    }
+    DemoExample("Example page", "A full page shell with an aside menu, a nested header and a scrolling main table.") {
+        Box(Modifier.fillMaxWidth().height(300.dp)) {
+            ElContainer(
+                direction = ElContainerDirection.Horizontal,
+                aside = {
+                    ElAside(width = 150.dp) {
+                        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            listOf("Navigator One", "Navigator Two", "Navigator Three").forEach {
+                                BasicText(it, style = theme.typography.small)
+                            }
+                        }
+                    }
+                },
+                asideWidth = 150.dp,
+            ) {
+                ElContainer(
+                    background = null,
+                    header = {
+                        ElHeader(height = 48.dp, background = colors.light(ElType.Primary, 7)) {
+                            Box(Modifier.fillMaxWidth().padding(horizontal = 12.dp), contentAlignment = Alignment.CenterEnd) {
+                                BasicText("Tom", style = theme.typography.small)
+                            }
+                        }
+                    },
+                ) {
+                    ElMain {
+                        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            repeat(6) { index ->
+                                BasicText(
+                                    "2016-05-0${index + 1}    Tom    No. 189, Grove St, Los Angeles",
+                                    style = theme.typography.small,
+                                )
+                            }
+                        }
                     }
                 }
             }

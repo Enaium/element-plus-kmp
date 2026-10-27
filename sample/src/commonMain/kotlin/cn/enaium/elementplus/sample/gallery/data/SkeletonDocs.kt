@@ -107,4 +107,95 @@ fun SkeletonDocs() {
             }
         }
     }
+
+    DemoExample("Avoiding rendering bouncing", "A 500ms leading throttle delays the skeleton so quick loads never flash it.") {
+        var loading by remember { mutableStateOf(false) }
+        DemoRow {
+            BasicText("Switch Loading", style = LocalElTheme.current.typography.small)
+            ElSwitch(checked = loading, onCheckedChange = { loading = it })
+        }
+        ElSkeleton(
+            loading = loading,
+            animated = true,
+            rows = 2,
+            modifier = Modifier.width(260.dp),
+            throttle = ElSkeletonThrottle(leading = 500),
+        ) {
+            SkeletonLoadedCard()
+        }
+    }
+
+    DemoExample("Initial rendering loading", "Combine a leading throttle with initVal so the first frame already shows the skeleton.") {
+        var loading by remember { mutableStateOf(true) }
+        DemoRow {
+            BasicText("Switch Loading", style = LocalElTheme.current.typography.small)
+            ElSwitch(checked = loading, onCheckedChange = { loading = it })
+        }
+        ElSkeleton(
+            loading = loading,
+            animated = true,
+            rows = 2,
+            modifier = Modifier.width(260.dp),
+            throttle = ElSkeletonThrottle(leading = 500, initVal = true),
+        ) {
+            SkeletonLoadedCard()
+        }
+    }
+
+    DemoExample("Leading and trailing without bouncing", "Delay both directions so rapidly toggled states do not flicker.") {
+        var loading by remember { mutableStateOf(false) }
+        DemoRow {
+            BasicText("Switch Loading", style = LocalElTheme.current.typography.small)
+            ElSwitch(checked = loading, onCheckedChange = { loading = it })
+        }
+        ElSkeleton(
+            loading = loading,
+            animated = true,
+            rows = 2,
+            modifier = Modifier.width(260.dp),
+            throttle = ElSkeletonThrottle(leading = 500, trailing = 500, initVal = true),
+        ) {
+            SkeletonLoadedCard()
+        }
+    }
+
+    DemoExample("Customized template slot", "Use the template slot to compose a fully custom skeleton.") {
+        ElSkeleton(
+            loading = true,
+            animated = true,
+            modifier = Modifier.width(240.dp),
+            template = {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    ElSkeletonItem(ElSkeletonVariant.Image, Modifier.fillMaxWidth().height(160.dp))
+                    ElSkeletonItem(ElSkeletonVariant.P, Modifier.fillMaxWidth(0.5f))
+                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        ElSkeletonItem(ElSkeletonVariant.Text, Modifier.weight(1f))
+                        ElSkeletonItem(ElSkeletonVariant.Text, Modifier.weight(0.3f))
+                    }
+                }
+            },
+        )
+    }
+
+    DemoExample("Count", "Repeat the placeholder block a number of times.") {
+        ElSkeleton(loading = true, count = 3, rows = 2, avatar = true)
+    }
+}
+
+@Composable
+private fun SkeletonLoadedCard() {
+    val theme = LocalElTheme.current
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .background(theme.colors.background, RoundedCornerShape(6.dp))
+            .padding(14.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        BasicText("Delicious hamburger", style = theme.typography.medium)
+        BasicText(
+            "The real content is rendered once the throttled loading state clears.",
+            style = theme.typography.small.copy(color = theme.colors.textSecondary),
+        )
+    }
 }

@@ -69,6 +69,10 @@ fun ElInputOtp(
     separator: (@Composable (index: Int) -> Unit)? = null,
     validator: (char: String, index: Int) -> Boolean = { _, _ -> true },
     onFinish: ((String) -> Unit)? = null,
+    onChange: ((String) -> Unit)? = null,
+    onFocus: (() -> Unit)? = null,
+    onBlur: (() -> Unit)? = null,
+    ariaLabel: String? = null,
 ) {
     require(length > 0) { "length must be positive" }
     val theme = LocalElTheme.current
@@ -91,6 +95,18 @@ fun ElInputOtp(
     )
     val focusRequesters = remember(length) { List(length) { FocusRequester() } }
     var focusedIndex by remember { mutableStateOf(-1) }
+    var hadFocus by remember { mutableStateOf(false) }
+    LaunchedEffect(focusedIndex) {
+        if (focusedIndex >= 0) {
+            if (!hadFocus) {
+                hadFocus = true
+                onFocus?.invoke()
+            }
+        } else if (hadFocus) {
+            hadFocus = false
+            onBlur?.invoke()
+        }
+    }
     val chars = remember(value) { value.padEnd(length).take(length).toMutableList() }
 
     fun setAt(index: Int, char: Char?) {
@@ -98,6 +114,7 @@ fun ElInputOtp(
         next[index] = char ?: ' '
         val text = next.concatToString().replace(" ", "")
         onValueChange(text.take(length))
+        onChange?.invoke(text.take(length))
         if (text.length >= length) onFinish?.invoke(text)
     }
 
@@ -141,6 +158,7 @@ fun ElInputOtp(
                                 }
                                 val text = result.concatToString().replace(" ", "").take(length)
                                 onValueChange(text)
+                                onChange?.invoke(text)
                                 if (text.length == length) onFinish?.invoke(text)
                                 val target = (index + charsToInsert.length).coerceAtMost(length - 1)
                                 focusedIndex = target
@@ -164,9 +182,19 @@ fun ElInputOtp(
                     modifier = Modifier
                         .fillMaxWidth()
                         .focusRequester(focusRequesters[index])
-                        .onFocusChanged { if (it.isFocused) focusedIndex = index }
+                        .onFocusChanged {
+                            if (it.isFocused) {
+                                focusedIndex = index
+                            } else if (focusedIndex == index) {
+                                focusedIndex = -1
+                            }
+                        }
                         .semantics {
-                            contentDescription = locale.inputOtp.defaultLabel.replace("{index}", (index + 1).toString())
+                            contentDescription = if (ariaLabel != null) {
+                                "$ariaLabel ${index + 1}"
+                            } else {
+                                locale.inputOtp.defaultLabel.replace("{index}", (index + 1).toString())
+                            }
                         }
                         .onPreviewKeyEvent { event ->
                             if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false

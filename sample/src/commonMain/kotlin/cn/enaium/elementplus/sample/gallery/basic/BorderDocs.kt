@@ -102,4 +102,36 @@ fun BorderDocs() {
             }
         }
     }
+
+    DemoExample("Border color tokens", "The border scale from the regular border to the extra light colour used by dividers.") {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            listOf(
+                "border" to colors.border,
+                "borderLight" to colors.borderLight,
+                "borderLighter" to colors.borderLighter,
+                "borderExtraLight" to colors.borderExtraLight,
+            ).forEach { (name, color) ->
+                ElBorder(color = color, modifier = Modifier.fillMaxWidth()) {
+                    BasicText(name, Modifier.padding(horizontal = 12.dp, vertical = 10.dp), style = theme.typography.small)
+                }
+            }
+        }
+    }
+    DemoExample("Radius tokens", "The theme exposes the base, small and round radius tokens used by the components.") {
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            listOf(
+                "base" to theme.radius.base,
+                "small" to theme.radius.small,
+                "round" to theme.radius.round,
+            ).forEach { (name, radius) ->
+                ElBorder(radius = radius) {
+                    BasicText(
+                        "$name ${radius.value.toInt()}dp",
+                        Modifier.padding(horizontal = 20.dp, vertical = 14.dp),
+                        style = theme.typography.small,
+                    )
+                }
+            }
+        }
+    }
 }

@@ -29,6 +29,7 @@ fun ElEmpty(
     description: String? = null,
     imageSize: Dp = 120.dp,
     image: (@Composable () -> Unit)? = null,
+    descriptionContent: (@Composable () -> Unit)? = null,
     content: (@Composable () -> Unit)? = null,
 ) {
     val theme = LocalElTheme.current
@@ -45,10 +46,14 @@ fun ElEmpty(
             EmptyIllustration(imageSize, colors.border, colors.fillLight)
         }
         Spacer(Modifier.height(12.dp))
-        BasicText(
-            text = description ?: locale.emptyText,
-            style = theme.typography.base.copy(color = colors.textSecondary),
-        )
+        if (descriptionContent != null) {
+            descriptionContent()
+        } else {
+            BasicText(
+                text = description ?: locale.emptyText,
+                style = theme.typography.base.copy(color = colors.textSecondary),
+            )
+        }
         if (content != null) {
             Spacer(Modifier.height(14.dp))
             content()

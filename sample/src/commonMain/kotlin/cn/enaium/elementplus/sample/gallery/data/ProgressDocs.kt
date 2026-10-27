@@ -35,6 +35,7 @@ import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.ElInput
 import cn.enaium.elementplus.components.ElSwitch
+import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
@@ -83,5 +84,86 @@ fun ProgressDocs() {
     }
     DemoExample("Customized content", "Format the progress text with a custom formatter.") {
         ElProgress(percentage = 70.0, format = { "Done ${it.toInt()} / 100" }, width = 300.dp)
+    }
+
+    DemoExample("Indeterminate progress", "An indeterminate bar cycles continuously; duration controls the animation speed.") {
+        Column(Modifier.width(420.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            ElProgress(percentage = 50.0, indeterminate = true)
+            ElProgress(
+                percentage = 100.0,
+                indeterminate = true,
+                format = { if (it >= 100.0) "Full" else "${it.toInt()}%" },
+            )
+            ElProgress(percentage = 100.0, status = ElProgressStatus.Success, indeterminate = true, duration = 5)
+            ElProgress(percentage = 100.0, status = ElProgressStatus.Warning, indeterminate = true, duration = 1)
+            ElProgress(percentage = 50.0, status = ElProgressStatus.Exception, indeterminate = true)
+        }
+    }
+
+    DemoExample("Striped flow", "Animated stripes make an active bar more visible.") {
+        var percent by remember { mutableStateOf(70.0) }
+        Column(Modifier.width(420.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            ElProgress(percentage = 50.0, strokeWidth = 15.dp, striped = true)
+            ElProgress(percentage = 30.0, strokeWidth = 15.dp, status = ElProgressStatus.Warning, striped = true, stripedFlow = true)
+            ElProgress(
+                percentage = percent,
+                strokeWidth = 15.dp,
+                status = ElProgressStatus.Exception,
+                striped = true,
+                stripedFlow = true,
+                duration = 2,
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                ElButton(onClick = { percent = (percent - 10.0).coerceAtLeast(0.0) }, text = "-10")
+                ElButton(onClick = { percent = (percent + 10.0).coerceAtMost(100.0) }, text = "+10")
+            }
+        }
+    }
+
+    DemoExample("Segmented and dynamic colors", "Color the bar with stops or a function of the percentage.") {
+        Column(Modifier.width(420.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            ElProgress(
+                percentage = 65.0,
+                colorFunction = { p ->
+                    when {
+                        p < 30 -> colors.info
+                        p < 70 -> colors.warning
+                        else -> colors.success
+                    }
+                },
+            )
+            ElProgress(
+                percentage = 75.0,
+                colorStops = listOf(
+                    ElProgressColor(colors.danger, 25.0),
+                    ElProgressColor(colors.warning, 50.0),
+                    ElProgressColor(colors.success, 100.0),
+                ),
+            )
+        }
+    }
+
+    DemoExample("Custom content", "Replace the percentage text with any composable.") {
+        Column(Modifier.width(460.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+            ElProgress(percentage = 50.0, content = { p -> DemoHint("${p.toInt()}% complete") })
+            ElProgress(percentage = 50.0, textInside = true, strokeWidth = 20.dp, content = { BasicText("Content") })
+            ElProgress(percentage = 100.0, type = ElProgressType.Circle, status = ElProgressStatus.Success, content = {
+                ElIcon(ElIcons.Check, size = 26.dp, tint = colors.success)
+            })
+            ElProgress(percentage = 80.0, type = ElProgressType.Dashboard, content = { p ->
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    BasicText("${p.toInt()}%", style = LocalElTheme.current.typography.large)
+                    DemoHint("Progressing")
+                }
+            })
+        }
+    }
+
+    DemoExample("Stroke line cap", "Circle and dashboard strokes support round, square and butt caps.") {
+        Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+            ElProgress(percentage = 60.0, type = ElProgressType.Circle, width = 100.dp, strokeWidth = 10.dp, strokeLinecap = ElProgressStrokeLinecap.Round)
+            ElProgress(percentage = 60.0, type = ElProgressType.Circle, width = 100.dp, strokeWidth = 10.dp, strokeLinecap = ElProgressStrokeLinecap.Square)
+            ElProgress(percentage = 60.0, type = ElProgressType.Circle, width = 100.dp, strokeWidth = 10.dp, strokeLinecap = ElProgressStrokeLinecap.Butt)
+        }
     }
 }

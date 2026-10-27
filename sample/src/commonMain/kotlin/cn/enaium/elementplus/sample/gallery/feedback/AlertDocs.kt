@@ -105,4 +105,21 @@ fun AlertDocs() {
             closable = false,
         )
     }
+
+    DemoExample("Unclosable alert", "Hide the close action so the alert stays visible.") {
+        ElAlert(
+            title = "Unclosable alert",
+            type = ElType.Success,
+            closable = false,
+        )
+    }
+
+    DemoExample("Custom close icon", "Replace the default close icon.") {
+        ElAlert(
+            title = "Custom close icon",
+            type = ElType.Info,
+            closeIcon = ElIcons.CircleClose,
+            onClose = { ElMessage.show("Alert closed") },
+        )
+    }
 }

@@ -28,6 +28,8 @@ import cn.enaium.elementplus.components.ElTreeNode
 import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.*
+import cn.enaium.elementplus.icons.ElIcon
+import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
 import cn.enaium.elementplus.theme.ElType
@@ -86,4 +88,151 @@ fun InputTagDocs() {
             ElInputTag(values = values, onValueChange = { values = it }, size = ElSize.Small, clearable = true, modifier = Modifier.width(360.dp))
         }
     }
+
+    DemoExample("Custom clear icon", "Replace the clear icon with the clearIcon slot.") {
+        var values by remember { mutableStateOf(listOf("custom", "clear", "icon")) }
+        ElInputTag(
+            values = values,
+            onValueChange = { values = it },
+            clearable = true,
+            clearIcon = {
+                ElIcon(
+                    ElIcons.CloseBold,
+                    size = 14.dp,
+                    tint = LocalElTheme.current.colors.textPlaceholder,
+                )
+            },
+            placeholder = "Custom clear icon",
+            modifier = Modifier.width(360.dp),
+        )
+    }
+
+    DemoExample("Collapse tags", "Hide overflowing tags behind a + N chip, optionally with a tooltip.") {
+        var collapsed by remember { mutableStateOf(listOf("tag1", "tag2", "tag3", "tag4", "tag5")) }
+        var withTooltip by remember { mutableStateOf(listOf("tag1", "tag2", "tag3", "tag4", "tag5")) }
+        var maxCollapsed by remember { mutableStateOf(listOf("tag1", "tag2", "tag3", "tag4", "tag5")) }
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            ElInputTag(
+                values = collapsed,
+                onValueChange = { collapsed = it },
+                collapseTags = true,
+                placeholder = "collapseTags",
+                modifier = Modifier.width(420.dp),
+            )
+            ElInputTag(
+                values = withTooltip,
+                onValueChange = { withTooltip = it },
+                collapseTags = true,
+                collapseTagsTooltip = true,
+                placeholder = "collapseTagsTooltip",
+                modifier = Modifier.width(420.dp),
+            )
+            ElInputTag(
+                values = maxCollapsed,
+                onValueChange = { maxCollapsed = it },
+                collapseTags = true,
+                collapseTagsTooltip = true,
+                maxCollapseTags = 3,
+                placeholder = "maxCollapseTags = 3",
+                modifier = Modifier.width(420.dp),
+            )
+        }
+    }
+
+    DemoExample("Draggable", "Long-press a tag and drag it to reorder the list.") {
+        var values by remember { mutableStateOf(listOf("tag1", "tag2", "tag3")) }
+        ElInputTag(
+            values = values,
+            onValueChange = { values = it },
+            draggable = true,
+            onDragTag = { values = it },
+            placeholder = "Please input",
+            modifier = Modifier.width(420.dp),
+        )
+        DemoHint("Order: ${values.joinToString()}")
+    }
+
+    DemoExample("Prefix and suffix", "Add content before the tags and after the input.") {
+        var values by remember { mutableStateOf(emptyList<String>()) }
+        ElInputTag(
+            values = values,
+            onValueChange = { values = it },
+            clearable = true,
+            prefix = {
+                ElIcon(
+                    ElIcons.Plus,
+                    size = 14.dp,
+                    tint = LocalElTheme.current.colors.textPlaceholder,
+                )
+            },
+            suffix = {
+                ElIcon(
+                    ElIcons.Search,
+                    size = 14.dp,
+                    tint = LocalElTheme.current.colors.textPlaceholder,
+                )
+            },
+            placeholder = "Please input",
+            modifier = Modifier.width(420.dp),
+        )
+    }
+
+    DemoExample("Custom tag content", "Override the tag body and pick a tag type and effect.") {
+        var tagType by remember { mutableStateOf("primary") }
+        var tagEffect by remember { mutableStateOf("plain") }
+        var values by remember { mutableStateOf(listOf("tag1", "tag2", "tag3")) }
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            DemoRowSpaced {
+                ElSegmented(
+                    options = listOf(
+                        ElSegmentedOption("primary", "primary"),
+                        ElSegmentedOption("success", "success"),
+                        ElSegmentedOption("info", "info"),
+                        ElSegmentedOption("warning", "warning"),
+                        ElSegmentedOption("danger", "danger"),
+                    ),
+                    value = tagType,
+                    onValueChange = { tagType = it },
+                )
+                ElSegmented(
+                    options = listOf(
+                        ElSegmentedOption("light", "light"),
+                        ElSegmentedOption("dark", "dark"),
+                        ElSegmentedOption("plain", "plain"),
+                    ),
+                    value = tagEffect,
+                    onValueChange = { tagEffect = it },
+                )
+            }
+            ElInputTag(
+                values = values,
+                onValueChange = { values = it },
+                tagType = tagTypeOf(tagType),
+                tagEffect = when (tagEffect) {
+                    "dark" -> ElTagEffect.Dark
+                    "plain" -> ElTagEffect.Plain
+                    else -> ElTagEffect.Light
+                },
+                tag = { value, _ ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        ElIcon(ElIcons.Plus, size = 12.dp)
+                        BasicText(value, style = LocalElTheme.current.typography.extraSmall)
+                    }
+                },
+                placeholder = "Please input",
+                modifier = Modifier.width(420.dp),
+            )
+        }
+    }
+}
+
+private fun tagTypeOf(value: String): ElType = when (value) {
+    "success" -> ElType.Success
+    "info" -> ElType.Info
+    "warning" -> ElType.Warning
+    "danger" -> ElType.Danger
+    else -> ElType.Primary
 }

@@ -1,6 +1,7 @@
 package cn.enaium.elementplus.sample.gallery.data
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import cn.enaium.elementplus.components.ElMessage
 import cn.enaium.elementplus.components.ElMessageType
 import cn.enaium.elementplus.components.ElInput
 import cn.enaium.elementplus.components.ElSwitch
+import cn.enaium.elementplus.icons.ElIcon
 import cn.enaium.elementplus.icons.ElIcons
 import cn.enaium.elementplus.sample.gallery.*
 import cn.enaium.elementplus.theme.ElSize
@@ -71,6 +73,39 @@ fun BadgeDocs() {
         Row(horizontalArrangement = Arrangement.spacedBy(24.dp), verticalAlignment = Alignment.CenterVertically) {
             ElBadge(value = "9", color = colors.success) { ElButton(onClick = {}, text = "Success") }
             ElBadge(value = "!", color = colors.warning) { ElButton(onClick = {}, text = "Warning") }
+        }
+    }
+    DemoExample("Custom content", "Replace the badge text with custom markup such as an icon and value.") {
+        Row(horizontalArrangement = Arrangement.spacedBy(24.dp), verticalAlignment = Alignment.CenterVertically) {
+            ElBadge(value = "new") { ElButton(onClick = {}, text = "Comments") }
+            ElBadge(
+                value = "99",
+                badgeContent = { value ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(3.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        ElIcon(ElIcons.Message, size = 12.dp, tint = colors.white)
+                        BasicText(
+                            value,
+                            style = LocalElTheme.current.typography.extraSmall.copy(color = colors.white),
+                        )
+                    }
+                },
+            ) { ElButton(onClick = {}, text = "Messages") }
+        }
+    }
+    DemoExample("Custom badge style", "Restyle the badge surface with badgeModifier.") {
+        Row(horizontalArrangement = Arrangement.spacedBy(24.dp), verticalAlignment = Alignment.CenterVertically) {
+            ElBadge(
+                value = "5",
+                badgeModifier = Modifier.border(2.dp, colors.white, RoundedCornerShape(50)),
+            ) { ElButton(onClick = {}, text = "Bordered") }
+            ElBadge(
+                value = "hot",
+                color = colors.warning,
+                badgeModifier = Modifier.border(1.dp, colors.danger, RoundedCornerShape(50)),
+            ) { ElButton(onClick = {}, text = "Outlined") }
         }
     }
     DemoExample("Standalone", "Badges can be used without attached content.") {
