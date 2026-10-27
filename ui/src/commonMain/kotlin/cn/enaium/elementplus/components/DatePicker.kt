@@ -757,7 +757,7 @@ fun ElDateTimePickerPanel(
     var time by remember(value) {
         mutableStateOf(value?.time ?: defaultTime ?: LocalTime(0, 0))
     }
-    Column(modifier.then(panelSurfaceModifier(border))) {
+    Column(modifier.then(panelSurfaceModifier(border)).width(292.dp)) {
         CalendarPanelCore(
             type = ElDatePickerType.Date,
             selected = setOf(date),
@@ -876,7 +876,8 @@ fun ElDateTimeRangePanel(
     val resolvedNextYear = nextYearIcon ?: ElIcons.DArrowRight
     val names = remember(locale) { elDateFormatNames(locale) }
 
-    Column(modifier.then(panelSurfaceModifier(border))) {
+    val panelWidth = if (singlePanel) 292.dp else 596.dp
+    Column(modifier.then(panelSurfaceModifier(border)).width(panelWidth)) {
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.Top) {
             RangeCalendarUnit(
                 pickerType = ElDatePickerType.Date,
@@ -1891,7 +1892,7 @@ private fun ShortcutColumn(
     val theme = LocalElTheme.current
     val colors = theme.colors
     Column(
-        modifier.padding(end = 10.dp).widthIn(min = 84.dp),
+        modifier.padding(end = 10.dp).widthIn(min = 96.dp, max = 120.dp),
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         entries.forEach { (label, action) ->
@@ -2008,7 +2009,7 @@ fun ElDatePicker(
                             },
                         )
                     }
-                    Column {
+                    Column(Modifier.width(292.dp)) {
                         ElDatePickerPanel(
                             value = value,
                             onValueChange = { picked ->
@@ -2256,7 +2257,7 @@ fun ElDateRangePicker(
                             },
                         )
                     }
-                    Column {
+                    Column(Modifier.width(if (singlePanel) 292.dp else 596.dp)) {
                         ElDateRangePanel(
                             start = start,
                             end = end,
@@ -2406,7 +2407,7 @@ fun ElDateTimePicker(
                             },
                         )
                     }
-                    Column {
+                    Column(Modifier.width(292.dp)) {
                         ElDateTimePickerPanel(
                             value = value,
                             onValueChange = { picked ->
@@ -2583,7 +2584,7 @@ fun ElDateTimeRangePicker(
                             },
                         )
                     }
-                    Column {
+                    Column(Modifier.width(if (singlePanel) 292.dp else 596.dp)) {
                         ElDateTimeRangePanel(
                             start = start,
                             end = end,

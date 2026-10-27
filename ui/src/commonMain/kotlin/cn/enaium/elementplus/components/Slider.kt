@@ -393,7 +393,7 @@ private fun SliderImpl(
                     .background(colors.border, RoundedCornerShape(trackThickness / 2)),
             )
             val activeColor = if (disabled) colors.border else colors.primary
-            val left = if (isRange) xFor(sorted[0]) - thumbRadius else thumbRadius
+            val left = if (isRange) xFor(sorted[0]) - thumbRadius else 0.dp
             val right = xFor(sorted.last()) - thumbRadius
             if (right > left) {
                 Box(
