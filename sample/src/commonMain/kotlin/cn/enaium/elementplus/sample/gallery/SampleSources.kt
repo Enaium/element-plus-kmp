@@ -1,0 +1,101 @@
+package cn.enaium.elementplus.sample.gallery
+
+import androidx.compose.runtime.staticCompositionLocalOf
+
+private const val SAMPLE_SOURCE_ROOT =
+    "https://github.com/Enaium/element-plus-kmp/blob/main/sample/src/commonMain/kotlin/" +
+        "cn/enaium/elementplus/sample/gallery"
+
+private val sampleDocsFiles = mapOf(
+    "button" to "basic/ButtonDocs.kt",
+    "border" to "basic/BorderDocs.kt",
+    "color" to "basic/ColorDocs.kt",
+    "container" to "basic/ContainerDocs.kt",
+    "icon" to "basic/IconDocs.kt",
+    "layout" to "basic/LayoutDocs.kt",
+    "link" to "basic/LinkDocs.kt",
+    "text" to "basic/TextDocs.kt",
+    "scrollbar" to "basic/ScrollbarDocs.kt",
+    "space" to "basic/SpaceDocs.kt",
+    "splitter" to "basic/SplitterDocs.kt",
+    "typography" to "basic/TypographyDocs.kt",
+    "config-provider" to "config/ConfigProviderDocs.kt",
+    "autocomplete" to "form/AutocompleteDocs.kt",
+    "cascader" to "form/CascaderDocs.kt",
+    "checkbox" to "form/CheckboxDocs.kt",
+    "color-picker-panel" to "form/ColorPickerPanelDocs.kt",
+    "color-picker" to "form/ColorPickerDocs.kt",
+    "date-picker-panel" to "form/DatePickerPanelDocs.kt",
+    "date-picker" to "form/DatePickerDocs.kt",
+    "datetime-picker" to "form/DateTimePickerDocs.kt",
+    "form" to "form/FormDocs.kt",
+    "input" to "form/InputDocs.kt",
+    "input-number" to "form/InputNumberDocs.kt",
+    "input-tag" to "form/InputTagDocs.kt",
+    "input-otp" to "form/InputOtpDocs.kt",
+    "mention" to "form/MentionDocs.kt",
+    "radio" to "form/RadioDocs.kt",
+    "rate" to "form/RateDocs.kt",
+    "select" to "form/SelectDocs.kt",
+    "select-v2" to "form/VirtualizedSelectDocs.kt",
+    "slider" to "form/SliderDocs.kt",
+    "switch" to "form/SwitchDocs.kt",
+    "time-picker" to "form/TimePickerDocs.kt",
+    "time-select" to "form/TimeSelectDocs.kt",
+    "transfer" to "form/TransferDocs.kt",
+    "tree-select" to "form/TreeSelectDocs.kt",
+    "upload" to "form/UploadDocs.kt",
+    "avatar" to "data/AvatarDocs.kt",
+    "badge" to "data/BadgeDocs.kt",
+    "calendar" to "data/CalendarDocs.kt",
+    "card" to "data/CardDocs.kt",
+    "carousel" to "data/CarouselDocs.kt",
+    "collapse" to "data/CollapseDocs.kt",
+    "descriptions" to "data/DescriptionsDocs.kt",
+    "empty" to "data/EmptyDocs.kt",
+    "image" to "data/ImageDocs.kt",
+    "infinite-scroll" to "data/InfiniteScrollDocs.kt",
+    "pagination" to "data/PaginationDocs.kt",
+    "progress" to "data/ProgressDocs.kt",
+    "result" to "data/ResultDocs.kt",
+    "skeleton" to "data/SkeletonDocs.kt",
+    "table" to "data/TableDocs.kt",
+    "table-v2" to "data/VirtualizedTableDocs.kt",
+    "tag" to "data/TagDocs.kt",
+    "timeline" to "data/TimelineDocs.kt",
+    "tour" to "data/TourDocs.kt",
+    "tree" to "data/TreeDocs.kt",
+    "tree-v2" to "data/VirtualizedTreeDocs.kt",
+    "statistic" to "data/StatisticDocs.kt",
+    "segmented" to "data/SegmentedDocs.kt",
+    "affix" to "navigation/AffixDocs.kt",
+    "anchor" to "navigation/AnchorDocs.kt",
+    "backtop" to "navigation/BacktopDocs.kt",
+    "breadcrumb" to "navigation/BreadcrumbDocs.kt",
+    "dropdown" to "navigation/DropdownDocs.kt",
+    "menu" to "navigation/MenuDocs.kt",
+    "page-header" to "navigation/PageHeaderDocs.kt",
+    "steps" to "navigation/StepsDocs.kt",
+    "tabs" to "navigation/TabsDocs.kt",
+    "alert" to "feedback/AlertDocs.kt",
+    "dialog" to "feedback/DialogDocs.kt",
+    "drawer" to "feedback/DrawerDocs.kt",
+    "loading" to "feedback/LoadingDocs.kt",
+    "message" to "feedback/MessageDocs.kt",
+    "message-box" to "feedback/MessageBoxDocs.kt",
+    "notification" to "feedback/NotificationDocs.kt",
+    "popconfirm" to "feedback/PopconfirmDocs.kt",
+    "popover" to "feedback/PopoverDocs.kt",
+    "tooltip" to "feedback/TooltipDocs.kt",
+    "divider" to "other/DividerDocs.kt",
+    "watermark" to "other/WatermarkDocs.kt",
+)
+
+/** Gallery-relative path of this component's Docs.kt file. */
+fun SampleComponent.sourcePath(): String = sampleDocsFiles.getValue(id)
+
+/** GitHub source URL of the gallery page for this component. */
+fun SampleComponent.sourceUrl(): String = "$SAMPLE_SOURCE_ROOT/${sourcePath()}"
+
+/** Docs.kt path exposed to the demo blocks inside one component page. */
+val LocalSampleSourcePath = staticCompositionLocalOf<String?> { null }

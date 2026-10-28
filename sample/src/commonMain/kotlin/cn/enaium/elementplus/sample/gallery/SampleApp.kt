@@ -19,6 +19,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -31,6 +32,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cn.enaium.elementplus.components.ElButton
 import cn.enaium.elementplus.components.ElDivider
 import cn.enaium.elementplus.components.ElInput
 import cn.enaium.elementplus.components.ElLink
@@ -53,6 +55,7 @@ import cn.enaium.elementplus.theme.ElConfigProvider
 import cn.enaium.elementplus.theme.ElLocale
 import cn.enaium.elementplus.theme.ElLocales
 import cn.enaium.elementplus.theme.ElSize
+import cn.enaium.elementplus.theme.ElType
 import cn.enaium.elementplus.theme.ElTheme
 import cn.enaium.elementplus.theme.LocalElTheme
 import cn.enaium.elementplus.components.ElDrawerDirection
@@ -285,6 +288,9 @@ private fun SampleContent(
 ) {
     val theme = LocalElTheme.current
     val colors = theme.colors
+    val uriHandler = LocalUriHandler.current
+    val sourcePath = remember(component.id) { component.sourcePath() }
+    val sourceUrl = remember(sourcePath) { component.sourceUrl() }
     val scroll = rememberScrollState()
     LaunchedEffect(component.id) { scroll.scrollTo(0) }
     Box(modifier, contentAlignment = Alignment.TopCenter) {
@@ -304,23 +310,37 @@ private fun SampleContent(
                 ),
             )
             Spacer(Modifier.height(18.dp))
-            BasicText(
-                text = component.localizedTitle(locale),
-                style = theme.typography.extraLarge.copy(
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = colors.textPrimary,
-                ),
-            )
-            Spacer(Modifier.height(8.dp))
-            BasicText(
-                text = component.description,
-                style = theme.typography.base.copy(color = colors.textSecondary),
-            )
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
+                Column(Modifier.weight(1f)) {
+                    BasicText(
+                        text = component.localizedTitle(locale),
+                        style = theme.typography.extraLarge.copy(
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = colors.textPrimary,
+                        ),
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BasicText(
+                        text = component.description,
+                        style = theme.typography.base.copy(color = colors.textSecondary),
+                    )
+                }
+                Spacer(Modifier.width(16.dp))
+                ElButton(
+                    onClick = { uriHandler.openUri(sourceUrl) },
+                    text = "View sample source",
+                    type = ElType.Primary,
+                    plain = true,
+                    size = ElSize.Small,
+                )
+            }
             Spacer(Modifier.height(20.dp))
             ElDivider()
             Spacer(Modifier.height(20.dp))
-            key(component.id) { SampleComponentPage(component) }
+            CompositionLocalProvider(LocalSampleSourcePath provides sourcePath) {
+                key(component.id) { SampleComponentPage(component) }
+            }
             Spacer(Modifier.height(40.dp))
         }
     }

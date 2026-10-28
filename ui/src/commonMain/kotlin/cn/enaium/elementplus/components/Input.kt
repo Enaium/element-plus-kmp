@@ -141,8 +141,11 @@ fun ElInput(
     var textFieldValue by remember {
         mutableStateOf(TextFieldValue(displayValue, selection = TextRange(displayValue.length)))
     }
-    LaunchedEffect(displayValue) {
-        if (textFieldValue.text != displayValue) {
+    LaunchedEffect(displayValue, textFieldValue.composition) {
+        // Do not replace the field state while an IME is composing. Replacing
+        // it cancels the composition and makes the placeholder/composing text
+        // jump before the Chinese characters are committed.
+        if (textFieldValue.composition == null && textFieldValue.text != displayValue) {
             textFieldValue = TextFieldValue(displayValue, selection = TextRange(displayValue.length))
         }
     }
@@ -241,7 +244,7 @@ fun ElInput(
                     interactionSource = interaction,
                     decorationBox = { inner ->
                         Box {
-                            if (displayValue.isEmpty() && placeholder != null) {
+                            if (textFieldValue.text.isEmpty() && textFieldValue.composition == null && placeholder != null) {
                                 BasicText(
                                     text = placeholder,
                                     style = textStyle.copy(color = colors.textPlaceholder),
@@ -300,7 +303,7 @@ fun ElInput(
                     interactionSource = interaction,
                     decorationBox = { inner ->
                         Box {
-                            if (displayValue.isEmpty() && placeholder != null) {
+                            if (textFieldValue.text.isEmpty() && textFieldValue.composition == null && placeholder != null) {
                                 BasicText(
                                     text = placeholder,
                                     style = textStyle.copy(color = colors.textPlaceholder),

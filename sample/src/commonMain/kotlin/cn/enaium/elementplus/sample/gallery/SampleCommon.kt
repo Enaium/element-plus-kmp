@@ -10,11 +10,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import cn.enaium.elementplus.components.ElLink
 import cn.enaium.elementplus.theme.LocalElTheme
 
 /**
@@ -28,6 +41,9 @@ fun DemoExample(
     content: @Composable () -> Unit,
 ) {
     val theme = LocalElTheme.current
+    val sourcePath = LocalSampleSourcePath.current
+    val sourceCode = sourcePath?.let { SampleDemoSources.find(it, title) }
+    var showSource by remember(title, sourcePath) { mutableStateOf(false) }
     Column(
         Modifier
             .fillMaxWidth()
@@ -37,22 +53,58 @@ fun DemoExample(
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-            BasicText(
-                text = title,
-                style = theme.typography.medium.copy(
-                    color = theme.colors.textPrimary,
-                    fontWeight = FontWeight.SemiBold,
-                ),
-            )
-            if (description != null) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
+            Column(
+                Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(5.dp),
+            ) {
                 BasicText(
-                    text = description,
-                    style = theme.typography.small.copy(color = theme.colors.textSecondary),
+                    text = title,
+                    style = theme.typography.medium.copy(
+                        color = theme.colors.textPrimary,
+                        fontWeight = FontWeight.SemiBold,
+                    ),
+                )
+                if (description != null) {
+                    BasicText(
+                        text = description,
+                        style = theme.typography.small.copy(color = theme.colors.textSecondary),
+                    )
+                }
+            }
+            if (sourceCode != null) {
+                ElLink(
+                    text = if (showSource) "Hide source" else "View source",
+                    onClick = { showSource = !showSource },
                 )
             }
         }
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) { content() }
+        if (showSource && sourceCode != null) {
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(theme.colors.fillLight)
+                    .border(1.dp, theme.colors.borderLight, RoundedCornerShape(4.dp))
+                    .horizontalScroll(rememberScrollState())
+                    .padding(12.dp)
+                    .testTag("demo-source-code"),
+            ) {
+                SelectionContainer {
+                    BasicText(
+                        text = sourceCode,
+                        style = TextStyle(
+                            fontFamily = FontFamily.Monospace,
+                            fontSize = 12.sp,
+                            lineHeight = 18.sp,
+                            color = theme.colors.textRegular,
+                        ),
+                        softWrap = false,
+                    )
+                }
+            }
+        }
     }
 }
 

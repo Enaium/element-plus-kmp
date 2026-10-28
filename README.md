@@ -11,7 +11,7 @@ Supported targets: **Android, iOS (arm64 + simulator), Desktop/JVM, Kotlin/JS an
 ## Installation
 
 ```kotlin
-implementation("cn.enaium.elementplus:element-plus-kmp:1.1.1")
+implementation("cn.enaium.elementplus:element-plus-kmp:1.1.2")
 ```
 
 The library is built on Compose Multiplatform Foundation/UI and does not require Material.

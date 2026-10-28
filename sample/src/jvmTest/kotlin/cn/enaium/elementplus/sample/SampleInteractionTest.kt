@@ -11,6 +11,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasSetTextAction
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -19,6 +21,7 @@ import androidx.compose.ui.test.runComposeUiTest
 import cn.enaium.elementplus.sample.gallery.SampleApp
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 @OptIn(ExperimentalTestApi::class)
 class SampleInteractionTest {
@@ -75,6 +78,31 @@ class SampleInteractionTest {
         onNodeWithText("French").performClick()
         onNodeWithText("Border").assertExists()
         onNodeWithText("Border 边框").assertDoesNotExist()
+    }
+
+    @Test
+    fun sourceLinksOpenTheCurrentDocsFile() = runComposeUiTest {
+        var opened: String? = null
+        setContent {
+            CompositionLocalProvider(
+                LocalUriHandler provides object : UriHandler {
+                    override fun openUri(uri: String) {
+                        opened = uri
+                    }
+                },
+            ) {
+                SampleApp()
+            }
+        }
+
+        onNodeWithText("View sample source").performClick()
+        assertTrue(opened?.endsWith("/gallery/basic/ButtonDocs.kt") == true)
+
+        onAllNodesWithText("View source")[0].performClick()
+        onNodeWithTag("demo-source-code").assertExists()
+        onNodeWithText("ElButton(", substring = true).assertExists()
+        onNodeWithText("Hide source").performClick()
+        onNodeWithTag("demo-source-code").assertDoesNotExist()
     }
 
     @Test
