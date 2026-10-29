@@ -200,11 +200,16 @@ fun ElInputOtp(
                             if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
                             when (event.key) {
                                 Key.Backspace -> {
-                                    if (char.isEmpty() && index > 0) {
-                                        focusedIndex = index - 1
-                                        focusRequesters[index - 1].requestFocus()
-                                        true
-                                    } else false
+                                    if (char.isNotEmpty()) setAt(index, null)
+                                    val target = (index - 1).coerceAtLeast(0)
+                                    focusedIndex = target
+                                    focusRequesters[target].requestFocus()
+                                    true
+                                }
+                                Key.Delete -> {
+                                    if (char.isNotEmpty()) setAt(index, null)
+                                    focusRequesters[index].requestFocus()
+                                    true
                                 }
                                 Key.DirectionLeft -> {
                                     if (index > 0) { focusedIndex = index - 1; focusRequesters[index - 1].requestFocus() }

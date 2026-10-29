@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,9 +17,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -45,6 +48,9 @@ import cn.enaium.elementplus.theme.ElSize
 import cn.enaium.elementplus.theme.LocalElConfig
 import cn.enaium.elementplus.theme.LocalElTheme
 import cn.enaium.elementplus.theme.LocalElContentColor
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 /** Form items override the global component size for their subtree. */
 val LocalElFormSize = staticCompositionLocalOf<ElSize?> { null }
@@ -63,10 +69,37 @@ data class ElInteractiveState(
 @Composable
 fun rememberElInteractionState(source: MutableInteractionSource): ElInteractiveState {
     val hovered by source.collectIsHoveredAsState()
-    val pressed by source.collectIsPressedAsState()
     val focused by source.collectIsFocusedAsState()
-    return ElInteractiveState(hovered = hovered, pressed = pressed, focused = focused)
+    val held by source.collectIsPressedAsState()
+    var releaseFeedback by remember(source) { mutableStateOf(false) }
+
+    // A tap can press and release between two frames. Keep a short feedback
+    // window after release, but do not extend it while another click is already
+    // inside that window; otherwise continuous clicking stays pressed forever.
+    LaunchedEffect(source) {
+        var feedbackJob: Job? = null
+        source.interactions.collect { interaction ->
+            if (
+                (interaction is PressInteraction.Release || interaction is PressInteraction.Cancel) &&
+                feedbackJob?.isActive != true
+            ) {
+                releaseFeedback = true
+                feedbackJob = launch {
+                    delay(ElPressedFeedbackMillis)
+                    releaseFeedback = false
+                }
+            }
+        }
+    }
+
+    return ElInteractiveState(
+        hovered = hovered,
+        pressed = held || releaseFeedback,
+        focused = focused,
+    )
 }
+
+private const val ElPressedFeedbackMillis = 64L
 
 /** A subtle pressed/hover tint helpers used by buttons, menu items, etc. */
 fun hoverTint(base: Color, hover: Color, active: Boolean): Color =
@@ -89,7 +122,7 @@ fun Modifier.elBorder(
         cornerRadius = CornerRadius(radiusPx, radiusPx),
         style = Stroke(
             width = strokeWidth,
-            pathEffect = if (dashed) PathEffect.dashPathEffect(floatArrayOf(6.dp.toPx(), 4.dp.toPx())) else null,
+            pathEffect = if (dashed) PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx())) else null,
         ),
     )
 }
@@ -135,7 +168,7 @@ fun Modifier.elDashedBorder(
         cornerRadius = CornerRadius(radiusPx, radiusPx),
         style = Stroke(
             width = strokeWidth,
-            pathEffect = PathEffect.dashPathEffect(floatArrayOf(6.dp.toPx(), 4.dp.toPx())),
+            pathEffect = PathEffect.dashPathEffect(floatArrayOf(4.dp.toPx(), 3.dp.toPx())),
         ),
     )
 }

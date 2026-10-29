@@ -1,5 +1,14 @@
 package cn.enaium.elementplus.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,6 +23,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -204,7 +217,9 @@ fun ElMessageHost(
                     },
                 ) {
                     positionItems.forEach { item ->
-                        MessageItemView(item, onClose = { service.close(item.id) })
+                        key(item.id) {
+                            MessageItemView(item, onClose = { service.close(item.id) })
+                        }
                     }
                 }
             }
@@ -228,9 +243,25 @@ private fun MessageItemView(item: ElMessageItem, onClose: () -> Unit) {
     val (type, defaultIcon) = messageIcon(item.type)
     val icon = item.icon ?: defaultIcon
     val color = colors.colorOf(type)
+    val isTop = item.placement == ElMessagePlacement.Top ||
+        item.placement == ElMessagePlacement.TopLeft ||
+        item.placement == ElMessagePlacement.TopRight
+    val transitionState = remember(item.id) {
+        MutableTransitionState(false).apply { targetState = true }
+    }
+    var closing by remember(item.id) { mutableStateOf(false) }
+    fun requestClose() {
+        closing = true
+        transitionState.targetState = false
+    }
     LaunchedEffect(item.id, item.duration, item.repeatNum) {
         if (item.duration > 0) {
             delay(item.duration)
+            requestClose()
+        }
+    }
+    LaunchedEffect(transitionState.isIdle, transitionState.currentState, closing) {
+        if (closing && transitionState.isIdle && !transitionState.currentState) {
             onClose()
         }
     }
@@ -240,8 +271,24 @@ private fun MessageItemView(item: ElMessageItem, onClose: () -> Unit) {
     } else {
         Modifier
     }
-    Box(Modifier.padding(vertical = 5.dp)) {
-        Row(
+    AnimatedVisibility(
+        visibleState = transitionState,
+        enter = fadeIn(tween(durationMillis = 300)) +
+            slideInVertically(tween(durationMillis = 400)) { height -> if (isTop) -height else height } +
+            expandVertically(
+                animationSpec = tween(durationMillis = 300),
+                expandFrom = if (isTop) Alignment.Top else Alignment.Bottom,
+            ),
+        exit = fadeOut(tween(durationMillis = 300)) +
+            slideOutVertically(tween(durationMillis = 400)) { height -> if (isTop) -height else height } +
+            shrinkVertically(
+                animationSpec = tween(durationMillis = 300),
+                shrinkTowards = if (isTop) Alignment.Top else Alignment.Bottom,
+            ),
+        label = "el-message",
+    ) {
+        Box(Modifier.padding(vertical = 5.dp)) {
+            Row(
             Modifier
                 .widthIn(min = 200.dp, max = 480.dp)
                 .then(clickableModifier)
@@ -282,7 +329,7 @@ private fun MessageItemView(item: ElMessageItem, onClose: () -> Unit) {
                     size = 12.dp,
                     tint = colors.textPlaceholder,
                     contentDescription = LocalElConfig.current.locale.close,
-                    modifier = Modifier.clickable(onClick = onClose),
+                    modifier = Modifier.clickable(onClick = { requestClose() }),
                 )
             }
         }
@@ -300,6 +347,7 @@ private fun MessageItemView(item: ElMessageItem, onClose: () -> Unit) {
                     style = theme.typography.extraSmall.copy(color = colors.white),
                 )
             }
+        }
         }
     }
 }

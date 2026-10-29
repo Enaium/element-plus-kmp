@@ -54,7 +54,7 @@ kotlin {
 
 
 group = "cn.enaium.elementplus"
-version = "1.1.2"
+version = "1.1.3"
 
 mavenPublishing {
     coordinates(project.group.toString(), rootProject.name, project.version.toString())

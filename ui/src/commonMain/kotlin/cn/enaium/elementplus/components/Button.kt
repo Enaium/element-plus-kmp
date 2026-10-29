@@ -1,6 +1,8 @@
 package cn.enaium.elementplus.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -118,6 +120,7 @@ fun ElButton(
         plain = resolvedPlain,
         textButton = resolvedText,
         link = link,
+        dashed = resolvedDashed,
         disabled = disabled,
     )
     val interaction = remember { MutableInteractionSource() }
@@ -174,6 +177,7 @@ fun ElButton(
 
     val bgColor = customBase?.background ?: when {
         disabled -> theme.colors.disabledBackground
+        resolvedDashed -> if (isDefault) theme.colors.fillBlank else theme.colors.light(resolvedType, 9)
         resolvedPlain -> buttonPlainBackground(resolvedType)
         resolvedText || link -> if (bg) theme.colors.fillLight else Color.Transparent
         isDefault -> theme.colors.fillBlank
@@ -181,12 +185,14 @@ fun ElButton(
     }
     val pressedColor = customPressed?.background ?: when {
         disabled || resolvedText || link -> bgColor
-        resolvedPlain -> typeColor
+        resolvedDashed -> if (isDefault) theme.colors.fillBlank else theme.colors.light(resolvedType, 9)
+        resolvedPlain -> if (isDefault) theme.colors.light(ElType.Primary, 9) else theme.colors.dark(resolvedType)
         !isDefault -> theme.colors.dark(resolvedType)
         else -> theme.colors.light(ElType.Primary, 9)
     }
     val hoverColor = customHover?.background ?: when {
         disabled || resolvedText || link -> if ((resolvedText || link) && bg) theme.colors.fill else bgColor
+        resolvedDashed -> if (isDefault) theme.colors.fillBlank else theme.colors.light(resolvedType, 9)
         resolvedPlain -> typeColor
         !isDefault -> theme.colors.light(resolvedType, 3)
         else -> theme.colors.light(ElType.Primary, 9)
@@ -197,6 +203,7 @@ fun ElButton(
             state.hovered -> hoverColor
             else -> bgColor
         },
+        animationSpec = tween(durationMillis = 100, easing = FastOutSlowInEasing),
         label = "el-button-bg",
     )
     val borderColor = if (customBase != null) {
@@ -207,8 +214,16 @@ fun ElButton(
         }
     } else when {
         disabled -> theme.colors.disabledBorder
-        resolvedPlain -> if (state.hovered) typeColor else theme.colors.light(resolvedType, 5)
-        resolvedDashed -> if (state.hovered) theme.colors.light(resolvedType, 3) else theme.colors.light(resolvedType, 5)
+        resolvedPlain -> when {
+            state.pressed -> if (isDefault) theme.colors.light(ElType.Primary, 5) else theme.colors.dark(resolvedType)
+            state.hovered -> typeColor
+            else -> theme.colors.light(resolvedType, 5)
+        }
+        resolvedDashed -> when {
+            state.pressed -> if (isDefault) theme.colors.dark(ElType.Primary) else theme.colors.dark(resolvedType)
+            state.hovered -> if (isDefault) theme.colors.primary else theme.colors.light(resolvedType, 3)
+            else -> if (isDefault) theme.colors.border else theme.colors.light(resolvedType, 5)
+        }
         resolvedText || link -> Color.Transparent
         isDefault -> if (state.hovered) theme.colors.light(ElType.Primary, 7) else theme.colors.border
         else -> animatedBg
@@ -224,17 +239,20 @@ fun ElButton(
             disabled -> theme.colors.disabledText
             state.pressed -> when {
                 resolvedPlain -> theme.colors.white
+                resolvedDashed -> if (isDefault) theme.colors.dark(ElType.Primary) else theme.colors.dark(resolvedType)
                 resolvedText || link -> theme.colors.dark(resolvedType)
                 !isDefault -> theme.colors.white
                 else -> theme.colors.primary
             }
             state.hovered -> when {
                 resolvedPlain -> theme.colors.white
+                resolvedDashed -> if (isDefault) theme.colors.primary else typeColor
                 resolvedText || link -> theme.colors.primary
                 else -> contentColor
             }
             else -> contentColor
         },
+        animationSpec = tween(durationMillis = 100, easing = FastOutSlowInEasing),
         label = "el-button-content",
     )
     val shape = when {
@@ -375,12 +393,14 @@ private fun buttonContentColor(
     plain: Boolean,
     textButton: Boolean,
     link: Boolean,
+    dashed: Boolean,
     disabled: Boolean,
 ): Color {
     val colors = LocalElTheme.current.colors
     return when {
         disabled -> colors.disabledText
         plain || textButton || link -> colors.colorOf(type)
+        dashed -> if (type == ElType.Default) colors.textRegular else colors.colorOf(type)
         type == ElType.Default -> colors.textRegular
         else -> colors.white
     }

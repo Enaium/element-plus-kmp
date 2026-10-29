@@ -25,7 +25,6 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerEventType
@@ -476,11 +475,7 @@ private fun SliderImpl(
                     .offset(x = offsetX, y = offsetY)
                     .width(thumbDiameter)
                     .height(thumbDiameter)
-                    .shadow(2.dp, CircleShape)
-                    .background(
-                        if (disabled) colors.fill else colors.white,
-                        CircleShape,
-                    )
+                    .background(colors.white, CircleShape)
                     .border(
                         2.dp,
                         if (disabled) colors.borderLight else colors.primary,
